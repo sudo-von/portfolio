@@ -7,7 +7,7 @@ export const lightTheme = {
     highlighted_color: '#1f4068',
   },
   navbar: {
-    toggleBorder: '#FFF',
+    toggleBorder: '#F2F2F2',
     gradient: 'linear-gradient(#39598A, #79D7ED)',
     background_color: '#162447',
   },

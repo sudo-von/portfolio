@@ -11,7 +11,7 @@ const Navbar = ({theme, themeToggler}) => {
   const styles = useTheme();
 
   return (  
-    <AppBar position='sticky'>
+    <AppBar position='sticky' style={{background: 'transparent', boxShadow: 'none'}}>
       <Container>
         <Toolbar>
           <Toggle theme={theme} toggleTheme={themeToggler} />
