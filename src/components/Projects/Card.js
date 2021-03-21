@@ -14,15 +14,15 @@ const Card = ({data}) => {
 
   return (
     <Grid item xs={12} sm={6}>
-      <MaterialCard style={{ display: 'flex', alignItems: 'center', padding: 5, width: '100%', background: theme.card_background}}>
+      <MaterialCard style={{ display: 'flex', alignItems: 'center', padding: 5, width: '100%', background: theme.card.background_color}}>
         <CardMedia
           image={url}
           title={name}
           style={{ height: 60, width: 100, borderRadius: 2 }}
         />
         <CardContent>
-          <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.highlighted_text}}>{name}</p>
-          <p style={{ fontSize: 10, color: theme.text }}>{technologies}</p>
+          <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.text.highlighted_color}}>{name}</p>
+          <p style={{ fontSize: 10, color: theme.text.color }}>{technologies}</p>
         </CardContent>
       </MaterialCard>
     </Grid>

@@ -5,8 +5,8 @@ import SolarSystem from '../../assets/svg/solar-system.svg';
 import HalfMoon from '../../assets/svg/half-moon.svg';
 
 const ToggleContainer = styled.button`
-  background: ${({ theme }) => theme.gradient};
-  border: 2px solid ${({ theme }) => theme.toggleBorder};
+  background: ${({ theme: { navbar } }) => navbar.gradient};
+  border: 2px solid ${({ theme: { navbar } }) => navbar.toggleBorder};
   border-radius: 30px;
   cursor: pointer;
   display: flex;

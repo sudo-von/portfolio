@@ -48,7 +48,7 @@ const Graphs = () => {
     /* Graphs styles. */
     const options = {
         layout: { hierarchical: false },
-        edges: { color: theme.text },
+        edges: { color: theme.text.color },
         nodes: {
             margin: 5,
             opacity: .7,
@@ -61,7 +61,7 @@ const Graphs = () => {
                 y: 1,
             },
             font: {
-                color: theme.highlighted_text,
+                color: theme.text.highlighted_color,
                 face: 'Roboto'
             },
         },

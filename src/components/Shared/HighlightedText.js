@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const HighlightedText = styled.span`
-  color: ${({ theme }) => theme.highlighted_text };
+  color: ${({ theme: { text } }) => text.highlighted_color };
   font-weight: bold;
 `;
 

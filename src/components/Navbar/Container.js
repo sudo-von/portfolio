@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Container = styled.span`
-  background: ${({ theme }) => theme.navbar_background };
+  background: ${({ theme: { navbar } }) => navbar.background_color };
   display: flex;
   justify-content: flex-end;
   }

@@ -12,10 +12,10 @@ const Card = ({ data }) => {
   const { name, categories, url } = data;
 
   return (
-    <MaterialCard style={{ display: 'flex', justifyContent: 'space-between', padding: 5, alignItems: 'center', background: theme.card_background}}>
+    <MaterialCard style={{ display: 'flex', justifyContent: 'space-between', padding: 5, alignItems: 'center', background: theme.card.background_color}}>
       <CardContent style={{padding: 5}}>
-        <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.highlighted_text }}>{name}</p>
-        <p style={{fontSize: 10, color: theme.text }}>{categories}</p>
+        <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.text.highlighted_color }}>{name}</p>
+        <p style={{fontSize: 10, color: theme.text.color }}>{categories}</p>
       </CardContent>
       <CardMedia image={url} title={name} style={{ height: 60, width: 100, borderRadius: 2 }}/>
     </MaterialCard>
