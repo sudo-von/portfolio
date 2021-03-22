@@ -1,5 +1,5 @@
 import React from 'react'
-/* Material UI. */
+/* Material-ui components. */
 import Grid from '@material-ui/core/Grid'
 /* Animations. */
 import Fade from 'react-reveal/Fade'
@@ -7,13 +7,12 @@ import Fade from 'react-reveal/Fade'
 const styles = {
     grid: {
         container: {
-            padding: '15px 35px',
-            marginBottom: 100
+            margin: '50px 0 100px 0'
         },
         item: {
             display: 'flex', 
             flexDirection: 'column', 
-            alignItems: 'center'
+            alignItems: 'center',
         }
     }
 }
