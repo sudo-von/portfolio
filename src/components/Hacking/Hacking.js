@@ -1,13 +1,14 @@
 import React from 'react'
+/* Material-ui components. */
+import Grid from '@material-ui/core/Grid'
+/* Custom components. */
 import Container from './Container'
 import Card from './Card'
-import Grid from '@material-ui/core/Grid'
 import Description from './Description'  
 
 const Hacking = () => {
 
-    /* CTFS in which i have participated. */
-    /* TODO: Move this data to a database to fetch the data and store it using hooks. */
+    /* TODO: Move this data to MongoDB, and then fetch the data using hooks. */
     const data = [
         { name: '0XL4UGHCTF-2021', categories: 'Web, Forensics, Reverse engineering', github_url: 'https://github.com/sudo-von/capture-the-flag/tree/master/0XL4UGHCTF-2021', img_url: 'https://camo.githubusercontent.com/1177fec4c4991a029817617ab2cd12698796a35bf312ded544f75c17be2cbf83/68747470733a2f2f7062732e7477696d672e636f6d2f70726f66696c655f696d616765732f313334363932343438313532313030343534352f5758444d5332692d5f343030783430302e6a7067'},
         { name: 'ANGSTRONG-2020', categories: 'Web, Forensics, Reverse engineering', github_url: 'https://github.com/sudo-von/capture-the-flag/tree/master/ANGSTRONG-2020', img_url: 'https://avatars.githubusercontent.com/u/11710590?s=280&v=4'},
@@ -24,11 +25,12 @@ const Hacking = () => {
         { name: 'TEAMH4CCTF-2020', categories: 'Crypto, Forensics', github_url: 'https://github.com/sudo-von/capture-the-flag/tree/master/TEAMH4CCTF-2020', img_url: 'https://ctftime.org/media/events/ctf8.PNG'},
         { name: 'TETCTF-2021', categories: 'Web', github_url: 'https://github.com/sudo-von/capture-the-flag/tree/master/TETCTF-2021', img_url: 'https://ctftime.org/media/team/tet.png'},
     ]
+    
     return(
         <Container>
-            { /* Left container. */ }
+            { /* Top. */ }
             <Description/>
-            { /* Right container. */ }
+            { /* Bottom. */ }
             <Grid item xs={12} sm={12} spacing={2} container>
                 {data.map((ctf) => 
                     <Grid item xs={12} sm={4}>

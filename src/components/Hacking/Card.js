@@ -1,24 +1,55 @@
 import React from 'react'
+/* Material-ui components. */
 import { Card as MaterialCard } from '@material-ui/core/'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
+/* Styled-components. */
 import { useTheme } from 'styled-components';
 
-const Card = ({ data }) => {
+const Card = ( { data : { name, categories, img_url, github_url } }, ...props) => {
 
   /* Get theme context. */
-  const theme = useTheme();
-  /* Destructuring props. */
-  const { name, categories, img_url, github_url } = data;
+  const theme = useTheme()
+
+  const styles = {
+    a: {
+      textDecoration: 'none'
+    },
+    cardContent: {
+      padding: 5, 
+      height: 70
+    },
+    materialCard: {
+      display: 'flex', 
+      justifyContent: 'space-between', 
+      padding: 5, 
+      alignItems: 'center',
+      background: theme.card.background_color
+    },
+    title: {
+      fontSize: 14, 
+      fontWeight: 'bold', 
+      color: theme.text.highlighted_color
+    }, 
+    subtitle: {
+      fontSize: 10, 
+      color: theme.text.color
+    },
+    cardMedia: {
+      height: 60, 
+      width: 60, 
+      borderRadius: 2
+    }
+  }
 
   return (
-    <a style={{textDecoration: 'none'}} href={github_url} target="_blank">
-      <MaterialCard style={{ display: 'flex', justifyContent: 'space-between', padding: 5, alignItems: 'center', background: theme.card.background_color}}>
-        <CardContent style={{padding: 5, height: 70}}>
-          <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.text.highlighted_color }}>{name}</p>
-          <p style={{fontSize: 10, color: theme.text.color }}>{categories}</p>
+    <a style={styles.a} href={github_url} target="_blank">
+      <MaterialCard style={styles.materialCard}>
+        <CardContent style={styles.cardContent}>
+          <p style={styles.title}>{name}</p>
+          <p style={styles.subtitle}>{categories}</p>
         </CardContent>
-        <CardMedia image={img_url} title={name} style={{ height: 60, width: 60, borderRadius: 2 }}/>
+        <CardMedia image={img_url} title={name} style={styles.cardMedia}/>
       </MaterialCard>
     </a>
   );

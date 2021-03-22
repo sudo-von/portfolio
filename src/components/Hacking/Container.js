@@ -1,19 +1,20 @@
 import React from 'react';
-import styled from 'styled-components';
+/* Material-ui components. */
 import Grid from '@material-ui/core/Grid';
-import Container from '@material-ui/core/Container';
 
-const Div = styled.div`
-    flex-grow: 1;
-    padding: 35px 35px;
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 250px;
-`;
+const styles = {
+  div: {
+    flexGrow: 1,
+    padding: '35px 35px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    marginBottom: 250,
+  }
+}
 
-const asf = (props) => {
+const Container = (props) => {
   return(
-    <Div 
+    <div 
         data-aos='fade-up'
         data-aos-offset='200'
         data-aos-delay='50'
@@ -22,15 +23,14 @@ const asf = (props) => {
         data-aos-mirror='true'
         data-aos-once='false'
         data-aos-anchor-placement='top-center' 
+        style={styles.div}
     >
-      <Container maxWidth="md">
-        <Grid container spacing={2} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-          {props.children}
-        </Grid>
-      </Container>
-    </Div>
+      <Grid container spacing={2}>
+        {props.children}
+      </Grid>
+    </div>
   );
 }
 
 
-export default asf;
+export default Container;
