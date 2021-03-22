@@ -1,6 +1,6 @@
 export const lightTheme = {
   body: {
-    background_color: '#FFF',
+    background_color: '#F2F2F2',
   },
   text: {
     color: '#37474F',
@@ -12,7 +12,7 @@ export const lightTheme = {
     color: '#FFF',
   },
   navbar: {
-    background_color: '#FFF'
+    background_color: '#F2F2F2'
   },
   card: {
     background_color: 'white'

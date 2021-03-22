@@ -1,5 +1,5 @@
 import React from 'react'
-/* Material-ui. */
+/* Material-ui components. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import HighlightedText from '../Shared/HighlightedText'
@@ -29,13 +29,13 @@ const Projects = () => {
                 <p>Durante el tiempo que he trabajado como desarrollador web<br/>
                 he desarrollado proyectos para diversas empresas con diferente giro de negocio.<br/>
                 Para lograr esto me he adaptado a diferentes tecnlogías para cumplir los resultados esperados.</p>
+                <Hr/>
             </Grid>
             { /* Bottom. */}
-            <Grid item xs={12} spacing={2} style={{display: 'flex', justifyContent: 'space-between'}} container>
+            <Grid item xs={12} spacing={2} style={{marginTop: 2}} container>
                 {data.map((project) => 
                     <Card data={project}/>
                 )}
-                <Hr/>
             </Grid>
         </Container>
     )

@@ -5,10 +5,7 @@ import Grid from '@material-ui/core/Grid';
 const styles = {
   div: {
     flexGrow: 1,
-    padding: '35px 35px',
-    display: 'flex',
-    justifyContent: 'space-between',
-    marginBottom: 250,
+    marginBottom: 150,
   }
 }
 

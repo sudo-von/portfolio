@@ -5,7 +5,7 @@ import HighlightedText from '../Shared/HighlightedText'
 const styles = {
     div: {
         lineHeight: .4,
-        fontSize: 20
+        fontSize: '1em'
     },
     p: {
         textAlign: 'center'
