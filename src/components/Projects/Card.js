@@ -1,32 +1,58 @@
-import React from 'react';
-import { Card as MaterialCard } from '@material-ui/core/';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Grid from '@material-ui/core/Grid';
-import { useTheme } from 'styled-components';
+import React from 'react'
+/* Material-ui. */
+import { Card as MaterialCard } from '@material-ui/core/'
+import CardContent from '@material-ui/core/CardContent'
+import CardMedia from '@material-ui/core/CardMedia'
+import Grid from '@material-ui/core/Grid'
+/* Styled-components. */
+import { useTheme } from 'styled-components'
 
-const Card = ({data}) => {
-
+const Card = ( { data : { name, technologies, src } } ) => {
   /* Get theme context. */
-  const theme = useTheme();
-  /* Destructuring props. */
-  const { name, technologies, url } = data;
+  const theme = useTheme()
 
+  const styles = {
+    materialCard: {
+      display: 'flex', 
+      alignItems: 'center', 
+      padding: 5, 
+      width: '100%', 
+      background: theme.card.background_color
+    },
+    cardMedia: {
+      height: 60,
+      width: 60,
+      borderRadius: 2
+    },
+    cardContent: {
+      height: 70
+    },
+    title: { 
+      fontSize: 14, 
+      fontWeight: 'bold', 
+      color: theme.text.highlighted_color
+    },
+    subtitle: {
+      fontSize: 10, 
+      color: theme.text.color
+    }
+  }
+  
   return (
     <Grid item xs={12} sm={6}>
-      <MaterialCard style={{ display: 'flex', alignItems: 'center', padding: 5, width: '100%', background: theme.card.background_color}}>
+      <MaterialCard style={styles.materialCard}>
         <CardMedia
-          image={url}
+          image={src}
           title={name}
-          style={{ height: 60, width: 100, borderRadius: 2 }}
+          style={styles.cardMedia}
         />
-        <CardContent>
-          <p style={{ fontSize: 14, fontWeight: 'bold', color: theme.text.highlighted_color}}>{name}</p>
-          <p style={{ fontSize: 10, color: theme.text.color }}>{technologies}</p>
+        <CardContent style={styles.cardContent}>
+          <p style={styles.title}>{name}</p>
+          <p style={styles.subtitle}>{technologies}</p>
         </CardContent>
       </MaterialCard>
     </Grid>
-  );
+  )
 }
 
-export default Card;
+export default Card
