@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import Grid from '@material-ui/core/Grid';
+import Container from '@material-ui/core/Container';
 
 const Div = styled.div`
     flex-grow: 1;
@@ -10,7 +11,7 @@ const Div = styled.div`
     margin-bottom: 250px;
 `;
 
-const Container = (props) => {
+const asf = (props) => {
   return(
     <Div 
         data-aos='fade-up'
@@ -22,12 +23,14 @@ const Container = (props) => {
         data-aos-once='false'
         data-aos-anchor-placement='top-center' 
     >
-      <Grid container spacing={2} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
-        {props.children}
-      </Grid>
+      <Container maxWidth="md">
+        <Grid container spacing={2} style={{display: 'flex', alignItems: 'center', justifyContent: 'space-between'}}>
+          {props.children}
+        </Grid>
+      </Container>
     </Div>
   );
 }
 
 
-export default Container;
+export default asf;

@@ -1,8 +1,6 @@
 import React from 'react'
 import { func, string } from 'prop-types';
 import styled from 'styled-components'
-import SolarSystem from '../../assets/svg/solar-system.svg';
-import HalfMoon from '../../assets/svg/half-moon.svg';
 /* Icons. */
 import WbSunnyIcon from '@material-ui/icons/WbSunny';
 import Brightness2Icon from '@material-ui/icons/Brightness2';

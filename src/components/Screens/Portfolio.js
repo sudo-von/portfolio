@@ -13,6 +13,8 @@ import { useDarkMode } from '../Themes/useDarkMode'
 /* Animations. */
 import AOS from 'aos'
 import 'aos/dist/aos.css'
+/* Material-ui. */
+import Container from '@material-ui/core/Container';
 
 const Portfolio = () => {
 
@@ -27,10 +29,12 @@ const Portfolio = () => {
       <GlobalStyles/>
       <Navbar theme={theme} themeToggler={themeToggler}/>
       { /* Sections from the main page. */ }
-      <AboutMe/>
-      <Skills/>
-      <Projects/>
-      <Hacking/>
+      <Container maxWidth="md">
+        <AboutMe/>
+        <Skills/>
+        <Projects/>
+        <Hacking/>
+      </Container>
     </ThemeProvider>
   )
 }
