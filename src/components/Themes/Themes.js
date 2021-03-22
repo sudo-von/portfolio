@@ -11,6 +11,9 @@ export const lightTheme = {
     background_color: '#0e142f',
     color: '#FFF',
   },
+  navbar: {
+    background_color: '#FFF'
+  },
   card: {
     background_color: 'white'
   },
@@ -31,6 +34,9 @@ export const darkTheme = {
     border_color: '#F2F2F2',
     background_color: '#FFF',
     color: '#0e142f',
+  },
+  navbar: {
+    background_color: '#0e142f'
   },
   card: {
     background_color: '#102247'
