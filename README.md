@@ -12,7 +12,7 @@
   <h3 align="center">Portfolio</h3>
 
   <p align="center">
-    Personal project where i'm gonna be using ReactJS to show my personal projects on <a href="https://www.sudo-von.com" target="_blank">https://www.sudo-von-com</a>. 
+    Personal project where i'm gonna be using ReactJS to show my projects on <a href="https://www.sudo-von.com" target="_blank">https://www.sudo-von-com</a>. 
     <br />
     <a href="https://github.com/sudo-von/portfolio"><strong>Explore the docs »</strong></a>
     <br />
