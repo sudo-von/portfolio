@@ -1,6 +1,4 @@
 import React from 'react'
-/* Styled-components. */
-import styled from 'styled-components'
 
 const styles = {
     img: {
@@ -14,7 +12,7 @@ const styles = {
 const ProfilePicture = ({url}, ...props) => {
     const src = url ? url : 'https://i0.wp.com/static.tvtropes.org/pmwiki/pub/images/amputeekun.png';
     return (
-        <img {...props} src={src} style={styles.img} alt='Profile picture'/>
+        <img {...props} src={src} style={styles.img} alt='Portfolio'/>
     )
 }
 
