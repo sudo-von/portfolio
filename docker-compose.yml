@@ -44,3 +44,13 @@ services:
      - mongo
     ports:
      - 80:80
+  # ReactJS Service.
+  react:
+    container_name: react
+    build:
+      context: react/
+      dockerfile: Dockerfile
+    volumes:
+      - './react/:/app'
+    ports:
+      - 3000:3000
