@@ -3,6 +3,8 @@
 # dependencies
 react/node_modules
 
+# volumes
+
 # testing
 /coverage
 

@@ -39,7 +39,7 @@ func ListenAndServe(controller Controller) {
 	r.Mount("/projects", NewProjectController(controller.ProjectService).Routes())
 
 	// Start service
-	if err := http.ListenAndServe(":4000", r); err != nil {
+	if err := http.ListenAndServe(":80", r); err != nil {
 		log.Printf("[routes] error: %s", err.Error())
 	}
 }
