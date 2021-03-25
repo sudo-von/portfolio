@@ -4,6 +4,7 @@ import (
 	"log"
 	"os"
 
+	"github.com/mongo-experiments/go/pkg/ctfs"
 	"github.com/mongo-experiments/go/pkg/http"
 	"github.com/mongo-experiments/go/pkg/mongo"
 	"github.com/mongo-experiments/go/pkg/projects"
@@ -28,8 +29,10 @@ func main() {
 
 	// Services.
 	projectService := projects.NewService(db)
+	ctfService := ctfs.NewService(db)
+
 	// Controllers.
-	controllers := http.Controller{ProjectService: *projectService}
+	controllers := http.Controller{ProjectService: *projectService, CTFService: *ctfService}
 	// Http server.
 	http.ListenAndServe(controllers)
 }

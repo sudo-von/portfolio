@@ -14,9 +14,8 @@ type Repository struct {
 }
 
 func NewStorage(dburl string, database string, username string, password string) (*Repository, error) {
-
 	if Repo == nil {
-		session, err := mgo.Dial(fmt.Sprintf("mongodb://%s:%s@%s/%s?authSource=admin", username, password, dburl, database))
+		session, err := mgo.Dial(fmt.Sprintf("mongodb://%s:%s@%s:27017/%s?authSource=admin", username, password, dburl, database))
 		if err != nil {
 			return nil, err
 		}

@@ -8,11 +8,13 @@ services:
     env_file:
     - .env
     volumes: 
-      - /mongo/data:/data/db
+      - ./mongo/data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+     - 27017:27017
   # MongoDB administration service.
   mongo-express:
     container_name: mongo-express
@@ -41,4 +43,4 @@ services:
     links:
      - mongo
     ports:
-     - 4000:4000
+     - 80:80

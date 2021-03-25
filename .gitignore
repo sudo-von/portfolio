@@ -4,6 +4,7 @@
 react/node_modules
 
 # volumes
+mongo/data/*
 
 # testing
 /coverage

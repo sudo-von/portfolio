@@ -17,13 +17,13 @@ type CTFController struct {
 	CTFService CTFService
 }
 
-func NewCTFController(project CTFService) *CTFController {
+func NewCTFController(ctf CTFService) *CTFController {
 	return &CTFController{
-		CTFService: project,
+		CTFService: ctf,
 	}
 }
 
-// Routes for project.
+// Routes for ctf.
 func (c *CTFController) Routes() chi.Router {
 	r := chi.NewRouter()
 	r.Get("/", c.List)

@@ -8,11 +8,13 @@ import (
 	chimiddleware "github.com/go-chi/chi/middleware"
 	"github.com/go-chi/cors"
 	"github.com/go-chi/render"
+	"github.com/mongo-experiments/go/pkg/ctfs"
 	"github.com/mongo-experiments/go/pkg/projects"
 )
 
 type Controller struct {
 	ProjectService projects.Service
+	CTFService     ctfs.Service
 }
 
 // ListenAndServe starts the http server.
@@ -37,6 +39,7 @@ func ListenAndServe(controller Controller) {
 
 	// Controllers.
 	r.Mount("/projects", NewProjectController(controller.ProjectService).Routes())
+	r.Mount("/ctfs", NewCTFController(controller.CTFService).Routes())
 
 	// Start service
 	if err := http.ListenAndServe(":80", r); err != nil {
