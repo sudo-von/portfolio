@@ -1,0 +1,14 @@
+version: '3.1'
+services:
+  # MongoDB service.
+  mongo:
+    container_name: sudo_von_mongo
+    image: sudo_von_mongo
+    restart: always
+    env_file:
+    - .env
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+ 
