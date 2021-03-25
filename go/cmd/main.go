@@ -12,7 +12,7 @@ import (
 func main() {
 
 	// Gets environment variables.
-	dbURL := os.Getenv("MONGOURL")
+	dbURL := os.Getenv("MONGO_URL")
 	dbName := os.Getenv("ME_CONFIG_MONGODB_AUTH_DATABASE")
 	user := os.Getenv("MONGO_INITDB_ROOT_USERNAME")
 	pass := os.Getenv("MONGO_INITDB_ROOT_PASSWORD")

@@ -23,3 +23,20 @@ services:
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  # Golang API service.
+  api:
+    build: 
+      context: go/.
+    container_name: sudo_von_api
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    restart: on-failure:10
+    depends_on:
+     - sudo_von_mongo
+    links:
+     - sudo_von_mongo
+    ports:
+     - 4000:4000
