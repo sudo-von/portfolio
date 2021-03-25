@@ -2,8 +2,8 @@ version: '3.1'
 services:
   # MongoDB service.
   mongo:
-    container_name: sudo_von_mongo
-    image: sudo_von_mongo
+    container_name: mongo
+    image: mongo
     restart: always
     env_file:
     - .env
@@ -13,8 +13,8 @@ services:
       MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
   # MongoDB administration service.
   mongo-express:
-    container_name: sudo_von_mongo_express
-    image: sudo_von_mongo_express
+    container_name: mongo-express
+    image: mongo-express
     restart: always
     ports:
       - 8081:8081
@@ -35,8 +35,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
     restart: on-failure:10
     depends_on:
-     - sudo_von_mongo
+     - mongo
     links:
-     - sudo_von_mongo
+     - mongo
     ports:
      - 4000:4000

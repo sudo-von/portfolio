@@ -8,4 +8,4 @@ RUN go build -o $pwd main
 # Run binary.
 CMD ./main
 # Expose port.
-EXPOSE 3000
+EXPOSE 4000
