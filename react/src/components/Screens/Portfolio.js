@@ -29,7 +29,7 @@ const Portfolio = () => {
       <GlobalStyles/>
       <Navbar theme={theme} themeToggler={themeToggler}/>
       { /* Sections from the main page. */ }
-      <Container maxWidth="md">
+      <Container maxWidth="md" style={{padding: '0 20px'}}>
         <AboutMe/>
         <Skills/>
         <Projects/>

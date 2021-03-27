@@ -6,7 +6,7 @@ import CardContent from '@material-ui/core/CardContent'
 /* Styled-components. */
 import { useTheme } from 'styled-components';
 
-const Card = ( { data : { name, categories, img_url, github_url } }, ...props) => {
+const Card = ( { data : { id, title, description, image, repository } }, ...props) => {
 
   /* Get theme context. */
   const theme = useTheme()
@@ -43,13 +43,13 @@ const Card = ( { data : { name, categories, img_url, github_url } }, ...props) =
   }
 
   return (
-    <a style={styles.a} href={github_url} target="_blank">
+    <a style={styles.a} href={repository} target="_blank">
       <MaterialCard style={styles.materialCard}>
         <CardContent style={styles.cardContent}>
-          <p style={styles.title}>{name}</p>
-          <p style={styles.subtitle}>{categories}</p>
+          <p style={styles.title}>{title}</p>
+          <p style={styles.description}>{description}</p>
         </CardContent>
-        <CardMedia image={img_url} title={name} style={styles.cardMedia}/>
+        <CardMedia image={image} title={description} style={styles.cardMedia}/>
       </MaterialCard>
     </a>
   );
