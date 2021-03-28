@@ -26,23 +26,21 @@ const Hacking = () => {
         }, []
     )
 
-    if (isFetching) {
-        return(
-            <Loader/>
-        )
-    }
-
     return(
         <Container>
             { /* Top. */ }
             <Description/>
             { /* Bottom. */ }
             <Grid item xs={12} sm={12} spacing={2} container>
-                {ctfs.map((ctf) => 
-                    <Grid item xs={12} sm={4} key={ctf.id}>
-                        <Card data={ctf}/>
-                    </Grid>
-                )}
+                {
+                    isFetching ? 
+                    <Loader/> :
+                    ctfs.map((ctf) => 
+                        <Grid item xs={12} sm={4} key={ctf.id}>
+                            <Card data={ctf}/>
+                        </Grid>
+                    )
+                }
             </Grid>
         </Container>
     )
