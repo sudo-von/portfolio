@@ -10,11 +10,13 @@ import (
 	"github.com/go-chi/render"
 	"github.com/mongo-experiments/go/pkg/ctfs"
 	"github.com/mongo-experiments/go/pkg/projects"
+	"github.com/mongo-experiments/go/pkg/users"
 )
 
 type Controller struct {
 	ProjectService projects.Service
 	CTFService     ctfs.Service
+	UserService    users.Service
 }
 
 // ListenAndServe starts the http server.
