@@ -7,7 +7,7 @@ import Grid from '@material-ui/core/Grid'
 /* Styled-components. */
 import { useTheme } from 'styled-components'
 
-const Card = ( { data : { name, technologies, src } } ) => {
+const Card = ( { data : { title, description, image } } ) => {
   /* Get theme context. */
   const theme = useTheme()
 
@@ -20,8 +20,8 @@ const Card = ( { data : { name, technologies, src } } ) => {
       background: theme.card.background_color
     },
     cardMedia: {
-      height: 60,
-      width: 60,
+      height: 100,
+      width: 100,
       borderRadius: 2
     },
     cardContent: {
@@ -42,13 +42,13 @@ const Card = ( { data : { name, technologies, src } } ) => {
     <Grid item xs={12} sm={6}>
       <MaterialCard style={styles.materialCard}>
         <CardMedia
-          image={src}
-          title={name}
+          image={image}
+          title={title}
           style={styles.cardMedia}
         />
         <CardContent style={styles.cardContent}>
-          <p style={styles.title}>{name}</p>
-          <p style={styles.subtitle}>{technologies}</p>
+          <p style={styles.title}>{title}</p>
+          <p style={styles.subtitle}>{description}</p>
         </CardContent>
       </MaterialCard>
     </Grid>

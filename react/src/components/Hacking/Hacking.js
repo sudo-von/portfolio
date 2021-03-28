@@ -26,7 +26,7 @@ const Hacking = () => {
         }, []
     )
 
-    if (!isFetching) {
+    if (isFetching) {
         return(
             <Loader/>
         )

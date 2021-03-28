@@ -10,7 +10,7 @@ const styles = {
 }
 
 const ProfilePicture = ({src}, ...props) =>
-    <img {...props} 
+    <img
         src={src ? src : 'https://i0.wp.com/static.tvtropes.org/pmwiki/pub/images/amputeekun.png'} 
         style={styles.img} 
         alt='Portfolio'
