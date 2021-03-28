@@ -1,6 +1,8 @@
 package mongo
 
 import (
+	"errors"
+
 	"github.com/mongo-experiments/go/pkg/api"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -47,8 +49,12 @@ func (r *Repository) GetUserByID(id string) (*api.User, error) {
 	defer session.Close()
 	com := session.DB(r.DatabaseName).C("users")
 
+	if !bson.IsObjectIdHex(id) {
+		return nil, errors.New("id is not a valid hex")
+	}
+
 	userM := userModel{}
-	err := com.Find(bson.M{"_id": id}).All(&userM)
+	err := com.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&userM)
 	if err != nil {
 		return nil, err
 	}

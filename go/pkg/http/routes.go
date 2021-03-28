@@ -42,6 +42,7 @@ func ListenAndServe(controller Controller) {
 	// Controllers.
 	r.Mount("/projects", NewProjectController(controller.ProjectService).Routes())
 	r.Mount("/ctfs", NewCTFController(controller.CTFService).Routes())
+	r.Mount("/users", NewUserController(controller.UserService).Routes())
 
 	// Start service
 	if err := http.ListenAndServe(":80", r); err != nil {
