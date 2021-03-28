@@ -9,11 +9,12 @@ const styles = {
     }
 }
 
-const ProfilePicture = ({url}, ...props) => {
-    const src = url ? url : 'https://i0.wp.com/static.tvtropes.org/pmwiki/pub/images/amputeekun.png';
-    return (
-        <img {...props} src={src} style={styles.img} alt='Portfolio'/>
-    )
-}
+const ProfilePicture = ({src}, ...props) =>
+    <img {...props} 
+        src={src ? src : 'https://i0.wp.com/static.tvtropes.org/pmwiki/pub/images/amputeekun.png'} 
+        style={styles.img} 
+        alt='Portfolio'
+    />
+
 
 export default ProfilePicture
