@@ -18,7 +18,7 @@ const AboutMe = () => {
   useEffect(() => {
     const id = '60603a5aaa037f0008ed81f9'
     const url = `http://localhost:80/users/${id}`
-    fetch(url).then(res => res.json()).then(res => setProfilePicture(res)).catch(err => console.log(err))
+    fetch(url).then(res => res.json()).then(res => setProfilePicture(res.profile_picture)).catch(err => console.log(err))
   }, [])
 
   return(
