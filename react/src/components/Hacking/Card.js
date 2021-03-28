@@ -47,7 +47,7 @@ const Card = ( { data : { id, title, description, image, repository } }, ...prop
       <MaterialCard style={styles.materialCard}>
         <CardContent style={styles.cardContent}>
           <p style={styles.title}>{title}</p>
-          <p style={styles.description}>{description}</p>
+          <p style={styles.subtitle}>{description}</p>
         </CardContent>
         <CardMedia image={image} title={description} style={styles.cardMedia}/>
       </MaterialCard>
