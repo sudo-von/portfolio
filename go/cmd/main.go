@@ -8,6 +8,7 @@ import (
 	"github.com/mongo-experiments/go/pkg/http"
 	"github.com/mongo-experiments/go/pkg/mongo"
 	"github.com/mongo-experiments/go/pkg/projects"
+	"github.com/mongo-experiments/go/pkg/queries"
 	"github.com/mongo-experiments/go/pkg/users"
 )
 
@@ -32,9 +33,10 @@ func main() {
 	projectService := projects.NewService(db)
 	ctfService := ctfs.NewService(db)
 	userService := users.NewService(db)
+	queryService := queries.NewService(db)
 
 	// Controllers.
-	controllers := http.Controller{ProjectService: *projectService, CTFService: *ctfService, UserService: *userService}
+	controllers := http.Controller{ProjectService: *projectService, CTFService: *ctfService, UserService: *userService, QueryService: *queryService}
 	// Http server.
 	http.ListenAndServe(controllers)
 }

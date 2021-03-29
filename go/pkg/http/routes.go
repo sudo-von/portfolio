@@ -10,6 +10,7 @@ import (
 	"github.com/go-chi/render"
 	"github.com/mongo-experiments/go/pkg/ctfs"
 	"github.com/mongo-experiments/go/pkg/projects"
+	"github.com/mongo-experiments/go/pkg/queries"
 	"github.com/mongo-experiments/go/pkg/users"
 )
 
@@ -17,6 +18,7 @@ type Controller struct {
 	ProjectService projects.Service
 	CTFService     ctfs.Service
 	UserService    users.Service
+	QueryService   queries.Service
 }
 
 // ListenAndServe starts the http server.
@@ -43,6 +45,7 @@ func ListenAndServe(controller Controller) {
 	r.Mount("/projects", NewProjectController(controller.ProjectService).Routes())
 	r.Mount("/ctfs", NewCTFController(controller.CTFService).Routes())
 	r.Mount("/users", NewUserController(controller.UserService).Routes())
+	r.Mount("/queries", NewQueryController(controller.QueryService).Routes())
 
 	// Start service
 	if err := http.ListenAndServe(":80", r); err != nil {

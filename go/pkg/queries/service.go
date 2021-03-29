@@ -1,4 +1,4 @@
-package ctfs
+package queries
 
 import (
 	"log"
