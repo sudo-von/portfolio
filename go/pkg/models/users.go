@@ -11,11 +11,12 @@ type UserList struct {
 }
 
 type User struct {
-	ID             string `json:"id"`
-	Username       string `json:"username"`
-	Name           string `json:"name"`
-	ProfilePicture string `json:"profile_picture"`
-	Email          string `json:"email"`
+	ID             string   `json:"id"`
+	Username       string   `json:"username"`
+	Name           string   `json:"name"`
+	ProfilePicture string   `json:"profile_picture"`
+	Email          string   `json:"email"`
+	Description    []string `json:"description"`
 }
 
 func (mt *UserList) Render(w http.ResponseWriter, r *http.Request) error {
@@ -23,11 +24,12 @@ func (mt *UserList) Render(w http.ResponseWriter, r *http.Request) error {
 }
 
 type UserResponse struct {
-	ID             string `json:"id"`
-	Username       string `json:"username"`
-	Name           string `json:"name"`
-	ProfilePicture string `json:"profile_picture"`
-	Email          string `json:"email"`
+	ID             string   `json:"id"`
+	Username       string   `json:"username"`
+	Name           string   `json:"name"`
+	ProfilePicture string   `json:"profile_picture"`
+	Email          string   `json:"email"`
+	Description    []string `json:"description"`
 }
 
 func (ur *UserResponse) Render(w http.ResponseWriter, r *http.Request) error {
@@ -41,5 +43,6 @@ func ToResponseUser(user *api.User) *UserResponse {
 		Name:           user.Name,
 		ProfilePicture: user.ProfilePicture,
 		Email:          user.Email,
+		Description:    user.Description,
 	}
 }

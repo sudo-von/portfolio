@@ -1,9 +1,6 @@
 import React from 'react'
 /* Custom components. */
-import AboutMe from '../AboutMe/AboutMe'
-import Skills from '../Skills'
-import Projects from '../Projects'
-import Hacking from '../Hacking'
+import Profile from '../Profile/Profile'
 import Navbar from '../Navbar'
 /* Styles. */
 import { ThemeProvider } from 'styled-components'
@@ -29,11 +26,8 @@ const Query = () => {
       <GlobalStyles/>
       <Navbar theme={theme} themeToggler={themeToggler}/>
       { /* Sections from the main page. */ }
-      <Container maxWidth="md" style={{padding: '0 20px'}}>
-        <AboutMe/>
-        <Skills/>
-        <Projects/>
-        <Hacking/>
+      <Container maxWidth="lg" style={{padding: '0 20px'}}>
+        <Profile/>
       </Container>
     </ThemeProvider>
   )

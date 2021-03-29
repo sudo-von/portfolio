@@ -7,9 +7,6 @@ const App = () =>
     <Router>
         <Switch>
             <Route path='/'>
-                <Portfolio/>
-            </Route>
-            <Route path='/query'>
                 <Query/>
             </Route>
         </Switch>

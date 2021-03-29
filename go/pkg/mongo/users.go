@@ -13,6 +13,7 @@ type userModel struct {
 	Name           string        `bson:"name" json:"name"`
 	ProfilePicture string        `bson:"profile_picture" json:"profile_picture"`
 	Email          string        `bson:"email" json:"email"`
+	Description    []string      `bson:"description" json:"description"`
 }
 
 func toUserModel(user api.User) userModel {
@@ -30,6 +31,7 @@ func toUserModel(user api.User) userModel {
 		Name:           user.Name,
 		ProfilePicture: user.ProfilePicture,
 		Email:          user.Email,
+		Description:    user.Description,
 	}
 }
 
@@ -40,6 +42,7 @@ func toApiUser(user userModel) api.User {
 		Name:           user.Name,
 		ProfilePicture: user.ProfilePicture,
 		Email:          user.Email,
+		Description:    user.Description,
 	}
 }
 
