@@ -1,15 +1,15 @@
 import React from 'react'
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
 /* Screens. */
-import { Portfolio, Query } from './components/Screens'
+import { Query } from './components/Query/Screens/'
 
 const App = () => 
-    <Router>
+    <BrowserRouter>
         <Switch>
             <Route path='/'>
                 <Query/>
             </Route>
         </Switch>
-    </Router>
+    </BrowserRouter>
 
 export default App

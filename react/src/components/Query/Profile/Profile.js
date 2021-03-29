@@ -1,10 +1,11 @@
 import React, {useState, useEffect} from 'react'
 /* Custom components. */
-import ProfilePicture from './ProfilePicture'
+import ProfilePicture from '../ProfilePicture/'
 import Container from './Container'
-import Description from './Description'
-import Form from './Form'
-import Loader from '../Shared/Loader'
+import Description from '../Description/'
+import Form from '../Form/'
+/* Adapters. */
+import { getData } from '../../../adapters/'
 
 const AboutMe = () => {
 
@@ -16,20 +17,18 @@ const AboutMe = () => {
 
   useEffect(() => {
     
-    const id = '60603a5aaa037f0008ed81f9'
-    const url = `http://localhost:80/users/${id}`
-    fetch(url)
-      .then(res => res.json())
+    const id = `60603a5aaa037f0008ed81f9`
+    const url = `/users/${id}`
+    
+    getData(url)
       .then(user => {
         setName(user.name)
         setUsername(user.username)
         setProfilePicture(user.profile_picture)
         setDescription(user.description)
-        setFetching(false)
       })
       .catch(err => {
         console.log(err)
-        setFetching(false)
       })
   }, [])
 
