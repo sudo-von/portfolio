@@ -3,6 +3,9 @@ import React from 'react'
 import HighlightedText from '../../Shared/HighlightedText'
 
 const styles = {
+    div: {
+        margin: '10px 0'
+    },
     highlightedText: {
         textAlign: 'center',
         margin: '10px 0 10px 0'
@@ -21,7 +24,7 @@ const styles = {
 }
 
 const Description = ({username, name, description}, ...props) => 
-    <div>
+    <div style={styles.div}>
         <p style={styles.highlightedText}>
             <HighlightedText>
                 @
