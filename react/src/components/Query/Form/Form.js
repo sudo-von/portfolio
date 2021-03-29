@@ -34,7 +34,7 @@ const Form = (props) => {
         }
     }
     const handleQuestion = e => {
-        if (e.target.value.length >= 1 && e.target.value.length <= 300) {
+        if (e.target.value.length <= 300) {
             setQuestion(e.target.value)
         }
     }
