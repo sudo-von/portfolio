@@ -30,7 +30,7 @@ const Description = ({username, name, description}, ...props) =>
                 @
                 <span style={styles.username}> {username} </span>
                 /
-                <span style={styles.name}> {name}</span>
+                <span style={styles.name}> {name} </span>
             </HighlightedText>
         </p>
         {description.map((description, i) =>

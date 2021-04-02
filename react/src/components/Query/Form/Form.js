@@ -23,28 +23,14 @@ const styles = {
     }
 }
 
-const Form = (props) => {
-    
-    const [initial, setInitial] = useState('')
-    const [question, setQuestion] = useState('')
-    
-    const handleInitial = e => {
-        if (e.target.value.length <= 1) {
-            setInitial(e.target.value)
-        }
-    }
-    const handleQuestion = e => {
-        if (e.target.value.length <= 300) {
-            setQuestion(e.target.value)
-        }
-    }
+const Form = ({initial, question, handleInitial, handleQuestion, handleSubmit}) => {
 
     return(
         <form noValidate autoComplete="off" style={styles.form}>
             <TextField helperText={`${initial.length}/1`} value={initial} onChange={handleInitial} style={styles.textField} fullWidth={true} id="outlined-basic" label="Escribe tu inicial" variant="outlined" />
             <TextField helperText={`${question.length}/300`} value={question} onChange={handleQuestion} style={styles.textField} fullWidth={true} id="outlined-basic" label="¡Hazme una pregunta!" multiline rows={3} variant="outlined" />
             <div style={styles.div}>
-                <Button style={styles.button} variant="outlined" color="primary">
+                <Button style={styles.button} onClick={handleSubmit} variant="outlined" color="primary">
                     Enviar
                 </Button>
             </div>

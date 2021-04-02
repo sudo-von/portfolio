@@ -25,8 +25,28 @@ const Query = () => {
   const [description, setDescription] = useState([])
   const [isFetching, setFetching ] = useState(true)
 
+  const [initial, setInitial] = useState('')
+  const [question, setQuestion] = useState('')
+  
+  const handleInitial = e => {
+      if (e.target.value.length <= 1) {
+          setInitial(e.target.value)
+      }
+  }
+  const handleQuestion = e => {
+      if (e.target.value.length <= 300) {
+          setQuestion(e.target.value)
+      }
+  }
+
+  const handleSubmit = e => {
+    e.preventDefault()
+    setFetching(true)
+  }
+
+  
   useEffect(() => {
-    
+  
     const id = `60603a5aaa037f0008ed81f9`
     const url = `/users/${id}`
     
@@ -41,7 +61,7 @@ const Query = () => {
       .catch(err => {
         console.log(err)
       })
-  }, [])
+  }, [isFetching])
 
   return (  
     <ThemeProvider theme={themeMode}>      
@@ -50,7 +70,17 @@ const Query = () => {
       <Container maxWidth="lg" style={{padding: '0 20px'}}>
         {isFetching ?
           <Loader/> :
-          <Profile username={username} name={name} profilePicture={profilePicture} description={description}/>
+          <Profile 
+            username={username} 
+            name={name} 
+            profilePicture={profilePicture} 
+            description={description}
+            initial={initial}
+            question={question}
+            handleInitial={handleInitial}
+            handleQuestion={handleQuestion}
+            handleSubmit={handleSubmit}
+            />
         }
       </Container>
     </ThemeProvider>
