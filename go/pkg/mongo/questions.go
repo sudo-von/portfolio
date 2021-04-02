@@ -51,7 +51,7 @@ func toApiQuestion(question questionModel) api.Question {
 	}
 }
 
-func (r *Repository) GetQuestions() ([]api.Question, error) {
+func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
@@ -60,14 +60,19 @@ func (r *Repository) GetQuestions() ([]api.Question, error) {
 	var questionsM []questionModel
 	err := con.Find(bson.M{}).All(&questionsM)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
+	}
+
+	total, err := con.Find(bson.M{}).Count()
+	if err != nil {
+		return nil, 0, err
 	}
 
 	queries := make([]api.Question, 0)
 	for _, m := range questionsM {
 		queries = append(queries, toApiQuestion(m))
 	}
-	return queries, nil
+	return queries, total, nil
 
 }
 

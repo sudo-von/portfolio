@@ -10,7 +10,7 @@ import (
 )
 
 type QuestionService interface {
-	GetQuestions() ([]api.Question, error)
+	GetQuestions() ([]api.Question, int, error)
 	CreateQuestion(api.Question) error
 }
 
@@ -35,11 +35,12 @@ func (c *QuestionController) Routes() chi.Router {
 // List renders all the questions.
 func (c *QuestionController) List(w http.ResponseWriter, r *http.Request) {
 
-	list, err := c.QuestionService.GetQuestions()
+	list, total, err := c.QuestionService.GetQuestions()
 	if err != nil {
 		CheckError(err, w, r)
 	}
 	res := &models.QuestionList{}
+	res.Total = total
 	for _, Question := range list {
 		res.Questions = append(res.Questions, models.ToResponseQuestion(&Question))
 	}

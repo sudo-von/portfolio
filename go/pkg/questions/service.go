@@ -7,7 +7,7 @@ import (
 )
 
 type storage interface {
-	GetQuestions() ([]api.Question, error)
+	GetQuestions() ([]api.Question, int, error)
 	CreateQuestion(api.Question) error
 }
 
@@ -21,13 +21,13 @@ func NewService(storage storage) *Service {
 	}
 }
 
-func (s Service) GetQuestions() ([]api.Question, error) {
-	queries, err := s.storage.GetQuestions()
+func (s Service) GetQuestions() ([]api.Question, int, error) {
+	queries, total, err := s.storage.GetQuestions()
 	if err != nil {
 		log.Println(err)
-		return nil, err
+		return nil, 0, err
 	}
-	return queries, nil
+	return queries, total, nil
 }
 
 func (s Service) CreateQuestion(question api.Question) error {
