@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 /* Custom components. */
 import Profile from '../Profile/Profile'
+import Question from '../Question/Question'
 import Navbar from '../../Shared/Navbar/'
 import Loader from '../../Shared/Loader/'
 /* Styles. */
@@ -9,7 +10,8 @@ import { GlobalStyles } from '../../Themes/GlobalStyles'
 import { lightTheme, darkTheme } from '../../Themes/Themes'
 import { useDarkMode } from '../../Themes/useDarkMode'
 /* Material-ui. */
-import Container from '@material-ui/core/Container';
+import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid';
 /* Adapters. */
 import { getData } from '../../../adapters/'
 
@@ -27,7 +29,9 @@ const Query = () => {
 
   const [initial, setInitial] = useState('')
   const [question, setQuestion] = useState('')
-  
+  const [questions, setQuestions] = useState([])
+
+
   const handleInitial = e => {
       if (e.target.value.length <= 1) {
           setInitial(e.target.value)
@@ -56,11 +60,23 @@ const Query = () => {
         setName(user.name)
         setUsername(user.username)
         setDescription(user.description)
-        setFetching(false)
       })
       .catch(err => {
         console.log(err)
       })
+
+      
+      const questionURL = `/questions`
+      
+      getData(questionURL)
+        .then(question => {
+          setQuestions(question['results'])
+        })
+        .catch(err => {
+          console.log(err)
+        })
+        setFetching(false)
+
   }, [isFetching])
 
   return (  
@@ -82,6 +98,10 @@ const Query = () => {
             handleSubmit={handleSubmit}
             />
         }
+        <Grid item xs={12} md={4}>
+        { questions.map(question => 
+          <Question/>)}
+        </Grid>
       </Container>
     </ThemeProvider>
   )

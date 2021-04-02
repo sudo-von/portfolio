@@ -15,14 +15,12 @@ const styles = {
 }
 
 const Container = (props) => 
-    <Grid container>
-        <Grid item xs={12} md={4}>
-            <Card>
-                <CardContent style={styles.grid.item}>
-                    {props.children}
-                </CardContent>
-            </Card>
-        </Grid>
+    <Grid item xs={12} md={4}>
+        <Card>
+            <CardContent style={styles.grid.item}>
+                {props.children}
+            </CardContent>
+        </Card>
     </Grid>
 
 export default Container
