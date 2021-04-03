@@ -1,15 +1,15 @@
 import React from 'react'
 /* Custom components. */
-import AboutMe from '../AboutMe/AboutMe'
-import Skills from '../Skills'
-import Projects from '../Projects'
-import Hacking from '../Hacking'
-import Navbar from '../Navbar'
+import AboutMe from './Components/AboutMe/'
+import Skills from './Components/Skills/'
+import Projects from './Components/Projects/'
+import Hacking from './Components/Hacking/'
+import Navbar from './Components/Navbar/'
 /* Styles. */
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from '../Themes/GlobalStyles'
-import { lightTheme, darkTheme } from '../Themes/Themes'
-import { useDarkMode } from '../Themes/useDarkMode'
+import { GlobalStyles } from '../../themes/GlobalStyles'
+import { lightTheme, darkTheme } from '../../themes/Themes'
+import { useDarkMode } from '../../themes/useDarkMode'
 /* Animations. */
 import AOS from 'aos'
 import 'aos/dist/aos.css'
@@ -28,8 +28,8 @@ const Portfolio = () => {
     <ThemeProvider theme={themeMode}>      
       <GlobalStyles/>
       <Navbar theme={theme} themeToggler={themeToggler}/>
-      { /* Sections from the main page. */ }
       <Container maxWidth="md" style={{padding: '0 20px'}}>
+        { /* Sections from the main page. */ }
         <AboutMe/>
         <Skills/>
         <Projects/>

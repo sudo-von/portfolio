@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react'
 /* Custom components. */
-import ProfilePicture from './ProfilePicture'
+import ProfilePicture from '../../../../components/ProfilePicture/'
 import Container from './Container'
 import Description from './Description'
 import Title from '../Shared/Title'

@@ -1,13 +1,13 @@
 import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 /* Screens. */
-import { Query } from './components/Query/Screens/'
+import Portfolio from './pages/Portfolio/'
 
 const App = () => 
     <BrowserRouter>
         <Switch>
             <Route path='/'>
-                <Query/>
+                <Portfolio/>
             </Route>
         </Switch>
     </BrowserRouter>

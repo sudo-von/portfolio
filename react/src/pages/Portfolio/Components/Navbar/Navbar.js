@@ -1,6 +1,6 @@
 import React from 'react'
 /* Custom components. */
-import Toggle from '../../Themes/Toggler'
+import Toggle from '../../../../themes/Toggler'
 /* Material-ui components. */
 import AppBar from '@material-ui/core/AppBar'
 import Toolbar from '@material-ui/core/Toolbar'
