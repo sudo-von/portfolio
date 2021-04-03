@@ -12,7 +12,6 @@ const useProfilePicture = () => {
         const url = `users/${id}`
 
         getData(url)
-            .then(res => res.json())
             .then(res => setProfilePicture(res.profile_picture))
             .catch(err => console.log(err))
 

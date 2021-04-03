@@ -6,25 +6,13 @@ import Container from './Container'
 import Loader from '../Shared/Loader'
 import Card from './Card'
 import Description from './Description'  
+/* Custom hooks. */
+import useData from '../../../../hooks/useData/'
 
 const Hacking = () => {
 
-    const [ ctfs, setCTFS ] = useState([])
-    const [ isFetching, setFetching ] = useState(true)
-    useEffect(() => 
-        {
-            fetch('http://localhost:80/ctfs')
-                .then(res => res.json())
-                .then(ctfs => {
-                    setCTFS(ctfs['results'])
-                    setFetching(false)
-                })
-                .catch(err => {
-                    console.log(err)
-                    setFetching(false)
-                })
-        }, []
-    )
+    const url = 'ctfs'
+    const { data, isLoading } = useData(url)
 
     return(
         <Container>
@@ -33,9 +21,9 @@ const Hacking = () => {
             { /* Bottom. */ }
             <Grid item xs={12} sm={12} spacing={2} container>
                 {
-                    isFetching ? 
+                    isLoading ? 
                     <Loader/> :
-                    ctfs.map((ctf) => 
+                    data.map((ctf) => 
                         <Grid item xs={12} sm={4} key={ctf.id}>
                             <Card data={ctf}/>
                         </Grid>

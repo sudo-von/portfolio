@@ -7,7 +7,9 @@ import Small from '../Shared/Small'
 import Hr from '../Shared/Hr'
 
 const Hacking = ( { githubURL }, ...props ) => {
+
     const href = githubURL ? githubURL : 'https://github.com/sudo-von/capture-the-flag'
+    
     return(
         <Grid item xs={12}>
             <HighlightedText><h2>Hacking ético</h2></HighlightedText>
