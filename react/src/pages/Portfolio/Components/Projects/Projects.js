@@ -7,22 +7,13 @@ import Container from './Container'
 import Card from './Card'
 import Hr from '../Shared/Hr'
 import Loader from '../Shared/Loader'
+/* Custom hooks. */
+import useData from '../../../../hooks/useData/'
 
 const Projects = () => {
 
-    
-    const [projects, setProjects] = useState([])
-    const [ isFetching, setFetching ] = useState(true)
-    useEffect(() => {
-        const url = "http://localhost:80/projects"
-        fetch(url).then(res => res.json()).then(projects => {
-            setProjects(projects['results'])
-            setFetching(false)
-        }).catch(err => {
-            setFetching(false)
-            console.error(err)
-        })
-    },[])
+    const url = 'projects'
+    const { data, isLoading } = useData(url)
 
     return(
         <Container>
@@ -39,9 +30,9 @@ const Projects = () => {
             { /* Bottom. */}
             <Grid item xs={12} spacing={2} style={{marginTop: 2}} container>
                 {
-                    isFetching ? 
+                    isLoading ? 
                     <Loader/> :
-                    projects.map((project) => 
+                    data.map((project) => 
                         <Card data={project} key={project.id}/>
                     )
                 }
