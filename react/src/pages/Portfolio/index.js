@@ -15,6 +15,10 @@ import AOS from 'aos'
 import 'aos/dist/aos.css'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
+/* React router. */
+import { Link } from 'react-router-dom'
+
+const Query = () => <Link to='Query' style={{textDecoration: 'none', marginRight: 20}}><h4>QUERY</h4></Link>
 
 const Portfolio = () => {
 
@@ -27,7 +31,9 @@ const Portfolio = () => {
   return (  
     <ThemeProvider theme={themeMode}>      
       <GlobalStyles/>
-      <Navbar theme={theme} themeToggler={themeToggler}/>
+      <Navbar theme={theme} themeToggler={themeToggler}>
+        <Query/>
+      </Navbar>
       <Container maxWidth="md" style={{padding: '0 20px'}}>
         { /* Sections from the main page. */ }
         <AboutMe/>

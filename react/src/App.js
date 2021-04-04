@@ -9,6 +9,9 @@ const App = () =>
             <Route path='/'>
                 <Portfolio/>
             </Route>
+            <Route path='/Query'>
+                <Portfolio/>
+            </Route>
         </Switch>
     </BrowserRouter>
 
