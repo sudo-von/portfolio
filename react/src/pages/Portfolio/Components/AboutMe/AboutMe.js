@@ -3,8 +3,8 @@ import React from 'react'
 import ProfilePicture from '../../../../components/ProfilePicture/'
 import Container from './Container'
 import Description from './Description'
-import Title from '../Shared/Title'
-import Small from '../Shared/Small'
+import Title from '../../../../components/Title/'
+import Small from '../../../../components/Small/'
 /* Custom hooks. */
 import useProfilePicture from '../../../../hooks/useProfilePicture/'
 

@@ -1,15 +1,16 @@
 import React from 'react'
-import { func, string } from 'prop-types';
+import { func, string } from 'prop-types'
 import styled from 'styled-components'
 /* Icons. */
-import WbSunnyIcon from '@material-ui/icons/WbSunny';
-import Brightness2Icon from '@material-ui/icons/Brightness2';
+import WbSunnyIcon from '@material-ui/icons/WbSunny'
+import Brightness2Icon from '@material-ui/icons/Brightness2'
 
 const ToggleContainer = styled.button`
   background: ${({ theme: { toggler } }) => toggler.background_color};
   border: 2px solid ${({ theme: { toggler } }) => toggler.border_color};
   border-radius: 30px;
   cursor: pointer;
+  outline: none;
   display: flex;
   font-size: 0.5rem;
   justify-content: space-between;
@@ -35,15 +36,16 @@ const ToggleContainer = styled.button`
       color: ${({ theme: { toggler } }) => toggler.color};
     }
   }
-`;
+`
+
 const Toggle = ({theme,  toggleTheme }) => {
   const lightTheme = theme === 'light';
-    return (
-        <ToggleContainer lightTheme={lightTheme} onClick={toggleTheme} >
-            <WbSunnyIcon/>
-            <Brightness2Icon/>
-        </ToggleContainer>
-    );
+  return (
+    <ToggleContainer lightTheme={lightTheme} onClick={toggleTheme} >
+      <WbSunnyIcon/>
+      <Brightness2Icon/>
+    </ToggleContainer>
+  );
 };
 
 Toggle.propTypes = {
@@ -51,4 +53,4 @@ Toggle.propTypes = {
     toggleTheme: func.isRequired,
 }
 
-export default Toggle;
+export default Toggle

@@ -1,5 +1,5 @@
-import React from 'react';
-import Grid from '@material-ui/core/Grid';
+import React from 'react'
+import Grid from '@material-ui/core/Grid'
 
 const styles = {
   div: {
@@ -28,4 +28,4 @@ const Container = (props) =>
   </div>
 
 
-export default Container;
+export default Container

@@ -11,7 +11,9 @@ import TwitterIcon from '@material-ui/icons/Twitter'
 import GitHubIcon from '@material-ui/icons/GitHub'
 import LinkedInIcon from '@material-ui/icons/LinkedIn'
 
-const Navbar = ({theme, themeToggler}) => {
+const Navbar = ( { theme, themeToggler }) => {
+
+  /* Style hook. */
   const currentTheme = useTheme()
   const styles = {
     appbar: {

@@ -14,7 +14,7 @@ import { useDarkMode } from '../../themes/useDarkMode'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 /* Material-ui. */
-import Container from '@material-ui/core/Container';
+import Container from '@material-ui/core/Container'
 
 const Portfolio = () => {
 

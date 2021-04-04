@@ -4,7 +4,7 @@ import { Card as MaterialCard } from '@material-ui/core/'
 import CardMedia from '@material-ui/core/CardMedia'
 import CardContent from '@material-ui/core/CardContent'
 /* Styled-components. */
-import { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components'
 
 const Card = ( { data : { id, title, description, image, repository } }, ...props) => {
 
@@ -52,7 +52,7 @@ const Card = ( { data : { id, title, description, image, repository } }, ...prop
         <CardMedia image={image} title={description} style={styles.cardMedia}/>
       </MaterialCard>
     </a>
-  );
+  )
 }
 
-export default Card;
+export default Card

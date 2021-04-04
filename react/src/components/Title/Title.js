@@ -5,6 +5,6 @@ const Title = styled.h1`
   font-size: 40px;
   font-weight: bold;
   line-height: 1;
-`;
+`
 
-export default Title;
+export default Title

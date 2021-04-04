@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 /* Material-ui components. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
-import HighlightedText from '../Shared/HighlightedText'
+import HighlightedText from '../../../../components/HighlightedText/'
 import Container from './Container'
 import Card from './Card'
-import Hr from '../Shared/Hr'
-import Loader from '../Shared/Loader'
+import Hr from '../../../../components/Hr/'
+import Loader from '../../../../components/Loader/'
 /* Custom hooks. */
 import useData from '../../../../hooks/useData/'
 

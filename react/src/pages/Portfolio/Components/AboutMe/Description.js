@@ -1,6 +1,6 @@
 import React from 'react'
 /* Custom components. */
-import HighlightedText from '../Shared/HighlightedText'
+import HighlightedText from '../../../../components/HighlightedText/'
 
 const styles = {
     div: {
