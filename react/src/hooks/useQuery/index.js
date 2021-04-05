@@ -1,5 +1,5 @@
 import { useState } from 'react'
-
+import { sendData } from '../../adapters/'
 /* Gets user's data from the API. */
 const useQuery = () => {
     
@@ -20,6 +20,15 @@ const useQuery = () => {
   
     const handleSubmit = e => {
       e.preventDefault()
+      if (initial && question) {
+        const data = {
+            initial,
+            title: question
+        }
+        sendData('questions', data, '¡Tu pregunta ha sido enviada con éxito!')
+      }else{
+          alert('Completa los campos para poder continuar')
+      }
     }
 
     return [ initial, question, handleInitial, handleQuestion, handleSubmit ]
