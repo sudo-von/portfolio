@@ -11,7 +11,11 @@ import useQuery from '../../../hooks/useQuery'
 const AboutMe = (props) => {
 
   const { username, name, profilePicture, description } = useUser()
-  const [ initial, question, handleInitial, handleQuestion, handleSubmit ] = useQuery()
+  const [ initial, question, error, loading, handleInitial, handleQuestion, handleSubmit  ] = useQuery()
+
+  if (error) {
+    return <p>{error}</p>
+  }
 
   return(
     <Container>
@@ -23,6 +27,9 @@ const AboutMe = (props) => {
         username={username} 
         description={description}
       />
+      { loading && 
+        <p>Loading XD...</p>
+      }
       <Form 
         initial={initial}      
         question={question}

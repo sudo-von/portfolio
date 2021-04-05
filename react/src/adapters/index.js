@@ -8,18 +8,35 @@ const returnAxiosInstance = () => axios.create({
     headers: {'Accept': 'application/json'}
 })
 
-export const getData = (url) => returnAxiosInstance().get(url).then(res => res.data)
+export const getData = (url) => {
+    
+    const instance = returnAxiosInstance()
+    return instance.get(url)
+        .then(res => res.data)
+        .catch(err => {
+            if (err.response) {
+                return new Error('Ha ocurrido un error, por favor intenta de nuevo más tarde o contacta al administrador')
+            } else if (err.request) {
+                return new Error('El servidor no respondió bien, por favor contacta al administrador')
+            } else {
+                return new Error(err)
+            }
+        })
+}
 
 export const sendData = (url, data, message) => {
 
     const instance = returnAxiosInstance()
-    instance.post(url, data).then(res => {
-        if (res.statusCode == 200){
-            alert(message)
-        }
-    }).catch(err => {
-        alert("Intenta de nuevo más tarde o contacta al administrador")
-        console.log(err)
-    })
+    return instance.post(url, data)
+        .then(res => message)
+        .catch(err => {
+            if (err.response) {
+                return new Error('Ha ocurrido un error, por favor intenta de nuevo más tarde o contacta al administrador')
+            } else if (err.request) {
+                return new Error('El servidor no respondió bien, por favor contacta al administrador')
+            } else {
+                return new Error(err)
+            }
+        })
 
 }
