@@ -1,13 +1,14 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { sendData } from '../../adapters/'
 /* Gets user's data from the API. */
 const useQuery = () => {
-    
 
     const [ initial, setInitial] = useState('')
     const [ question, setQuestion] = useState('')  
-    const [ error, setError ] = useState(null)
+    const [ error, setError ] = useState('')
     const [ loading, setLoading ] = useState(false)
+
+    useEffect(() => {}, [])
 
     const handleInitial = e => {
         if (e.target.value.length <= 1) {
@@ -44,7 +45,7 @@ const useQuery = () => {
                 })
 
         }else{
-            alert('Completa los campos para poder continuar')
+            setError('Completa los campos para poder continuar')
         }
     }
 

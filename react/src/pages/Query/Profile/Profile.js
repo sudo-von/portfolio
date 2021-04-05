@@ -1,6 +1,7 @@
 import React, { useContext } from 'react'
 /* Custom components. */
 import ProfilePicture from '../../../components/ProfilePicture/'
+import Notification from '../../../components/Notification'
 import Container from './Container'
 import Description from '../Description/'
 import Form from '../Form/'
@@ -11,14 +12,14 @@ import useQuery from '../../../hooks/useQuery'
 const AboutMe = (props) => {
 
   const { username, name, profilePicture, description } = useUser()
-  const [ initial, question, error, loading, handleInitial, handleQuestion, handleSubmit  ] = useQuery()
-
-  if (error) {
-    return <p>{error}</p>
-  }
-
+  const [ initial, question, error, loading, handleInitial, handleQuestion, handleSubmit ] = useQuery()
+  console.log(error)
+  
   return(
     <Container>
+      {error &&
+        <Notification message={error} status={"error"}/>
+      }
       <ProfilePicture
         src={profilePicture}
       />
