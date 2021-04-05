@@ -1,6 +1,8 @@
 package mongo
 
 import (
+	"time"
+
 	"github.com/mongo-experiments/go/pkg/api"
 	"gopkg.in/mgo.v2/bson"
 )
@@ -9,13 +11,13 @@ type questionModel struct {
 	ID      bson.ObjectId `bson:"_id" json:"id"`
 	Initial string        `bson:"initial" json:"initial"`
 	Title   string        `bson:"title" json:"title"`
-	Date    string        `bson:"date" json:"date"`
+	Date    time.Time     `bson:"date" json:"date"`
 	Answer  answer        `bson:"answer" json:"answer"`
 }
 
 type answer struct {
-	Title string `bson:"title" json:"title"`
-	Date  string `bson:"date" json:"date"`
+	Title string    `bson:"title" json:"title"`
+	Date  time.Time `bson:"date" json:"date"`
 }
 
 func toQuestionModel(question api.Question) questionModel {

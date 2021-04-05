@@ -71,13 +71,13 @@ func (up *QuestionPayload) Bind(r *http.Request) error {
 
 func ToResponseQuestion(question *api.Question) *QuestionResponse {
 
-	answer := Answer{Title: question.Answer.Title, Date: question.Answer.Date}
+	answer := Answer{Title: question.Answer.Title, Date: question.Answer.Date.Format("2006-01-02 15:04:05")}
 
 	return &QuestionResponse{
 		ID:      question.ID,
 		Initial: question.Initial,
 		Title:   question.Title,
-		Date:    question.Date,
+		Date:    question.Date.Format("2006-01-02 15:04:05"),
 		Answer:  answer,
 	}
 

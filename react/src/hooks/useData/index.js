@@ -16,7 +16,6 @@ const useData = (url) => {
                     setLoading(false)
                 })
                 .catch(err => {
-                    console.log(2)
                     setLoading(false)
                 })
         }, []

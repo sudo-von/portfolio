@@ -18,7 +18,7 @@ import Container from '@material-ui/core/Container'
 /* React router. */
 import { Link } from 'react-router-dom'
 
-const Query = () => <Link to='Query' style={{textDecoration: 'none', marginRight: 20}}><h4>QUERY</h4></Link>
+const Query = () => <Link to='/Query' style={{textDecoration: 'none', marginRight: 20}}><h4>QUERY</h4></Link>
 
 const Portfolio = () => {
 

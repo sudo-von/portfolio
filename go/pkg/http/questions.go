@@ -2,6 +2,7 @@ package http
 
 import (
 	"net/http"
+	"time"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
@@ -61,6 +62,7 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 	newQuestion := api.Question{
 		Initial: data.Initial,
 		Title:   data.Title,
+		Date:    time.Now(),
 	}
 
 	err := c.QuestionService.CreateQuestion(newQuestion)

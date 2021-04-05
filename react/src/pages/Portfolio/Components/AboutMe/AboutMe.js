@@ -6,7 +6,7 @@ import Description from './Description'
 import Title from '../../../../components/Title/'
 import Small from '../../../../components/Small/'
 /* Custom hooks. */
-import useProfilePicture from '../../../../hooks/useProfilePicture/'
+import useUser from '../../../../hooks/useUser'
 
 const styles = {
   small: {
@@ -16,7 +16,7 @@ const styles = {
 
 const AboutMe = () => {
 
-  const { profilePicture } = useProfilePicture()
+  const { profilePicture } = useUser()
 
   return(
     <Container>
