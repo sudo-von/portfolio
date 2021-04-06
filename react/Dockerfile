@@ -6,25 +6,14 @@
 #CMD ["npm", "start", "NODE_ENV=development"]
 
 # Node image
-FROM node:10 as builder
-
-# set working directory
-RUN mkdir /usr/src/app
-WORKDIR /usr/src/app
-
-# copy source code
-COPY . /usr/src/app/
-
-# install app dependencies
+FROM tiangolo/node-frontend:10 as build-stage
+WORKDIR /app
+COPY package*.json /app/
 RUN npm install
-
-# run production build
+COPY ./ /app/
 RUN npm run build
-
-# Nginx
+# Stage 1, based on Nginx, to have only the compiled app, ready for production with Nginx
 FROM nginx:1.15
-RUN rm -rf /etc/nginx/conf.d
-COPY conf /etc/nginx
-COPY — from=builder /usr/src/app/app-build /usr/share/nginx/html
-EXPOSE 80 
-CMD [“nginx”, “-g”, “daemon off;”]
+COPY --from=build-stage /app/build/ /usr/share/nginx/html
+# Copy the default nginx.conf provided by tiangolo/node-frontend
+COPY --from=build-stage /nginx.conf /etc/nginx/conf.d/default.conf
