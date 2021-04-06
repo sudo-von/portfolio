@@ -8,14 +8,9 @@
 # Node image
 # Frontend build based on Node.js
 FROM node:11.12.0-alpine as build-stage
-RUN mkdir -p /usr/src/app
-WORKDIR /usr/src/app
-ENV PATH /usr/src/app/node_modules/.bin:$PATH
-COPY package.json /usr/src/app/package.json
-RUN npm install -f
-RUN npm install react-scripts@latest -g
-COPY . /usr/src/app
-#RUN CI=true npm test
+WORKDIR  /usr/src/app
+COPY . .
+RUN npm install --silent
 RUN npm run build
 
 # Stage 1
