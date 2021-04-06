@@ -1,8 +1,7 @@
 /* Axios. */
 import axios from 'axios'
 
-const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:80/' : 'http://someapi:80/'
-
+const baseURL = process.env.NODE_ENV === 'development' ? 'http://localhost:80/' : 'http://192.241.153.48:3000/'
 const returnAxiosInstance = () => axios.create({
     baseURL : baseURL,
     headers: {'Accept': 'application/json'}
