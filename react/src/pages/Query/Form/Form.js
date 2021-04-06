@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 /* Material-ui components. */
 import TextField from '@material-ui/core/TextField'
 import Button from '@material-ui/core/Button'
@@ -26,11 +26,11 @@ const styles = {
 const Form = ({initial, question, handleInitial, handleQuestion, handleSubmit}) => {
 
     return(
-        <form noValidate autoComplete="off" style={styles.form}>
+        <form noValidate autoComplete="off" style={styles.form} onSubmit={handleSubmit}>
             <TextField helperText={`${initial.length}/1`} value={initial} onChange={handleInitial} style={styles.textField} fullWidth={true} id="outlined-basic" label="Escribe tu inicial" variant="outlined" />
             <TextField helperText={`${question.length}/300`} value={question} onChange={handleQuestion} style={styles.textField} fullWidth={true} id="outlined-basic" label="¡Hazme una pregunta!" multiline rows={3} variant="outlined" />
             <div style={styles.div}>
-                <Button style={styles.button} onClick={handleSubmit} variant="outlined" color="primary">
+                <Button style={styles.button} type="submit" variant="outlined" color="primary">
                     Enviar
                 </Button>
             </div>

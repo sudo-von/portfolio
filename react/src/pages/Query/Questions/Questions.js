@@ -13,7 +13,7 @@ const Questions = (props) => {
         <Container>
             {data &&
                 data.map(question => 
-                    <Question data={question}/>
+                    <Question key={question.id} data={question}/>
                 )
             }
         </Container>

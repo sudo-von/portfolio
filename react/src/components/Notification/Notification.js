@@ -3,39 +3,27 @@ import React, { useState, useEffect } from 'react'
 import Snackbar from '@material-ui/core/Snackbar'
 import MuiAlert from '@material-ui/lab/Alert';
 
-const Success = ( { message, duration, status } ) => {
+const Success = ( { message, duration=4000, status } ) => {
 
-  const [ state, setState ] = useState({
-    open: true,
-    vertical: 'top',
-    horizontal: 'center',
-  })
-
-  const [showMessage, setShowMessage] = useState(true);
-  useEffect(() => {
-    if (message.length > 0) {
-      setShowMessage(true);
+  const [ open, setOpen ] = useState(false)
+  useEffect( () => {
+    console.log(message)
+    if (message.length >= 1){
+      setOpen(true)
     }
-  }, [message]);
+  }, [message])
 
-  const { vertical, horizontal, open } = state
-
-  const handleClick = (newState) => () => {
-    setState({ open: true, ...newState })
-  }
-
-  
-  const handleClose = () => {
-    setShowMessage(false)
-  }
+  const handleClose = (e) => {
+    setOpen(false)
+  } 
 
   return (
     <Snackbar
-      anchorOrigin={{ vertical, horizontal }}
-      open={showMessage}
+      anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      open={open}
       onClose={handleClose}
-      autoHideDuration={6000}
-      key={vertical + horizontal}
+      autoHideDuration={2000}
+      key={'top, center'}
     >
       <MuiAlert elevation={6} variant="filled" onClose={handleClose} severity={status}>
         {message}

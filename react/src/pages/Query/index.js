@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React from 'react'
 /* Custom components. */
 import Profile from './Profile/Profile'
 import Questions from './Questions/Questions'
@@ -21,7 +21,6 @@ const Query = () => {
   /* Theme hooks. */
   const [ theme, themeToggler ] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
-
   return (  
     <ThemeProvider theme={themeMode}>      
       <GlobalStyles/>

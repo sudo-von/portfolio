@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React from 'react'
 /* Custom components. */
 import Navbar from '../../components/Navbar/'
 /* Styles. */
@@ -8,7 +8,6 @@ import { lightTheme, darkTheme } from '../../themes/Themes'
 import { useDarkMode } from '../../themes/useDarkMode'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
-import Grid from '@material-ui/core/Grid'
 /* React router. */
 import { Link } from 'react-router-dom'
 
@@ -27,7 +26,7 @@ const Page404 = () => {
         <Portfolio/>
       </Navbar>
       <Container maxWidth="lg" style={{height: '100%', padding: '0 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyConter: 'center'}}>
-        <img style={{borderRadius: 50}} src='https://24.media.tumblr.com/a8814ccdb9f7d73101456f999dd4000c/tumblr_mnra2yzVE51qhd8sao2_500.gif'/>
+        <img style={{borderRadius: 50}} alt='Not found' src='https://24.media.tumblr.com/a8814ccdb9f7d73101456f999dd4000c/tumblr_mnra2yzVE51qhd8sao2_500.gif'/>
         <h1 style={{color: 'white'}}>Not found...</h1>
       </Container>
     </ThemeProvider>

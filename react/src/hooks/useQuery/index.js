@@ -2,54 +2,62 @@ import { useState, useEffect } from 'react'
 import { sendData } from '../../adapters/'
 /* Gets user's data from the API. */
 const useQuery = () => {
-
-    const [ initial, setInitial] = useState('')
-    const [ question, setQuestion] = useState('')  
-    const [ error, setError ] = useState('')
-    const [ loading, setLoading ] = useState(false)
-
-    useEffect(() => {}, [])
+    
+    const [ state, setState ] = useState({
+        loading: false,
+        initial: '',
+        question: '',
+        success: '',
+        error: null
+    })
 
     const handleInitial = e => {
         if (e.target.value.length <= 1) {
-            setInitial(e.target.value)
+            setState({...state, initial: e.target.value})
         }
     }
 
     const handleQuestion = e => {
         if (e.target.value.length <= 300) {
-            setQuestion(e.target.value)
+            setState({...state, question: e.target.value})
         }
     }
   
     const handleSubmit = e => {
+        
         e.preventDefault()
-        if (initial && question) {
+        
+        setState({...state, loading: true})
+        if (state.initial && state.question) {
             
             const data = {
-                initial: initial,
-                title: question
+                initial: state.initial,
+                title: state.question
             }
-            setLoading(true)
 
             sendData('questions', data, '¡Tu pregunta ha sido enviada con éxito!')
                 .then(res => {
-                    alert(res)
-                    setInitial('')
-                    setQuestion('')
-                    setLoading(false)
+                    setState({...state, initial: '', question: '', loading: false, error: null, success: res})
                 })
                 .catch(err => {
-                    setError(err)
-                    setLoading(false)
+                    setState({...state, loading: false, error: err})
                 })
 
         }else{
-            setError('Completa los campos para poder continuar')
+            if (state.error == 'Completa los campos para poder continuar') {
+                setState({...state, success: null, error: 'Completa los campos para poder continuar '})
+            }else{
+                setState({...state, success: null, error: 'Completa los campos para poder continuar'})
+            }
         }
     }
 
-    return [ initial, question, error, loading, handleInitial, handleQuestion, handleSubmit ]
+    return [
+        state, 
+        handleInitial, 
+        handleQuestion, 
+        handleSubmit 
+    ]
 
 }
 
