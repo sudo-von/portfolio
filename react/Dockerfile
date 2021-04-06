@@ -19,7 +19,7 @@ COPY . /usr/src/app/
 RUN npm install
 
 # run production build
-RUN npm run production
+RUN npm run build
 
 # Nginx
 FROM nginx:1.15
