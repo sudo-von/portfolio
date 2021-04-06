@@ -48,7 +48,7 @@ func ListenAndServe(controller Controller) {
 	r.Mount("/questions", NewQuestionController(controller.QuestionService).Routes())
 
 	// Start service
-	if err := http.ListenAndServe(":80", r); err != nil {
+	if err := http.ListenAndServe(":3000", r); err != nil {
 		log.Printf("[routes] error: %s", err.Error())
 	}
 }
