@@ -1,5 +1,6 @@
 FROM golang:1.15
 
+ENV TZ=America/Mexico_City
 # Copy files.
 COPY . /sudo-von/
 WORKDIR /sudo-von/cmd/

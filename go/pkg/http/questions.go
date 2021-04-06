@@ -59,13 +59,17 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	loc, err := time.LoadLocation("America/Mexico_City")
+	if err != nil {
+		CheckError(err, w, r)
+	}
 	newQuestion := api.Question{
 		Initial: data.Initial,
 		Title:   data.Title,
-		Date:    time.Now(),
+		Date:    time.Now().In(loc),
 	}
 
-	err := c.QuestionService.CreateQuestion(newQuestion)
+	err = c.QuestionService.CreateQuestion(newQuestion)
 	if err != nil {
 		CheckError(err, w, r)
 	}

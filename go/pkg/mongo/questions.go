@@ -60,7 +60,7 @@ func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 	con := session.DB(r.DatabaseName).C("questions")
 
 	var questionsM []questionModel
-	err := con.Find(bson.M{}).All(&questionsM)
+	err := con.Find(bson.M{}).Sort("-date").All(&questionsM)
 	if err != nil {
 		return nil, 0, err
 	}
