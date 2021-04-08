@@ -1,55 +1,60 @@
 version: '3.1'
 services:
   # MongoDB service.
-  mongo:
-    container_name: mongo
-    image: mongo
-    restart: always
-    env_file:
-    - .env
-    volumes: 
-      - ./mongo/data:/data/db
-    environment:
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
-    ports:
-     - 27017:27017
-  # MongoDB administration service.
-  mongo-express:
-    container_name: mongo-express
-    image: mongo-express
-    restart: always
-    ports:
-      - 8081:8081
-    env_file:
-    - .env
-    environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-  # Golang API service.
-  api:
-    build: 
-      context: go/.
-    container_name: sudo_von_api
-    environment:
-      MONGO_URL: ${MONGO_URL}
-      ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGO_INITDB_DATABASE}
-      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
-      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
-    restart: on-failure:10
-    depends_on:
-     - mongo
-    links:
-     - mongo
-    ports:
-     - 3000:3000
-  # ReactJS Service.
-  react:
-    container_name: react
+  #database:
+  #  container_name: portfolio_database
+  #  image: mongo
+  #  restart: always
+  #  env_file:
+  #  - .env
+  #  volumes: 
+  #    - ./mongo/data:/data/db
+  #  environment:
+  #    MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+  #    MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  #    MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+  #  ports:
+  #   - 27017:27017
+  #database_manager:
+  #  container_name: portfolio_database_manager
+  #  image: mongo-express
+  #  restart: always
+  #  env_file:
+  #  - .env
+  #  environment:
+  #    ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+  #    ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  #  ports:
+  #    - 8080:8081
+  #backend:
+  #  container_name: portfolio_backend
+  #  restart: on-failure:10
+  #  build: 
+  #    context: go/.
+  #  env_file:
+  #  - .env
+  #  environment:
+  #    MONGO_URL: ${MONGO_URL}
+  #    ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGO_INITDB_DATABASE}
+  #    MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+  #    MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+  #    ENV: ${ENV}
+  #  depends_on:
+  #   - mongo
+  #  links:
+  #   - mongo
+  #  ports:
+  #   - 3000:3000
+  frontend:
+    container_name: portfolio_frontend
     build:
-      context: react/
-      dockerfile: Dockerfile
+      context: react/.
+      args:
+        - buildno=${ENV}
+    env_file:
+    - .env
+    environment:
+      ENV: ${ENV}
     volumes:
       - './react/:/app'
     ports:
