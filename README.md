@@ -6,13 +6,14 @@
 <br />
 <p align="center">
   <a>
-    <img src="https://orbitalsol.net/images/react_heart.gif" alt="Logo" width="80" height="80">
+    <img src="https://jaxenter.com/wp-content/uploads/2020/03/goxygenlogo.png" alt="Logo" width="200" height="140">
   </a>
 
   <h3 align="center">Portfolio</h3>
 
   <p align="center">
-    Personal project where i'm gonna be using ReactJS to show my projects on <a href="https://www.sudo-von.com" target="_blank">https://www.sudo-von-com</a>. 
+    Personal project where i'm gonna be using Golang as a REST API, MongoDB, Mongo-express, ReactJS and DockerCompose to show my projects. 
+    <br />
     <br />
     <a href="https://github.com/sudo-von/portfolio"><strong>Explore the docs »</strong></a>
     <br />
@@ -50,16 +51,23 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-I decided to create my portfolio using ReactJS and make the code public, so feel free to use it if you want to.
+![Portfolio](assets/portfolio.gif)
+
+I decided to create my portfolio using Golang as a REST API, MongoDB, Mongo-express, ReactJS and DockerCompose making the code public, so feel free to use it if you want to.
 
 ### Built With
 
+* [Golang](https://golang.org/)
+* [MongoDB](https://www.mongodb.com//)
+* [MongoExpress](https://github.com/mongo-express/mongo-express)
 * [ReactJS](https://reactjs.org/)
+* [DockerCompose](https://docs.docker.com/compose/)
 
 ### Prerequisites
 
 * git
-* reactjs
+* docker
+* docker-compose
 
 ### Installation
 
@@ -67,15 +75,23 @@ I decided to create my portfolio using ReactJS and make the code public, so feel
    ```sh
    git clone https://github.com/sudo-von/portfolio.git
    ```
-2. Use <b>npm install</b> to install all the dependencies from the package.json file.
+2. Use <b>docker-compose up --build</b> to start the services.
    ```sh
-   npm install
+   docker-compose up --build
    ```
-  
+
 <!-- USAGE EXAMPLES -->
 ## Usage
 
-1. Use npm start to start a service that will normally run on port 3000 which will listen for changes.
+1. Use docker-compose to start the services.
+2. Make sure that the services are running, if everything is fine you will get the next output.
+
+```sh
+Creating portfolio_frontend         ... done
+Creating portfolio_database_manager ... done
+Creating portfolio_database         ... done
+Creating portfolio_backend          ... done
+```
 
 <!-- CONTRIBUTING -->
 ## Contributing
