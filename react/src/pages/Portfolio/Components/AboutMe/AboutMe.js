@@ -5,6 +5,7 @@ import Container from './Container'
 import Description from './Description'
 import Title from '../../../../components/Title/'
 import Small from '../../../../components/Small/'
+import Loader from '../../../../components/Loader/'
 /* Custom hooks. */
 import useUser from '../../../../hooks/useUser'
 
@@ -16,11 +17,19 @@ const styles = {
 
 const AboutMe = () => {
 
-  const { profilePicture } = useUser()
+  const { data, loading } = useUser()
+
+  if(loading){
+    return (
+      <Container>
+        <Loader>Casrgando...</Loader>
+      </Container>
+    )
+  }
 
   return(
     <Container>
-      <ProfilePicture src={profilePicture}/>
+      <ProfilePicture src={data.profilePicture}/>
       <Title>Jesús Rodríguez</Title>
       <Description/>
       <Small style={styles.small}>“Con sacrificio puede ser que logres algo,<br/>

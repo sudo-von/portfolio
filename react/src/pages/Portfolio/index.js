@@ -5,43 +5,36 @@ import Skills from './Components/Skills/'
 import Projects from './Components/Projects/'
 import Hacking from './Components/Hacking/'
 import Navbar from '../../components/Navbar/'
-/* Styles. */
-import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from '../../themes/GlobalStyles'
-import { lightTheme, darkTheme } from '../../themes/Themes'
-import { useDarkMode } from '../../themes/useDarkMode'
+import NavbarRoute from '../../components/Navbar/Components/NavbarRoute'
 /* Animations. */
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
-/* React router. */
-import { Link } from 'react-router-dom'
 
-const Query = () => <Link to='/Query' style={{textDecoration: 'none', marginRight: 20}}><h4>QUERY</h4></Link>
+const styles = {
+  container: {
+    padding: '0 20px'
+  }
+}
 
-const Portfolio = () => {
+const Portfolio = ( { theme, themeToggler } ) => {
 
   /* Initialize AOS which will be used for animations. */
   AOS.init()
-  /* Custom hooks. */
-  const [ theme, themeToggler ] = useDarkMode()
-  const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   return (  
-    <ThemeProvider theme={themeMode}>      
-      <GlobalStyles/>
+    <div>      
       <Navbar theme={theme} themeToggler={themeToggler}>
-        <Query/>
+        <NavbarRoute to='Query' name='Query'/>
       </Navbar>
-      <Container maxWidth="md" style={{padding: '0 20px'}}>
-        { /* Sections from the main page. */ }
+      <Container maxWidth="md" style={styles.container}>
         <AboutMe/>
         <Skills/>
         <Projects/>
         <Hacking/>
       </Container>
-    </ThemeProvider>
+    </div>
   )
 }
 

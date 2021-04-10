@@ -29,7 +29,6 @@ const Query = () => {
       </Navbar>
       <Container maxWidth="lg" style={{padding: '0 20px'}}>
         <Grid container spacing={5}>
-          <Profile/>
           <Questions/>
         </Grid>
       </Container>

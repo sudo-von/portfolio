@@ -12,7 +12,7 @@ import useQuery from '../../../hooks/useQuery'
 
 const AboutMe = (props) => {
   
-  const { username, name, profilePicture, description } = useUser()
+  const { data, loading } = useUser()
   const [ state, handleInitial, handleQuestion, handleSubmit ] = useQuery()
   const { initial, question, loading, error, success } = state
 

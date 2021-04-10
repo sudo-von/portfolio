@@ -27,7 +27,7 @@ const styles = {
   }
 }
 
-const Page404 = ( { theme, themeToggler }) => {
+const Page404 = ( { theme, themeToggler } ) => {
 
   const src = 'https://i.pinimg.com/originals/66/e0/87/66e087560271fee2224eac6a335af2c3.gif'
 
