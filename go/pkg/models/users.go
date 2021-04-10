@@ -7,16 +7,8 @@ import (
 )
 
 type UserList struct {
+	Total int             `json:"total"`
 	Users []*UserResponse `json:"results"`
-}
-
-type User struct {
-	ID             string   `json:"id"`
-	Username       string   `json:"username"`
-	Name           string   `json:"name"`
-	ProfilePicture string   `json:"profile_picture"`
-	Email          string   `json:"email"`
-	Description    []string `json:"description"`
 }
 
 func (mt *UserList) Render(w http.ResponseWriter, r *http.Request) error {

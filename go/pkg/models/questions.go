@@ -12,14 +12,6 @@ type QuestionList struct {
 	Questions []*QuestionResponse `json:"results"`
 }
 
-type Question struct {
-	ID      string  `json:"id"`
-	Initial string  `json:"initial"`
-	Title   string  `json:"title"`
-	Date    string  `json:"date"`
-	Answer  *Answer `json:"answer"`
-}
-
 type Answer struct {
 	Title string `json:"title"`
 	Date  string `json:"date"`
