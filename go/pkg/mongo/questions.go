@@ -29,14 +29,11 @@ func toQuestionModel(question api.Question) questionModel {
 		questionID = bson.NewObjectId()
 	}
 
-	answer := answer{Title: question.Answer.Title, Date: question.Answer.Date}
-
 	return questionModel{
 		ID:      questionID,
 		Initial: question.Initial,
 		Title:   question.Title,
 		Date:    question.Date,
-		Answer:  answer,
 	}
 }
 

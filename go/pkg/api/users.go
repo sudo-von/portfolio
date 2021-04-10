@@ -7,5 +7,4 @@ type User struct {
 	ProfilePicture string
 	Description    []string
 	Email          string
-	Password       string
 }
