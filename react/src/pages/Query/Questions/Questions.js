@@ -33,7 +33,7 @@ const Questions = () => {
                 )
             }
             {!data &&
-               <MuiAlert elevation={6} variant="filled" severity="info">No hay preguntas contestadas de momeneto, vuelve más tarde...</MuiAlert>
+               <MuiAlert elevation={6} variant="filled" severity="info">No hay preguntas contestadas de momento, vuelve más tarde...</MuiAlert>
             }
         </Grid>
     )
