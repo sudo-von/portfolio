@@ -22,7 +22,7 @@ const Hacking = () => {
             <Grid item xs={12} sm={12} spacing={2} container>
                 {
                     isLoading ? 
-                    <Loader/> :
+                    <Loader>Cargando repositorios...</Loader> :
                     data.map((ctf) => 
                         <Grid item xs={12} sm={4} key={ctf.id}>
                             <Card data={ctf}/>

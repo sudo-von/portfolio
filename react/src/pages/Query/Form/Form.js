@@ -1,7 +1,11 @@
 import React from 'react'
 /* Material-ui components. */
 import TextField from '@material-ui/core/TextField'
-import Button from '@material-ui/core/Button'
+/* Custom components. */
+import Notification from '../../../components/Notification'
+import Button from '../../../components/Button'
+/* Custom hooks. */
+import useForm from '../../../hooks/useForm'
 
 const styles = {
     form: {
@@ -19,18 +23,47 @@ const styles = {
     },
     button: {
         margin: '8px 0',
-        width: '50%'
+        width: '100%',
     }
 }
 
-const Form = ({initial, question, handleInitial, handleQuestion, handleSubmit}) => {
+const Form = () => {
+
+    const { data, loading, error, handleChange, handleSubmit } = useForm()
+    console.log(data, loading, error)
 
     return(
         <form noValidate autoComplete="off" style={styles.form} onSubmit={handleSubmit}>
-            <TextField helperText={`${initial.length}/1`} value={initial} onChange={handleInitial} style={styles.textField} fullWidth={true} id="outlined-basic" label="Escribe tu inicial" variant="outlined" />
-            <TextField helperText={`${question.length}/300`} value={question} onChange={handleQuestion} style={styles.textField} fullWidth={true} id="outlined-basic" label="¡Hazme una pregunta!" multiline rows={3} variant="outlined" />
+            { error.error === false &&
+                <Notification message={error.message} status={"success"}/>
+            }
+            { error.error &&
+                <Notification message={error.message} status={"error"}/>
+            }
+            <TextField 
+                variant="outlined"
+                value={data.initial}
+                helperText={`${data.initial.length}/1`} 
+                style={styles.textField}
+                onChange={handleChange} 
+                name="initial"
+                label="Escribe tu inicial" 
+                fullWidth={true} 
+            />
+            <TextField 
+                variant="outlined" 
+                value={data.question}
+                helperText={`${data.question.length}/300`}
+                style={styles.textField}
+                onChange={handleChange} 
+                name="question" 
+                label="¡Hazme una pregunta!" 
+                multiline={true} 
+                rows={3} 
+                fullWidth={true} 
+            />
             <div style={styles.div}>
-                <Button style={styles.button} type="submit" variant="outlined" color="primary">
+                <Button style={styles.button} type="submit" variant="outlined" color="primary" loading={loading}>
                     Enviar
                 </Button>
             </div>

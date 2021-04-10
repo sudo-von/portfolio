@@ -31,7 +31,7 @@ const Projects = () => {
             <Grid item xs={12} spacing={2} style={{marginTop: 2}} container>
                 {
                     isLoading ? 
-                    <Loader/> :
+                    <Loader>Cargando proyectos...</Loader> :
                     data.map((project) => 
                         <Card data={project} key={project.id}/>
                     )

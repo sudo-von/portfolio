@@ -8,7 +8,7 @@ const styles = {
     },
     highlightedText: {
         textAlign: 'center',
-        margin: '10px 0 10px 0'
+        margin: '10px 0 15px 0'
     },
     username: {
         fontSize: 18

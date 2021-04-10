@@ -22,7 +22,7 @@ const AboutMe = () => {
   if(loading){
     return (
       <Container>
-        <Loader>Casrgando...</Loader>
+        <Loader>Cargando perfil...</Loader>
       </Container>
     )
   }

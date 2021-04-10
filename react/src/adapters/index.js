@@ -26,16 +26,12 @@ export const getData = (url) => {
 export const sendData = (url, data, message) => {
 
     const instance = returnAxiosInstance()
-    return instance.post(url, data)
-        .then(res => message)
-        .catch(err => {
-            if (err.response) {
-                return new Error('Ha ocurrido un error, por favor intenta de nuevo más tarde o contacta al administrador')
-            } else if (err.request) {
-                return new Error('El servidor no respondió bien, por favor contacta al administrador')
-            } else {
-                return new Error(err)
-            }
-        })
-
+    return new Promise((resolve, reject) => {
+        instance.post(url, data)
+            .then(res => resolve(message))
+            .catch(err => {
+                reject(new Error(err.response.data.message))
+            })
+    })
+    
 }

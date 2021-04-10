@@ -11,15 +11,15 @@ const useUser = () => {
         email: '',
         description: []
     })
-    const [ loading, setLoading ] = useState(false)
+    const [ loading, setLoading ] = useState(true)
     const [ error, setError ] = useState(null)
 
     useEffect(() => {
 
         const id = '60603a5aaa037f0008ed81f9'
         const url = `users/${id}`
-        setLoading(true)
         
+        console.log(1)
         getData(url)
             .then(res => {
                 setData({
@@ -29,13 +29,13 @@ const useUser = () => {
                     email : res.email,
                     description : res.description
                 })
+                setLoading(false)
             })
             .catch(err => {
                 console.log(err)
                 setError(true)
+                setLoading(false)
             })
-        setLoading(false)
-
     }, [])
 
     return {
