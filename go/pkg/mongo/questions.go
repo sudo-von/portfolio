@@ -86,7 +86,7 @@ func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 		return nil, 0, err
 	}
 
-	total, err := con.Find(bson.M{}).Count()
+	total, err := con.Find(bson.M{"answer": bson.M{"$exists": true}}).Count()
 	if err != nil {
 		return nil, 0, err
 	}
