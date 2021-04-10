@@ -8,7 +8,7 @@ import (
 
 type storage interface {
 	GetQuestions() ([]api.Question, int, error)
-	CreateQuestion(api.Question) error
+	CreateQuestion(api.QuestionPayload) error
 }
 
 type Service struct {
@@ -30,7 +30,7 @@ func (s Service) GetQuestions() ([]api.Question, int, error) {
 	return queries, total, nil
 }
 
-func (s Service) CreateQuestion(question api.Question) error {
+func (s Service) CreateQuestion(question api.QuestionPayload) error {
 	err := s.storage.CreateQuestion(question)
 	if err != nil {
 		log.Println(err)

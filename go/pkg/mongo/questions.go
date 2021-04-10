@@ -15,6 +15,13 @@ type questionModel struct {
 	Answer  answer        `bson:"answer" json:"answer"`
 }
 
+type questioPayloadModel struct {
+	ID      bson.ObjectId `bson:"_id" json:"id"`
+	Initial string        `bson:"initial" json:"initial"`
+	Title   string        `bson:"title" json:"title"`
+	Date    time.Time     `bson:"date" json:"date"`
+}
+
 type answer struct {
 	Title string    `bson:"title" json:"title"`
 	Date  time.Time `bson:"date" json:"date"`
@@ -30,6 +37,23 @@ func toQuestionModel(question api.Question) questionModel {
 	}
 
 	return questionModel{
+		ID:      questionID,
+		Initial: question.Initial,
+		Title:   question.Title,
+		Date:    question.Date,
+	}
+}
+
+func toQuestionPayloadModel(question api.QuestionPayload) questioPayloadModel {
+
+	var questionID bson.ObjectId
+	if question.ID != "" {
+		questionID = bson.ObjectIdHex(question.ID)
+	} else {
+		questionID = bson.NewObjectId()
+	}
+
+	return questioPayloadModel{
 		ID:      questionID,
 		Initial: question.Initial,
 		Title:   question.Title,
@@ -75,13 +99,13 @@ func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 
 }
 
-func (r *Repository) CreateQuestion(question api.Question) error {
+func (r *Repository) CreateQuestion(question api.QuestionPayload) error {
 
 	session := r.Session.Copy()
 	defer session.Close()
 	con := session.DB(r.DatabaseName).C("questions")
 
-	questionM := toQuestionModel(question)
+	questionM := toQuestionPayloadModel(question)
 	err := con.Insert(&questionM)
 	if err != nil {
 		return err

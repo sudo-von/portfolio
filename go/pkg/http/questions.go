@@ -12,7 +12,7 @@ import (
 
 type QuestionService interface {
 	GetQuestions() ([]api.Question, int, error)
-	CreateQuestion(api.Question) error
+	CreateQuestion(api.QuestionPayload) error
 }
 
 type QuestionController struct {
@@ -63,7 +63,7 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	newQuestion := api.Question{
+	newQuestion := api.QuestionPayload{
 		Initial: data.Initial,
 		Title:   data.Title,
 		Date:    time.Now().In(loc),
