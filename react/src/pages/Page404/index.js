@@ -1,36 +1,49 @@
 import React from 'react'
 /* Custom components. */
 import Navbar from '../../components/Navbar/'
-/* Styles. */
-import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from '../../themes/GlobalStyles'
-import { lightTheme, darkTheme } from '../../themes/Themes'
-import { useDarkMode } from '../../themes/useDarkMode'
+import NavbarRoute from '../../components/Navbar/Components/NavbarRoute'
+import HighlightedText from '../../components/HighlightedText/'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
-/* React router. */
-import { Link } from 'react-router-dom'
 
-const Portfolio = () => <Link to='/' style={{textDecoration: 'none', marginRight: 20}}><h4>PORTAFOLIO</h4></Link>
+const styles = {
+  container: {
+    height: '100%', 
+    padding: '0 20px', 
+    display: 'flex', 
+    flexDirection: 'column', 
+    alignItems: 'center', 
+    justifyConter: 'center'
+  },
+  img: {
+    marginTop: 20,
+    borderRadius: 5,
+    width: '60%',
+    boxShadow: '0 2px 2px 0 rgb(0 0 0 / 14%), 0 3px 1px -2px rgb(0 0 0 / 12%), 0 1px 5px 0 rgb(0 0 0 / 20%)'
+  },
+  highlightedText: {
+    marginTop: 20,
+    fontSize: 18
+  }
+}
 
-const Page404 = () => {
+const Page404 = ( { theme, themeToggler }) => {
 
-  /* Theme hooks. */
-  const [ theme, themeToggler ] = useDarkMode()
-  const themeMode = theme === 'light' ? lightTheme : darkTheme
+  const src = 'https://i.pinimg.com/originals/66/e0/87/66e087560271fee2224eac6a335af2c3.gif'
 
-  return (  
-    <ThemeProvider theme={themeMode}>      
-      <GlobalStyles/>
+  return(
+    <div>      
       <Navbar theme={theme} themeToggler={themeToggler}>
-        <Portfolio/>
+        <NavbarRoute to='' name='Portfolio'/>
+        <NavbarRoute to='Query' name='Query'/>
       </Navbar>
-      <Container maxWidth="lg" style={{height: '100%', padding: '0 20px', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyConter: 'center'}}>
-        <img style={{borderRadius: 50}} alt='Not found' src='https://24.media.tumblr.com/a8814ccdb9f7d73101456f999dd4000c/tumblr_mnra2yzVE51qhd8sao2_500.gif'/>
-        <h1 style={{color: 'white'}}>Not found...</h1>
+      <Container maxWidth="lg" style={styles.container}>
+        <img style={styles.img} alt='Not found' src={src}/>
+        <HighlightedText style={styles.highlightedText}>NOT FOUND...</HighlightedText>
       </Container>
-    </ThemeProvider>
+    </div>
   )
+  
 }
 
 export default Page404
