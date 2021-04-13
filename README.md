@@ -84,7 +84,15 @@ I decided to create my portfolio using Golang as a REST API, MongoDB, Mongo-expr
 ## Usage
 
 1. Use docker-compose to start the services.
-2. Make sure that the services are running, if everything is fine you will get the next output.
+Development mode
+```sh
+docker-compose -f docker-compose.dev.yml --env-file .env.dev up --build
+```
+Production mode
+```sh
+docker-compose -f docker-compose.prod.yml --env-file .env.prod up --build
+```
+3. Make sure that the services are running, if everything is fine you will get the next output.
 
 ```sh
 Creating portfolio_frontend         ... done
