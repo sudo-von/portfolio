@@ -1,0 +1,54 @@
+version: '3.1'
+services:
+  database:
+    container_name: development_portfolio_database
+    image: mongo
+    restart: always
+    volumes: 
+      - ./mongo/data:/data/db
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE}
+    ports:
+     - 27017:27017
+  database_manager:
+    container_name: development_portfolio_database_manager
+    image: mongo-express
+    restart: always
+    environment:
+      ME_CONFIG_MONGODB_SERVER: ${MONGO_URL}
+      ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ME_CONFIG_BASICAUTH_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+    ports:
+      - 8080:8081
+  backend:
+    container_name: development_portfolio_backend
+    restart: on-failure:10
+    build: 
+      context: go/.
+    environment:
+      MONGO_URL: ${MONGO_URL}
+      ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGO_INITDB_DATABASE}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD}
+      ENVIRONMENT: ${ENVIRONMENT}
+    depends_on:
+     - database
+    links:
+     - database
+    ports:
+     - 3000:3000
+  frontend:
+    container_name: development_portfolio_frontend
+    build:
+      context: react/.
+      dockerfile: dev.Dockerfile
+    environment:
+      ENVIRONMENT: ${ENVIRONMENT}
+    volumes:
+      - './react/:/app'
+    ports:
+      - 80:80

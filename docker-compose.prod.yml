@@ -1,11 +1,9 @@
 version: '3.1'
 services:
   database:
-    container_name: portfolio_database
+    container_name: production_portfolio_database
     image: mongo
     restart: always
-    env_file:
-    - .env
     volumes: 
       - ./mongo/data:/data/db
     environment:
@@ -15,11 +13,9 @@ services:
     ports:
      - 27017:27017
   database_manager:
-    container_name: portfolio_database_manager
+    container_name: production_portfolio_database_manager
     image: mongo-express
     restart: always
-    env_file:
-    - .env
     environment:
       ME_CONFIG_MONGODB_SERVER: ${MONGO_URL}
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_INITDB_ROOT_USERNAME}
@@ -29,12 +25,10 @@ services:
     ports:
       - 8080:8081
   backend:
-    container_name: portfolio_backend
+    container_name: production_portfolio_backend
     restart: on-failure:10
     build: 
       context: go/.
-    env_file:
-    - .env
     environment:
       MONGO_URL: ${MONGO_URL}
       ME_CONFIG_MONGODB_AUTH_DATABASE: ${MONGO_INITDB_DATABASE}
@@ -48,14 +42,10 @@ services:
     ports:
      - 3000:3000
   frontend:
-    container_name: portfolio_frontend
+    container_name: production_portfolio_frontend
     build:
       context: react/.
       dockerfile: prod.Dockerfile
-      args:
-        - ENVIRONMENT=${ENVIRONMENT}
-    env_file:
-    - .env
     environment:
       ENVIRONMENT: ${ENVIRONMENT}
     volumes:
