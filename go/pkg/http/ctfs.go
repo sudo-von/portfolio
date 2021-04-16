@@ -37,9 +37,11 @@ func (c *CTFController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.CTFList{}
+	res := &models.CTFList{
+		CTFS: make([]models.CTFResponse, 0, len(list)),
+	}
 	for _, ctf := range list {
-		res.CTFS = append(res.CTFS, models.ToResponseCTF(&ctf))
+		res.CTFS = append(res.CTFS, *models.ToResponseCTF(&ctf))
 	}
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
