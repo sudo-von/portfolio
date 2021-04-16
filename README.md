@@ -75,10 +75,6 @@ I decided to create my portfolio using Golang as a REST API, MongoDB, Mongo-expr
    ```sh
    git clone https://github.com/sudo-von/portfolio.git
    ```
-2. Use <b>docker-compose up --build</b> to start the services.
-   ```sh
-   docker-compose up --build
-   ```
 
 <!-- USAGE EXAMPLES -->
 ## Usage
