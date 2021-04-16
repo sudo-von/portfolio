@@ -37,9 +37,11 @@ func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.ProjectList{}
+	res := &models.ProjectList{
+		Projects: make([]models.ProjectResponse, 0, len(list)),
+	}
 	for _, project := range list {
-		res.Projects = append(res.Projects, models.ToResponseProject(&project))
+		res.Projects = append(res.Projects, *models.ToResponseProject(&project))
 	}
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
