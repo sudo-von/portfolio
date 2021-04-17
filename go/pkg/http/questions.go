@@ -76,6 +76,7 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 		CheckError(err, w, r)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	return
 }

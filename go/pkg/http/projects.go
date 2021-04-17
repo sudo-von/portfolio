@@ -44,6 +44,8 @@ func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 	for _, project := range list {
 		res.Projects = append(res.Projects, *models.ToResponseProject(&project))
 	}
+
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
 	return

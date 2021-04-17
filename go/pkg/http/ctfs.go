@@ -44,6 +44,7 @@ func (c *CTFController) List(w http.ResponseWriter, r *http.Request) {
 	for _, ctf := range list {
 		res.CTFS = append(res.CTFS, *models.ToResponseCTF(&ctf))
 	}
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
 	return
