@@ -10,7 +10,7 @@ import (
 )
 
 type ProjectService interface {
-	GetProjects() ([]api.Project, error)
+	GetProjects() ([]api.Project, int, error)
 }
 
 type ProjectController struct {
@@ -33,11 +33,12 @@ func (c *ProjectController) Routes() chi.Router {
 // List renders all the projects.
 func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 
-	list, err := c.ProjectService.GetProjects()
+	list, total, err := c.ProjectService.GetProjects()
 	if err != nil {
 		CheckError(err, w, r)
 	}
 	res := &models.ProjectList{
+		Total:    total,
 		Projects: make([]models.ProjectResponse, 0, len(list)),
 	}
 	for _, project := range list {
