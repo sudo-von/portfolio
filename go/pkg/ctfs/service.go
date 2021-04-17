@@ -7,7 +7,7 @@ import (
 )
 
 type storage interface {
-	GetCTFS() ([]api.CTF, error)
+	GetCTFS() ([]api.CTF, int, error)
 }
 
 type Service struct {
@@ -20,11 +20,11 @@ func NewService(storage storage) *Service {
 	}
 }
 
-func (s Service) GetCTFS() ([]api.CTF, error) {
-	ctfs, err := s.storage.GetCTFS()
+func (s Service) GetCTFS() ([]api.CTF, int, error) {
+	ctfs, total, err := s.storage.GetCTFS()
 	if err != nil {
 		log.Println(err)
-		return nil, err
+		return nil, 0, err
 	}
-	return ctfs, nil
+	return ctfs, total, nil
 }
