@@ -7,7 +7,7 @@ import (
 )
 
 type storage interface {
-	GetProjects() ([]api.Project, error)
+	GetProjects() ([]api.Project, int, error)
 }
 
 type Service struct {
@@ -20,11 +20,11 @@ func NewService(storage storage) *Service {
 	}
 }
 
-func (s Service) GetProjects() ([]api.Project, error) {
-	projects, err := s.storage.GetProjects()
+func (s Service) GetProjects() ([]api.Project, int, error) {
+	projects, total, err := s.storage.GetProjects()
 	if err != nil {
 		log.Println(err)
-		return nil, err
+		return nil, 0, err
 	}
-	return projects, nil
+	return projects, total, nil
 }

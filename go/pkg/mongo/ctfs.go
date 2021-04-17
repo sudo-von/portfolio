@@ -41,21 +41,26 @@ func toApiCTF(ctf ctfModel) api.CTF {
 	}
 }
 
-func (r *Repository) GetCTFS() ([]api.CTF, error) {
+func (r *Repository) GetCTFS() ([]api.CTF, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
-	com := session.DB(r.DatabaseName).C("ctfs")
+	con := session.DB(r.DatabaseName).C("ctfs")
 
 	var ctfsM []ctfModel
-	err := com.Find(bson.M{}).All(&ctfsM)
+	err := con.Find(bson.M{}).All(&ctfsM)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
+	}
+
+	total, err := con.Find(bson.M{}).Count()
+	if err != nil {
+		return nil, 0, err
 	}
 
 	ctfs := make([]api.CTF, 0)
 	for _, m := range ctfsM {
 		ctfs = append(ctfs, toApiCTF(m))
 	}
-	return ctfs, nil
+	return ctfs, total, nil
 }

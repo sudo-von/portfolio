@@ -7,8 +7,8 @@ import (
 )
 
 type CTFList struct {
-	Total int            `json:"total"`
-	CTFS  []*CTFResponse `json:"results"`
+	Total int           `json:"total"`
+	CTFS  []CTFResponse `json:"results"`
 }
 
 func (mt *CTFList) Render(w http.ResponseWriter, r *http.Request) error {

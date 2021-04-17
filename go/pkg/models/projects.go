@@ -7,8 +7,8 @@ import (
 )
 
 type ProjectList struct {
-	Total    int                `json:"total"`
-	Projects []*ProjectResponse `bson:"results" json:"results"`
+	Total    int               `json:"total"`
+	Projects []ProjectResponse `bson:"results" json:"results"`
 }
 
 func (mt *ProjectList) Render(w http.ResponseWriter, r *http.Request) error {

@@ -40,6 +40,7 @@ func (c *UserController) ShowUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, models.ToResponseUser(user))
 	return
