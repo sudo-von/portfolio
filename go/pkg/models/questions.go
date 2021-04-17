@@ -8,8 +8,8 @@ import (
 )
 
 type QuestionList struct {
-	Total     int                 `json:"total"`
-	Questions []*QuestionResponse `json:"results"`
+	Total     int                `json:"total"`
+	Questions []QuestionResponse `json:"results"`
 }
 
 type Answer struct {

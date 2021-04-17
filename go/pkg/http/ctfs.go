@@ -10,7 +10,7 @@ import (
 )
 
 type CTFService interface {
-	GetCTFS() ([]api.CTF, error)
+	GetCTFS() ([]api.CTF, int, error)
 }
 
 type CTFController struct {
@@ -33,14 +33,18 @@ func (c *CTFController) Routes() chi.Router {
 // List renders all the ctfs.
 func (c *CTFController) List(w http.ResponseWriter, r *http.Request) {
 
-	list, err := c.CTFService.GetCTFS()
+	list, total, err := c.CTFService.GetCTFS()
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.CTFList{}
-	for _, ctf := range list {
-		res.CTFS = append(res.CTFS, models.ToResponseCTF(&ctf))
+	res := &models.CTFList{
+		Total: total,
+		CTFS:  make([]models.CTFResponse, 0, len(list)),
 	}
+	for _, ctf := range list {
+		res.CTFS = append(res.CTFS, *models.ToResponseCTF(&ctf))
+	}
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
 	return

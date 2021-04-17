@@ -41,21 +41,26 @@ func toApiProject(project projectModel) api.Project {
 	}
 }
 
-func (r *Repository) GetProjects() ([]api.Project, error) {
+func (r *Repository) GetProjects() ([]api.Project, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
-	com := session.DB(r.DatabaseName).C("projects")
+	con := session.DB(r.DatabaseName).C("projects")
 
 	var projectsM []projectModel
-	err := com.Find(bson.M{}).All(&projectsM)
+	err := con.Find(bson.M{}).All(&projectsM)
 	if err != nil {
-		return nil, err
+		return nil, 0, err
+	}
+
+	total, err := con.Find(bson.M{}).Count()
+	if err != nil {
+		return nil, 0, err
 	}
 
 	projects := make([]api.Project, 0)
 	for _, m := range projectsM {
 		projects = append(projects, toApiProject(m))
 	}
-	return projects, nil
+	return projects, total, nil
 }

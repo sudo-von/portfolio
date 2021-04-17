@@ -40,10 +40,12 @@ func (c *QuestionController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.QuestionList{}
-	res.Total = total
+	res := &models.QuestionList{
+		Total:     total,
+		Questions: make([]models.QuestionResponse, 0, len(list)),
+	}
 	for _, Question := range list {
-		res.Questions = append(res.Questions, models.ToResponseQuestion(&Question))
+		res.Questions = append(res.Questions, *models.ToResponseQuestion(&Question))
 	}
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
@@ -74,6 +76,7 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 		CheckError(err, w, r)
 	}
 
+	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	return
 }
