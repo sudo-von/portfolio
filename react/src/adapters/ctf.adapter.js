@@ -8,7 +8,7 @@ const ENDPOINT = '/ctfs'
 httpClient.interceptors.response.use(errorInterceptor)
 
 /* Get the ctfs that will be printed in the Portfolio. */
-const getProjects = () =>
+const getCTFS = () =>
     new Promise( ( resolve, reject ) => 
         httpClient.get(ENDPOINT)
             .then(res => resolve(res.data))
