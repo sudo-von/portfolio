@@ -22,3 +22,8 @@ const sendQuestion = (data) =>
             .then(res => resolve(res))
             .catch(err => reject(err))
     )
+
+export {
+    getQuestions,
+    sendQuestion
+}
