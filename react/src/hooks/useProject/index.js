@@ -1,19 +1,19 @@
 import { useEffect, useState } from 'react'
-import { getData } from '../../adapters'
+/* Custom adapters. */
+import { getProjects } from '../../adapters/project.adapter'
 
-/* Gets data from the API. */
-const useData = (url) => {
+const useProject = (url) => {
     
-    const [ data, setData ] = useState([])
+    const [ projects, setProjects ] = useState([])
     const [ isLoading, setLoading ] = useState(true)
     const [ error, setError ] = useState(null)
 
     useEffect(() => 
         {
 
-            getData(url)
-                .then(data => {
-                    setData(data['results'])
+            getProjects()
+                .then(res => {
+                    setProjects(res)
                     setLoading(false)
                 })
                 .catch(err => {
@@ -25,11 +25,11 @@ const useData = (url) => {
     )
 
     return {
-        data,
+        projects,
         isLoading,
         error
     }
     
 }
 
-export default useData
+export default useProject
