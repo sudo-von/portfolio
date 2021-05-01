@@ -51,6 +51,8 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
+# TODO: Add the other pages
+
 ![Portfolio](assets/portfolio.gif)
 
 I decided to create my portfolio using Golang as a REST API, MongoDB, Mongo-express, ReactJS and DockerCompose making the code public, so feel free to use it if you want to.
