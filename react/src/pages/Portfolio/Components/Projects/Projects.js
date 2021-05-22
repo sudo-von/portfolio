@@ -13,8 +13,8 @@ import useProject from '../../../../hooks/useProject/'
 const Projects = () => {
 
     const url = 'projects'
-    const { data, isLoading } = useProject(url)
-
+    const { projects, isLoading } = useProject(url)
+    console.log(projects, isLoading)
     return(
         <Container>
             { /* Top. */}
@@ -32,7 +32,7 @@ const Projects = () => {
                 {
                     isLoading ? 
                     <Loader>Cargando proyectos...</Loader> :
-                    data.map((project) => 
+                    projects.map((project) => 
                         <Card data={project} key={project.id}/>
                     )
                 }

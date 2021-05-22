@@ -1,9 +1,9 @@
 import React from 'react'
 /* Custom components. */
 import AboutMe from './Components/AboutMe/'
-{/*import AboutMe from './Components/AboutMe/'
 import Skills from './Components/Skills/'
 import Projects from './Components/Projects/'
+{/*import AboutMe from './Components/AboutMe/'
 import Hacking from './Components/Hacking/'*/}
 import Navbar from '../../components/Navbar/'
 import NavbarRoute from '../../components/Navbar/Components/NavbarRoute'
@@ -31,9 +31,9 @@ const Portfolio = ( { theme, themeToggler } ) => {
       </Navbar>
       <Container maxWidth="md" style={styles.container}>
         <AboutMe/>
-        {/*<AboutMe/>
         <Skills/>
         <Projects/>
+        {/*<AboutMe/>
         <Hacking/>*/}
       </Container>
     </div>

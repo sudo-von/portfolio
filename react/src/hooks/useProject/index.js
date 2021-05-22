@@ -10,17 +10,15 @@ const useProject = (url) => {
 
     useEffect(() => 
         {
-
             getProjects()
                 .then(res => {
-                    setProjects(res)
+                    setProjects(res.results)
                     setLoading(false)
                 })
                 .catch(err => {
                     setError(err)
                     setLoading(false)
                 })
-                
         }, []
     )
 
