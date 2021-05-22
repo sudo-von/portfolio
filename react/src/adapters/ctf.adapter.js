@@ -5,7 +5,7 @@ import { errorInterceptor } from '../interceptors/error.interceptor'
 
 const ENDPOINT = '/ctfs'
 
-httpClient.interceptors.response.use(errorInterceptor)
+httpClient().interceptors.response.use(response => errorInterceptor(response))
 
 /* Get the ctfs that will be printed in the Portfolio. */
 const getCTFS = () =>

@@ -7,12 +7,12 @@ import Loader from '../../../../components/Loader/'
 import Card from './Card'
 import Description from './Description'  
 /* Custom hooks. */
-import useData from '../../../../hooks/useData/'
+import useCtf from '../../../../hooks/useCtf/'
 
 const Hacking = () => {
 
     const url = 'ctfs'
-    const { data, isLoading } = useData(url)
+    const { data, isLoading } = useCtf(url)
 
     return(
         <Container>

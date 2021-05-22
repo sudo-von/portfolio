@@ -1,11 +1,11 @@
 /* Http request handler. */
-import httpClient from '.'
+import httpClient from './index.js'
 /* Custom interceptors. */
 import { errorInterceptor } from '../interceptors/error.interceptor'
 
 const ENDPOINT = '/projects'
 
-httpClient.interceptors.response.use(errorInterceptor)
+httpClient().interceptors.response.use(response => errorInterceptor(response))
 
 /* Get the projects that will be printed in the Portfolio. */
 const getProjects = () =>

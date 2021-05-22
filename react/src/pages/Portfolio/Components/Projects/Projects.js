@@ -8,12 +8,12 @@ import Card from './Card'
 import Hr from '../../../../components/Hr/'
 import Loader from '../../../../components/Loader/'
 /* Custom hooks. */
-import useData from '../../../../hooks/useData/'
+import useProject from '../../../../hooks/useProject/'
 
 const Projects = () => {
 
     const url = 'projects'
-    const { data, isLoading } = useData(url)
+    const { data, isLoading } = useProject(url)
 
     return(
         <Container>

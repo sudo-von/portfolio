@@ -5,7 +5,7 @@ import { errorInterceptor } from '../interceptors/error.interceptor'
 
 const ENDPOINT = '/questions'
 
-httpClient.interceptors.response.use(errorInterceptor)
+httpClient().interceptors.response.use(response => errorInterceptor(response))
 
 /* Get the questions that will be printed in Query. */
 const getQuestions = () =>

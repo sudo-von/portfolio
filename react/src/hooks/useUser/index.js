@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react'
-import { getData } from '../../adapters'
+import { getUserByID } from '../../adapters/user.adapter'
 
 /* Gets user's data from the API. */
 const useUser = () => {
     
-    const [ data, setData ] = useState({
+    const [ user, setUser ] = useState({
         username: '',
         name: '',
         profilePicture: '',
@@ -16,30 +16,26 @@ const useUser = () => {
 
     useEffect(() => {
 
-        const id = '60603a5aaa037f0008ed81f9'
-        const url = `users/${id}`
-        
-        console.log(1)
-        getData(url)
+        const userID = `60603a5aaa037f0008ed81f9`
+        getUserByID(userID)
             .then(res => {
-                setData({
+                setLoading(false)
+                setUser({
                     username : res.username,
                     name : res.name,
                     profilePicture : res.profile_picture,
                     email : res.email,
                     description : res.description
                 })
-                setLoading(false)
             })
             .catch(err => {
-                console.log(err)
-                setError(true)
                 setLoading(false)
+                setError(true)
             })
     }, [])
 
     return {
-        data, loading, error
+        user, loading, error
     }
 }
 
