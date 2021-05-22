@@ -2,6 +2,7 @@
 import httpClient from '.'
 /* Custom interceptors. */
 import { errorInterceptor } from '../interceptors/error.interceptor'
+import { responseInterceptor } from '../interceptors/response.interceptor'
 
 const ENDPOINT = '/ctfs'
 

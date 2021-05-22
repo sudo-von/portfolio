@@ -11,7 +11,7 @@ const useUser = () => {
         email: '',
         description: []
     })
-    const [ loading, setLoading ] = useState(true)
+    const [ isLoading, setLoading ] = useState(true)
     const [ error, setError ] = useState(null)
 
     useEffect(() => {
@@ -35,7 +35,7 @@ const useUser = () => {
     }, [])
 
     return {
-        user, loading, error
+        user, isLoading, error
     }
 }
 

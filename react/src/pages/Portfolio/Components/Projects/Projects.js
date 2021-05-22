@@ -12,9 +12,8 @@ import useProject from '../../../../hooks/useProject/'
 
 const Projects = () => {
 
-    const url = 'projects'
-    const { projects, isLoading } = useProject(url)
-    console.log(projects, isLoading)
+    const { projects, isLoading } = useProject()
+
     return(
         <Container>
             { /* Top. */}

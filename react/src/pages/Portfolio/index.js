@@ -3,8 +3,7 @@ import React from 'react'
 import AboutMe from './Components/AboutMe/'
 import Skills from './Components/Skills/'
 import Projects from './Components/Projects/'
-{/*import AboutMe from './Components/AboutMe/'
-import Hacking from './Components/Hacking/'*/}
+import Hacking from './Components/Hacking/'
 import Navbar from '../../components/Navbar/'
 import NavbarRoute from '../../components/Navbar/Components/NavbarRoute'
 /* Animations. */
@@ -33,8 +32,7 @@ const Portfolio = ( { theme, themeToggler } ) => {
         <AboutMe/>
         <Skills/>
         <Projects/>
-        {/*<AboutMe/>
-        <Hacking/>*/}
+        <Hacking/>
       </Container>
     </div>
   )

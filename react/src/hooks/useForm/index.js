@@ -5,7 +5,7 @@ import { sendData } from '../../adapters'
 const useForm = () => {
     
     const [ data, setData ] = useState({ initial: '', question: ''})
-    const [ loading, setLoading ] = useState(false)
+    const [ isLoading, setLoading ] = useState(false)
     const [ error, setError ] = useState({ error: null, message: ''})
 
     useEffect(() => {
@@ -62,7 +62,7 @@ const useForm = () => {
     }
 
     return {
-        data, loading, error, handleChange, handleSubmit
+        data, isLoading, error, handleChange, handleSubmit
     }
 
 }

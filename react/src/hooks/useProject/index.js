@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 /* Custom adapters. */
 import { getProjects } from '../../adapters/project.adapter'
 
-const useProject = (url) => {
+const useProject = () => {
     
     const [ projects, setProjects ] = useState([])
     const [ isLoading, setLoading ] = useState(true)

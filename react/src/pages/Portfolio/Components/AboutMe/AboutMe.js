@@ -17,9 +17,9 @@ const styles = {
 
 const AboutMe = () => {
 
-  const { user, loading } = useUser()
+  const { user, isLoading } = useUser()
   
-  if(loading){
+  if(isLoading){
     return (
       <Container>
         <Loader>Cargando perfil...</Loader>
