@@ -1,16 +1,11 @@
-# React dependencies
+# React dependencies.
 react/node_modules
-# React build
+
+# React build.
 react/build
 
-# Mongo volumes
+# Docker volumes.
 mongo/data/*
 
-# misc
-.DS_Store
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-
-# Environment variables
+# Environment variables.
 .env*
