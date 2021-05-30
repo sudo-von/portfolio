@@ -2,71 +2,58 @@ import React from 'react'
 /* Material-ui components. */
 import TextField from '@material-ui/core/TextField'
 /* Custom components. */
+import Input from './Input'
 import Notification from '../../../components/Notification'
 import Button from '../../../components/Button'
+/* React-hook-form. */
+import { useForm } from 'react-hook-form'
 /* Custom hooks. */
-import useForm from '../../../hooks/useForm'
+import { sendQuestion } from '../../../adapters/question.adapter'
 
 const styles = {
     form: {
-        display: 'flex', 
-        flexDirection: 'column',
-        justifyContent: 'center',
-        width: '100%'
-    },
-    textField: {
-        margin: '8px 0'
-    },
-    div: {
-        display: 'flex',
-        justifyContent: 'center'
-    },
-    button: {
-        margin: '8px 0',
-        width: '100%',
+        display: "flex",
+        flexDirection: "column", 
+        alignItems: "center", 
+        width: "100%"
     }
 }
 
 const Form = () => {
 
-    const { data, loading, error, handleChange, handleSubmit } = useForm()
-    console.log(data, loading, error)
+    const { register, getValues, formState: { errors }, control, handleSubmit } = useForm()
+    const onSubmit = data => console.log(data)
+
+    const initial = {
+        name : "initial", 
+        message: "Escribe tu inicial",
+        defaultValue: "", 
+        rules: {
+            required:  { value: true, message: "Escribe tu inicial para poder continuar"},
+            minLength: { value: 1 },
+            maxLength: { value: 1, message: "Máximo 1 carácter" }
+        }, 
+        errors: {...errors.initial},
+    }
+    const question = {
+        name : "question", 
+        message: "Escribe tu pregunta",
+        defaultValue: "", 
+        rules: {
+            required:  { value: true, message: "Escribe una pregunta para poder continuar"},
+            minLength: { value: 1 },
+            maxLength: { value: 300, message: "Máximo 300 caracteres" }
+        }, 
+        multiline: true,
+        rows: 3,
+        errors: {...errors.question},
+    }
 
     return(
-        <form noValidate autoComplete="off" style={styles.form} onSubmit={handleSubmit}>
-            { error.error === false &&
-                <Notification message={error.message} status={"success"}/>
-            }
-            { error.error &&
-                <Notification message={error.message} status={"error"}/>
-            }
-            <TextField 
-                variant="outlined"
-                value={data.initial}
-                helperText={`${data.initial.length}/1`} 
-                style={styles.textField}
-                onChange={handleChange} 
-                name="initial"
-                label="Escribe tu inicial" 
-                fullWidth={true} 
-            />
-            <TextField 
-                variant="outlined" 
-                value={data.question}
-                helperText={`${data.question.length}/300`}
-                style={styles.textField}
-                onChange={handleChange} 
-                name="question" 
-                label="¡Hazme una pregunta!" 
-                multiline={true} 
-                rows={3} 
-                fullWidth={true} 
-            />
-            <div style={styles.div}>
-                <Button style={styles.button} type="submit" variant="outlined" color="primary" loading={loading}>
-                    Enviar
-                </Button>
-            </div>
+        <form noValidate autoComplete="off" style={styles.form} onSubmit={handleSubmit(onSubmit)}>
+            <Input config={initial} register={register} getValues={getValues} control={control}/>
+            <Input config={question} register={register} getValues={getValues} control={control}/>
+            <Button fullWidth={true} type="submit" variant="outlined" color="primary">Enviar</Button>
         </form>
     )
 }
