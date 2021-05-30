@@ -2,6 +2,7 @@ import React from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 /* Screens. */
 import Portfolio from './pages/Portfolio/'
+import Query from './pages/Query/'
 import Page404 from './pages/Page404/'
 /* Styles. */
 import { ThemeProvider } from 'styled-components'
@@ -23,6 +24,9 @@ const App = () => {
             <Switch>
                 <Route exact path='/'>
                     <Portfolio theme={theme} themeToggler={themeToggler}/>
+                </Route>
+                <Route exact path='/Query'>
+                    <Query theme={theme} themeToggler={themeToggler}/>
                 </Route>
                 <Route>
                     <Page404 theme={theme} themeToggler={themeToggler}/>
