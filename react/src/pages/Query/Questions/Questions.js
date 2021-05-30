@@ -6,7 +6,7 @@ import Loader from '../../../components/Loader'
 import Grid from '@material-ui/core/Grid'
 import MuiAlert from '@material-ui/lab/Alert';
 /* Custom hooks. */
-import useData from '../../../hooks/useData'
+import useQuestions from '../../../hooks/useQuestions'
 
 const styles = {
     highlightedText: {
@@ -19,20 +19,24 @@ const styles = {
 
 const Questions = () => {
 
-    const { data, isLoading, error } = useData('questions')
+    const { questions, isLoading } = useQuestions()
     
     if ( isLoading ){
-        return <Grid item xs={12} md={8}><Loader>Cargando preguntas...</Loader></Grid>
+        return (
+            <Grid item xs={12} md={8}>
+                <Loader>Cargando preguntas...</Loader>
+            </Grid>
+        )
     }
 
     return (
         <Grid item xs={12} md={8}>
-            {data &&
-                data.map(question => 
+            {questions &&
+                questions.map(question => 
                     <Question key={question.id} data={question}/>
                 )
             }
-            {!data &&
+            {!questions.length &&
                <MuiAlert elevation={6} variant="filled" severity="info">No hay preguntas contestadas de momento, vuelve más tarde...</MuiAlert>
             }
         </Grid>

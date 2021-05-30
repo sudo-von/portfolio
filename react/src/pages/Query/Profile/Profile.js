@@ -10,22 +10,25 @@ import useUser from '../../../hooks/useUser'
 
 const AboutMe = () => {
   
-  const { data, loading } = useUser()
-  const { profilePicture, name, username, description } = data
+  const { user, isLoading } = useUser()
 
-  if(loading){
-    return <Container><Loader>Cargando perfil...</Loader></Container>
+  if(isLoading){
+    return (
+      <Container>
+        <Loader>Cargando perfil...</Loader>
+      </Container>
+    )
   }
   
   return(
     <Container>
       <ProfilePicture
-        src={profilePicture}
+        src={user.profilePicture}
       />
       <Description 
-        name={name} 
-        username={username} 
-        description={description}
+        name={user.name} 
+        username={user.username} 
+        description={user.description}
       />
       <Form/>
     </Container>
