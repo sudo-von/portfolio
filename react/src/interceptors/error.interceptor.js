@@ -7,7 +7,6 @@ export const errorInterceptor = error => {
     if (!error.response) {
       return Promise.reject(error)
     }
-
     switch(error.response.status) {
         case 400:
             console.error(error.response.status, error.message)

@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 /* Custom adapters. */
 import { getCTFS } from '../../adapters/ctf.adapter'
 
-const useCTF = (url) => {
+const useCTF = () => {
     
     const [ ctfs, setCTFS ] = useState([])
     const [ isLoading, setLoading ] = useState(true)
@@ -13,7 +13,7 @@ const useCTF = (url) => {
 
             getCTFS()
                 .then(res => {
-                    setCTFS(res)
+                    setCTFS(res.results)
                     setLoading(false)
                 })
                 .catch(err => {

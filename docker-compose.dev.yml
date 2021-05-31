@@ -46,9 +46,7 @@ services:
     build:
       context: react/.
       dockerfile: dev.Dockerfile
-    environment:
-      ENVIRONMENT: ${ENVIRONMENT}
     volumes:
       - './react/:/app'
     ports:
-      - 80:80
+      - 80:3000
