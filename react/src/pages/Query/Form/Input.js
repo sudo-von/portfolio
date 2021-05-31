@@ -39,8 +39,8 @@ const Input = ({ config, register, getValues, control }) => {
             }
             render={({ field }) => 
                 <TextField 
-                    variant="outlined"
                     {...field}
+                    variant="outlined"
                     error={errors.message ? true : false}
                     style={styles.textField}
                     label={errors.message ? errors.message : message}
