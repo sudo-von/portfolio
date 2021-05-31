@@ -1,18 +1,18 @@
 import { useEffect, useState } from 'react'
 /* Custom adapters. */
-import { getProjects } from '../../adapters/project.adapter'
+import { getQuestions } from '../../adapters/question.adapter'
 
-const useProject = () => {
+const useQuestions = () => {
     
-    const [ projects, setProjects ] = useState([])
+    const [ questions, setQuestions ] = useState([])
     const [ isLoading, setLoading ] = useState(true)
     const [ error, setError ] = useState(null)
 
     useEffect(() => 
         {
-            getProjects()
+            getQuestions()
                 .then(res => {
-                    setProjects(res.results)
+                    setQuestions(res.results)
                     setLoading(false)
                 })
                 .catch(err => {
@@ -23,11 +23,11 @@ const useProject = () => {
     )
 
     return {
-        projects,
+        questions,
         isLoading,
         error
     }
     
 }
 
-export default useProject
+export default useQuestions

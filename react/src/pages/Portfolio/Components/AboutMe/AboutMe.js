@@ -17,9 +17,9 @@ const styles = {
 
 const AboutMe = () => {
 
-  const { data, loading } = useUser()
-
-  if(loading){
+  const { user, isLoading } = useUser()
+  
+  if(isLoading){
     return (
       <Container>
         <Loader>Cargando perfil...</Loader>
@@ -29,8 +29,8 @@ const AboutMe = () => {
 
   return(
     <Container>
-      <ProfilePicture src={data.profilePicture}/>
-      <Title>Jesús Rodríguez</Title>
+      <ProfilePicture src={user.profilePicture}/>
+      <Title>{user.name}</Title>
       <Description/>
       <Small style={styles.small}>“Con sacrificio puede ser que logres algo,<br/>
       pero sin sacrificio es seguro que no lograrás nada”.</Small>

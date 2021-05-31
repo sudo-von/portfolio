@@ -1,68 +1,80 @@
 import { useState, useEffect } from 'react'
 /* Custom adapters. */
-import { sendData } from '../../adapters'
+import { sendQuestion } from '../../adapters/question.adapter'
 
 const useForm = () => {
     
-    const [ data, setData ] = useState({ initial: '', question: ''})
-    const [ loading, setLoading ] = useState(false)
-    const [ error, setError ] = useState({ error: null, message: ''})
+    const [ form, setForm ] = useState({ 
+        value: { 
+            initial: '', 
+            question: ''
+        },
+        isPending: false,
+        success: null,
+        error: null
+    })
 
-    useEffect(() => {
-        setError({
-            error: null,
-            message: ''
-        })
-    }, [data.initial, data.question])
+    useEffect(() => 
+        {
+            setForm({...form, success: null, error: null})
+        },
+        [ form.value.initial, form.value.question, form.isPending ]
+    )
 
     const handleChange = e => {
         const { name, value } = e.target
         if ( name === 'initial' && value.length <= 1 ) {
-            setData({...data, initial: value })
+            setForm({...form, value: { ...form.value, initial: value }})
         }else if ( name === 'question' && value.length <= 300 ){
-            setData({...data, question: value })
+            setForm({...form, value: { ...form.value, question: value }})
         }
     }
 
     const handleSubmit = e => {
-        
-        e.preventDefault()
-        setLoading(true)
 
-        if (!data.initial || !data.question){
-            setLoading(false)
-            setError({
-                error: true,
-                message: 'Completa los campos para poder continuar'
+        setForm({
+            ...form,
+            isPending: true,
+        })
+        e.preventDefault()
+
+        if (!form.value.initial || !form.value.question){
+            setForm({
+                ...form,
+                isPending: false,
+                success: null,
+                error: "Completa los campos para poder continuar"
             })
             return
         }
 
-        const successMessage = '¡Tu pregunta ha sido enviada con éxito!'
-        sendData('questions', { initial: data.initial, title: data.question }, successMessage)
+        sendQuestion({titles: form.value.iniial, question: form.value.question})
             .then(res => {
-                setLoading(false)
-                setData({
-                    initial: '',
-                    question: ''
-                })
-                setError({
-                    error: false,
-                    message: successMessage
+                console.log('xdD')
+                setForm({
+                    value: {
+                        initial: "",
+                        question: ""
+                    },
+                    isPending: false,
+                    success: res,
+                    error: null
                 })
             })
             .catch(err => {
-                console.log(err)
-                setLoading(false)
-                setError({
-                    error: true,
-                    message: err
+                console.table(err)
+
+                setForm({
+                    ...form,
+                    isPending: false,
+                    success: null,
+                    error: "Completa los campos para poder continuar"
                 })
             })
     }
 
     return {
-        data, loading, error, handleChange, handleSubmit
+        form, handleChange, handleSubmit
     }
 
 }

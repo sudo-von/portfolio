@@ -8,12 +8,11 @@ import Card from './Card'
 import Hr from '../../../../components/Hr/'
 import Loader from '../../../../components/Loader/'
 /* Custom hooks. */
-import useData from '../../../../hooks/useData/'
+import useProject from '../../../../hooks/useProject/'
 
 const Projects = () => {
 
-    const url = 'projects'
-    const { data, isLoading } = useData(url)
+    const { projects, isLoading } = useProject()
 
     return(
         <Container>
@@ -32,7 +31,7 @@ const Projects = () => {
                 {
                     isLoading ? 
                     <Loader>Cargando proyectos...</Loader> :
-                    data.map((project) => 
+                    projects.map((project) => 
                         <Card data={project} key={project.id}/>
                     )
                 }

@@ -7,12 +7,12 @@ import Loader from '../../../../components/Loader/'
 import Card from './Card'
 import Description from './Description'  
 /* Custom hooks. */
-import useData from '../../../../hooks/useData/'
+import useCtf from '../../../../hooks/useCtf/'
 
 const Hacking = () => {
 
-    const url = 'ctfs'
-    const { data, isLoading } = useData(url)
+    const { ctfs, isLoading } = useCtf()
+    console.log(ctfs)
 
     return(
         <Container>
@@ -23,7 +23,7 @@ const Hacking = () => {
                 {
                     isLoading ? 
                     <Loader>Cargando repositorios...</Loader> :
-                    data.map((ctf) => 
+                    ctfs.map((ctf) => 
                         <Grid item xs={12} sm={4} key={ctf.id}>
                             <Card data={ctf}/>
                         </Grid>
