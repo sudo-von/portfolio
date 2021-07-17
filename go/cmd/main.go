@@ -9,7 +9,6 @@ import (
 	"github.com/mongo-experiments/go/pkg/mongo"
 	"github.com/mongo-experiments/go/pkg/projects"
 	"github.com/mongo-experiments/go/pkg/questions"
-	"github.com/mongo-experiments/go/pkg/users"
 )
 
 func main() {
