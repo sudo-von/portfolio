@@ -1,6 +1,6 @@
-package api
+package entity
 
-type CTF struct {
+type Project struct {
 	ID          string
 	Title       string
 	Description string

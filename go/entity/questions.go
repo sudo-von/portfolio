@@ -1,4 +1,4 @@
-package api
+package entity
 
 import "time"
 
