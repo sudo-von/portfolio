@@ -1,4 +1,4 @@
-package mongo
+package repository
 
 import (
 	"github.com/mongo-experiments/go/pkg/api"

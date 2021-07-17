@@ -1,18 +1,14 @@
-package models
+package presenter
 
 import (
 	"net/http"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"github.com/mongo-experiments/go/entity"
 )
 
 type UserList struct {
-	Total int             `json:"total"`
-	Users []*UserResponse `json:"results"`
-}
-
-func (mt *UserList) Render(w http.ResponseWriter, r *http.Request) error {
-	return nil
+	Total int            `json:"total"`
+	Users []UserResponse `json:"results"`
 }
 
 type UserResponse struct {
@@ -24,11 +20,15 @@ type UserResponse struct {
 	Description    []string `json:"description"`
 }
 
+func (ul *UserList) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}
+
 func (ur *UserResponse) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func ToResponseUser(user *api.User) *UserResponse {
+func ToResponseUser(user *entity.User) *UserResponse {
 	return &UserResponse{
 		ID:             user.ID,
 		Username:       user.Username,

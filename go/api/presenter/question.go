@@ -1,24 +1,15 @@
-package models
+package presenter
 
 import (
 	"errors"
 	"net/http"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"github.com/mongo-experiments/go/entity"
 )
 
 type QuestionList struct {
 	Total     int                `json:"total"`
 	Questions []QuestionResponse `json:"results"`
-}
-
-type Answer struct {
-	Title string `json:"title"`
-	Date  string `json:"date"`
-}
-
-func (mt *QuestionList) Render(w http.ResponseWriter, r *http.Request) error {
-	return nil
 }
 
 type QuestionResponse struct {
@@ -29,13 +20,17 @@ type QuestionResponse struct {
 	Answer  Answer `json:"answer"`
 }
 
-func (ur *QuestionResponse) Render(w http.ResponseWriter, r *http.Request) error {
-	return nil
-}
-
 type QuestionPayload struct {
 	Initial string `json:"initial"`
 	Title   string `json:"title"`
+}
+
+func (ql *QuestionList) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}
+
+func (qr *QuestionResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
 }
 
 func (qp *QuestionPayload) validate() (err error) {
@@ -61,7 +56,7 @@ func (up *QuestionPayload) Bind(r *http.Request) error {
 	return nil
 }
 
-func ToResponseQuestion(question *api.Question) *QuestionResponse {
+func ToResponseQuestion(question *entity.Question) *QuestionResponse {
 
 	answer := Answer{Title: question.Answer.Title, Date: question.Answer.Date.Format("2006-01-02 15:04:05")}
 

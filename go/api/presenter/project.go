@@ -1,18 +1,14 @@
-package models
+package presenter
 
 import (
 	"net/http"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"github.com/mongo-experiments/go/entity"
 )
 
 type ProjectList struct {
 	Total    int               `json:"total"`
 	Projects []ProjectResponse `bson:"results" json:"results"`
-}
-
-func (mt *ProjectList) Render(w http.ResponseWriter, r *http.Request) error {
-	return nil
 }
 
 type ProjectResponse struct {
@@ -23,11 +19,15 @@ type ProjectResponse struct {
 	Repository  string `json:"repository"`
 }
 
-func (ur *ProjectResponse) Render(w http.ResponseWriter, r *http.Request) error {
+func (pl *ProjectList) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func ToResponseProject(project *api.Project) *ProjectResponse {
+func (pr *ProjectResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}
+
+func ToResponseProject(project *entity.Project) *ProjectResponse {
 	return &ProjectResponse{
 		ID:          project.ID,
 		Title:       project.Title,

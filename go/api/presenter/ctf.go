@@ -1,18 +1,14 @@
-package models
+package presenter
 
 import (
 	"net/http"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"github.com/mongo-experiments/go/entity"
 )
 
 type CTFList struct {
 	Total int           `json:"total"`
 	CTFS  []CTFResponse `json:"results"`
-}
-
-func (mt *CTFList) Render(w http.ResponseWriter, r *http.Request) error {
-	return nil
 }
 
 type CTFResponse struct {
@@ -23,11 +19,15 @@ type CTFResponse struct {
 	Repository  string `json:"repository"`
 }
 
-func (ur *CTFResponse) Render(w http.ResponseWriter, r *http.Request) error {
+func (cl *CTFList) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func ToResponseCTF(ctf *api.CTF) *CTFResponse {
+func (cr *CTFResponse) Render(w http.ResponseWriter, r *http.Request) error {
+	return nil
+}
+
+func ToResponseCTF(ctf *entity.CTF) *CTFResponse {
 	return &CTFResponse{
 		ID:          ctf.ID,
 		Title:       ctf.Title,

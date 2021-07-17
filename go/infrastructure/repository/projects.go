@@ -1,9 +1,32 @@
-package mongo
+package repository
 
 import (
+	"fmt"
+
 	"github.com/mongo-experiments/go/pkg/api"
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
+
+type ProjectMongo struct {
+	session *mgo.Session
+}
+
+func NewProjectMongo(dburl string, database string, username string, password string) (*ProjectMongo, error) {
+	session, err := mgo.Dial(fmt.Sprintf("mongodb://%s:%s@%s:27017/%s?authSource=admin", username, password, dburl, database))
+	if err != nil {
+		return nil, err
+	}
+	projectMongo := ProjectMongo{
+		session: session,
+	}
+	return &projectMongo, nil
+}
+
+func (pm *ProjectMongo) Close() error {
+	pm.session.Close()
+	return nil
+}
 
 type projectModel struct {
 	ID          bson.ObjectId `bson:"_id" json:"id"`
@@ -41,7 +64,7 @@ func toApiProject(project projectModel) api.Project {
 	}
 }
 
-func (r *Repository) GetProjects() ([]api.Project, int, error) {
+func (r *ProjectMongo) GetProjects() ([]api.Project, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
