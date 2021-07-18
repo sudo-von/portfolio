@@ -1,23 +1,20 @@
-package http
+package handler
 
 import (
 	"net/http"
 
+	"freelancer/portfolio/go/api/presenter"
+	"freelancer/portfolio/go/usecase/project"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
-	"github.com/mongo-experiments/go/pkg/api"
-	"github.com/mongo-experiments/go/pkg/models"
 )
 
-type ProjectService interface {
-	GetProjects() ([]api.Project, int, error)
-}
-
 type ProjectController struct {
-	ProjectService ProjectService
+	ProjectService project.Service
 }
 
-func NewProjectController(project ProjectService) *ProjectController {
+func NewProjectController(project project.Service) *ProjectController {
 	return &ProjectController{
 		ProjectService: project,
 	}
@@ -37,12 +34,12 @@ func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
-	res := &models.ProjectList{
+	res := &presenter.ProjectList{
 		Total:    total,
-		Projects: make([]models.ProjectResponse, 0, len(list)),
+		Projects: make([]presenter.ProjectResponse, 0, len(list)),
 	}
 	for _, project := range list {
-		res.Projects = append(res.Projects, *models.ToResponseProject(&project))
+		res.Projects = append(res.Projects, *presenter.ToResponseProject(&project))
 	}
 
 	w.Header().Set("Content-Type", "application/json")

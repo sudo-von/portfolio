@@ -1,6 +1,6 @@
 package question
 
-import "github.com/mongo-experiments/go/entity"
+import "freelancer/portfolio/go/entity"
 
 type Reader interface {
 	GetQuestions() ([]entity.Question, int, error)
@@ -13,4 +13,9 @@ type Writer interface {
 type Repository interface {
 	Reader
 	Writer
+}
+
+type UseCase interface {
+	GetQuestions() ([]entity.Question, int, error)
+	CreateQuestion(question entity.QuestionPayload) error
 }

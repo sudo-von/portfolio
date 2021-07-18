@@ -3,7 +3,7 @@ package question
 import (
 	"log"
 
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type Service struct {
@@ -16,7 +16,7 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s Service) GetQuestions() ([]entity.Question, int, error) {
+func (s *Service) GetQuestions() ([]entity.Question, int, error) {
 	queries, total, err := s.repository.GetQuestions()
 	if err != nil {
 		log.Println(err)
@@ -25,7 +25,7 @@ func (s Service) GetQuestions() ([]entity.Question, int, error) {
 	return queries, total, nil
 }
 
-func (s Service) CreateQuestion(question entity.QuestionPayload) error {
+func (s *Service) CreateQuestion(question entity.QuestionPayload) error {
 	err := s.repository.CreateQuestion(question)
 	if err != nil {
 		log.Println(err)

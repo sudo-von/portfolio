@@ -1,6 +1,6 @@
 package user
 
-import "github.com/mongo-experiments/go/entity"
+import "freelancer/portfolio/go/entity"
 
 type Reader interface {
 	GetUserByID(id string) (*entity.User, error)
@@ -8,4 +8,8 @@ type Reader interface {
 
 type Repository interface {
 	Reader
+}
+
+type UseCase interface {
+	GetUserByID(id string) (*entity.User, error)
 }

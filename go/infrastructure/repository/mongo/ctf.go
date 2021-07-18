@@ -1,7 +1,9 @@
-package repository
+package mongo
 
 import (
-	"github.com/mongo-experiments/go/pkg/api"
+	"freelancer/portfolio/go/entity"
+
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -13,26 +15,8 @@ type ctfModel struct {
 	Repository  string        `bson:"repository" json:"repository"`
 }
 
-func toProjectCTF(ctf api.CTF) ctfModel {
-
-	var ctfID bson.ObjectId
-	if ctf.ID != "" {
-		ctfID = bson.ObjectIdHex(ctf.ID)
-	} else {
-		ctfID = bson.NewObjectId()
-	}
-
-	return ctfModel{
-		ID:          ctfID,
-		Title:       ctf.Title,
-		Description: ctf.Description,
-		Image:       ctf.Image,
-		Repository:  ctf.Repository,
-	}
-}
-
-func toApiCTF(ctf ctfModel) api.CTF {
-	return api.CTF{
+func toApiCTF(ctf ctfModel) entity.CTF {
+	return entity.CTF{
 		ID:          ctf.ID.Hex(),
 		Title:       ctf.Title,
 		Description: ctf.Description,
@@ -41,7 +25,19 @@ func toApiCTF(ctf ctfModel) api.CTF {
 	}
 }
 
-func (r *Repository) GetCTFS() ([]api.CTF, int, error) {
+type CTFMongo struct {
+	Session      *mgo.Session
+	DatabaseName string
+}
+
+func NewCTFMongo(repository *Repository) *CTFMongo {
+	return &CTFMongo{
+		Session:      repository.Session,
+		DatabaseName: repository.DatabaseName,
+	}
+}
+
+func (r *CTFMongo) GetCTFS() ([]entity.CTF, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
@@ -58,7 +54,7 @@ func (r *Repository) GetCTFS() ([]api.CTF, int, error) {
 		return nil, 0, err
 	}
 
-	ctfs := make([]api.CTF, 0)
+	ctfs := make([]entity.CTF, 0)
 	for _, m := range ctfsM {
 		ctfs = append(ctfs, toApiCTF(m))
 	}

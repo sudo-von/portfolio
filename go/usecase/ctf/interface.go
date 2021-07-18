@@ -1,6 +1,6 @@
 package ctf
 
-import "github.com/mongo-experiments/go/entity"
+import "freelancer/portfolio/go/entity"
 
 type Reader interface {
 	GetCTFS() ([]entity.CTF, int, error)
@@ -8,4 +8,8 @@ type Reader interface {
 
 type Repository interface {
 	Reader
+}
+
+type UseCase interface {
+	GetCTFS() ([]entity.CTF, int, error)
 }

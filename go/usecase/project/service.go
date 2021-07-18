@@ -3,7 +3,7 @@ package project
 import (
 	"log"
 
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type Service struct {
@@ -16,7 +16,7 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s Service) GetProjects() ([]entity.Project, int, error) {
+func (s *Service) GetProjects() ([]entity.Project, int, error) {
 	projects, total, err := s.repository.GetProjects()
 	if err != nil {
 		log.Println(err)

@@ -1,9 +1,11 @@
-package repository
+package mongo
 
 import (
 	"time"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"freelancer/portfolio/go/entity"
+
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -27,24 +29,7 @@ type answer struct {
 	Date  time.Time `bson:"date" json:"date"`
 }
 
-func toQuestionModel(question api.Question) questionModel {
-
-	var questionID bson.ObjectId
-	if question.ID != "" {
-		questionID = bson.ObjectIdHex(question.ID)
-	} else {
-		questionID = bson.NewObjectId()
-	}
-
-	return questionModel{
-		ID:      questionID,
-		Initial: question.Initial,
-		Title:   question.Title,
-		Date:    question.Date,
-	}
-}
-
-func toQuestionPayloadModel(question api.QuestionPayload) questioPayloadModel {
+func toQuestionPayloadModel(question entity.QuestionPayload) questioPayloadModel {
 
 	var questionID bson.ObjectId
 	if question.ID != "" {
@@ -61,11 +46,11 @@ func toQuestionPayloadModel(question api.QuestionPayload) questioPayloadModel {
 	}
 }
 
-func toApiQuestion(question questionModel) api.Question {
+func toApiQuestion(question questionModel) entity.Question {
 
-	answer := api.Answer{Title: question.Answer.Title, Date: question.Answer.Date}
+	answer := entity.Answer{Title: question.Answer.Title, Date: question.Answer.Date}
 
-	return api.Question{
+	return entity.Question{
 		ID:      question.ID.Hex(),
 		Initial: question.Initial,
 		Title:   question.Title,
@@ -74,7 +59,19 @@ func toApiQuestion(question questionModel) api.Question {
 	}
 }
 
-func (r *Repository) GetQuestions() ([]api.Question, int, error) {
+type QuestionMongo struct {
+	Session      *mgo.Session
+	DatabaseName string
+}
+
+func NewQuestionMongo(repository *Repository) *QuestionMongo {
+	return &QuestionMongo{
+		Session:      repository.Session,
+		DatabaseName: repository.DatabaseName,
+	}
+}
+
+func (r *QuestionMongo) GetQuestions() ([]entity.Question, int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
@@ -91,7 +88,7 @@ func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 		return nil, 0, err
 	}
 
-	queries := make([]api.Question, 0)
+	queries := make([]entity.Question, 0)
 	for _, m := range questionsM {
 		queries = append(queries, toApiQuestion(m))
 	}
@@ -99,7 +96,7 @@ func (r *Repository) GetQuestions() ([]api.Question, int, error) {
 
 }
 
-func (r *Repository) CreateQuestion(question api.QuestionPayload) error {
+func (r *QuestionMongo) CreateQuestion(question entity.QuestionPayload) error {
 
 	session := r.Session.Copy()
 	defer session.Close()

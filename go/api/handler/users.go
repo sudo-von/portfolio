@@ -1,23 +1,20 @@
-package http
+package handler
 
 import (
 	"net/http"
 
+	"freelancer/portfolio/go/api/presenter"
+	"freelancer/portfolio/go/usecase/user"
+
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"
-	"github.com/mongo-experiments/go/pkg/api"
-	"github.com/mongo-experiments/go/pkg/models"
 )
 
-type UserService interface {
-	GetUserByID(id string) (*api.User, error)
-}
-
 type UserController struct {
-	UserService UserService
+	UserService user.Service
 }
 
-func NewUserController(user UserService) *UserController {
+func NewUserController(user user.Service) *UserController {
 	return &UserController{
 		UserService: user,
 	}
@@ -42,6 +39,6 @@ func (c *UserController) ShowUser(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
-	render.Render(w, r, models.ToResponseUser(user))
+	render.Render(w, r, presenter.ToResponseUser(user))
 	return
 }

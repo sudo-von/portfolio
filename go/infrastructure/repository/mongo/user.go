@@ -1,9 +1,11 @@
-package repository
+package mongo
 
 import (
 	"errors"
 
-	"github.com/mongo-experiments/go/pkg/api"
+	"freelancer/portfolio/go/entity"
+
+	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
@@ -16,27 +18,8 @@ type userModel struct {
 	Description    []string      `bson:"description" json:"description"`
 }
 
-func toUserModel(user api.User) userModel {
-
-	var userID bson.ObjectId
-	if user.ID != "" {
-		userID = bson.ObjectIdHex(user.ID)
-	} else {
-		userID = bson.NewObjectId()
-	}
-
-	return userModel{
-		ID:             userID,
-		Username:       user.Username,
-		Name:           user.Name,
-		ProfilePicture: user.ProfilePicture,
-		Email:          user.Email,
-		Description:    user.Description,
-	}
-}
-
-func toApiUser(user userModel) api.User {
-	return api.User{
+func toApiUser(user userModel) entity.User {
+	return entity.User{
 		ID:             user.ID.Hex(),
 		Username:       user.Username,
 		Name:           user.Name,
@@ -46,7 +29,19 @@ func toApiUser(user userModel) api.User {
 	}
 }
 
-func (r *Repository) GetUserByID(id string) (*api.User, error) {
+type UserMongo struct {
+	Session      *mgo.Session
+	DatabaseName string
+}
+
+func NewUserMongo(repository *Repository) *UserMongo {
+	return &UserMongo{
+		Session:      repository.Session,
+		DatabaseName: repository.DatabaseName,
+	}
+}
+
+func (r *UserMongo) GetUserByID(id string) (*entity.User, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()

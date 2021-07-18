@@ -1,4 +1,4 @@
-package newerrors
+package newerror
 
 // ErrNotFound Error when not found something in the Database.
 type ErrNotFound struct {

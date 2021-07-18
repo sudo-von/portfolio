@@ -3,7 +3,7 @@ package user
 import (
 	"log"
 
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type Service struct {
@@ -16,7 +16,7 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s Service) GetUserByID(id string) (*entity.User, error) {
+func (s *Service) GetUserByID(id string) (*entity.User, error) {
 	user, err := s.repository.GetUserByID(id)
 	if err != nil {
 		log.Println(err)

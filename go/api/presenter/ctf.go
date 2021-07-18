@@ -3,7 +3,7 @@ package presenter
 import (
 	"net/http"
 
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type CTFList struct {

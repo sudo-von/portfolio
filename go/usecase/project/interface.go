@@ -1,7 +1,7 @@
 package project
 
 import (
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type Reader interface {
@@ -10,4 +10,8 @@ type Reader interface {
 
 type Repository interface {
 	Reader
+}
+
+type UseCase interface {
+	GetProjects() ([]entity.Project, int, error)
 }

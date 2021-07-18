@@ -6,6 +6,7 @@ COPY . /sudo-von/
 WORKDIR /sudo-von/cmd/
 # Make binary.
 RUN go build -o $pwd main
+RUN ls -la
 # Run binary.
 CMD ./main
 # Expose port.

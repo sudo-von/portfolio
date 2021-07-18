@@ -3,7 +3,7 @@ package ctf
 import (
 	"log"
 
-	"github.com/mongo-experiments/go/entity"
+	"freelancer/portfolio/go/entity"
 )
 
 type Service struct {
@@ -16,7 +16,7 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s Service) GetCTFS() ([]entity.CTF, int, error) {
+func (s *Service) GetCTFS() ([]entity.CTF, int, error) {
 	ctfs, total, err := s.repository.GetCTFS()
 	if err != nil {
 		log.Println(err)
