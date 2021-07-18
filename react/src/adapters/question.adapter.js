@@ -20,7 +20,7 @@ const getQuestions = () =>
 const sendQuestion = (data) =>
     new Promise( ( resolve, reject ) => 
         httpClient.post(ENDPOINT, data)
-            .then(res => resolve(res.data))
+            .then(res => resolve(res))
             .catch(err => reject(err))
     )
 

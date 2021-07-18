@@ -1,9 +1,9 @@
-import React from 'react';
-import clsx from 'clsx';
-import { makeStyles } from '@material-ui/core/styles';
-import CircularProgress from '@material-ui/core/CircularProgress';
-import { green } from '@material-ui/core/colors';
-import Button from '@material-ui/core/Button';
+import React from 'react'
+import clsx from 'clsx'
+/* Material-ui. */
+import { makeStyles } from '@material-ui/core/styles'
+import { CircularProgress, Button } from '@material-ui/core/'
+import { green } from '@material-ui/core/colors'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,12 +15,13 @@ const useStyles = makeStyles((theme) => ({
     position: 'relative',
   },
   buttonSuccess: {
-    backgroundColor: green[500],
+    backgroundColor: 'transparent',
     '&:hover': {
-      backgroundColor: green[700],
+      backgroundColor: 'transparent',
     },
   },
   buttonProgress: {
+    background: 'transparent',
     color: green[500],
     position: 'absolute',
     top: '50%',
@@ -28,27 +29,27 @@ const useStyles = makeStyles((theme) => ({
     marginTop: -12,
     marginLeft: -12,
   },
-}));
+}))
 
-export default function CircularIntegration(props) {
+export default function CircularIntegration( { children, pending, ...rest } ) {
 
   const classes = useStyles()
   const buttonClassname = clsx({
-    [classes.buttonSuccess]: props.loading,
+    [classes.buttonSuccess]: pending
   })
 
   return (
-    <div className={classes.root}>
-      <div className={classes.wrapper}>
-        <Button
-          className={buttonClassname}
-          disabled={props.loading}
-          {...props }
-        >
-          {props.children}
-        </Button>
-        {props.loading && <CircularProgress size={24} className={classes.buttonProgress} />}
-      </div>
+    <div className={classes.wrapper}>
+      <Button
+        variant="contained"
+        color="primary"
+        className={buttonClassname}
+        disabled={pending}
+        {...rest }
+      >
+        {children}
+      </Button>
+      {pending && <CircularProgress size={24} className={classes.buttonProgress} />}
     </div>
-  );
+  )
 }

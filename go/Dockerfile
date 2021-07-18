@@ -1,12 +1,6 @@
 FROM golang:1.15
-
 ENV TZ=America/Mexico_City
-# Copy files.
-COPY . /sudo-von/
-WORKDIR /sudo-von/cmd/
-# Make binary.
+COPY . /github.com/sudo-von/
+WORKDIR /github.com/sudo-von/cmd/
 RUN go build -o $pwd main
-# Run binary.
 CMD ./main
-# Expose port.
-EXPOSE 80
