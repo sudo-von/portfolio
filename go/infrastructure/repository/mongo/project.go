@@ -20,43 +20,43 @@ func NewProjectMongo(repository *Repository) *ProjectMongo {
 }
 
 type projectModel struct {
-	ID          bson.ObjectId `bson:"_id" json:"id"`
-	Title       string        `bson:"title" json:"title"`
-	Description string        `bson:"description" json:"description"`
-	Image       string        `bson:"image" json:"image"`
-	Repository  string        `bson:"repository" json:"repository"`
+	ID        bson.ObjectId `bson:"_id"`
+	Title     string        `bson:"title"`
+	ImageURL  string        `bson:"image_url"`
+	TechStack []string      `bson:"tech_stack"`
 }
 
 func toApiProject(project projectModel) entity.Project {
 	return entity.Project{
-		ID:          project.ID.Hex(),
-		Title:       project.Title,
-		Description: project.Description,
-		Image:       project.Image,
-		Repository:  project.Repository,
+		ID:        project.ID.Hex(),
+		Title:     project.Title,
+		ImageURL:  project.ImageURL,
+		TechStack: project.TechStack,
 	}
 }
 
-func (r *ProjectMongo) GetProjects() ([]entity.Project, int, error) {
+func (r *ProjectMongo) GetProjects() ([]entity.Project, *int, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
 	con := session.DB(r.DatabaseName).C("projects")
 
 	var projectsM []projectModel
-	err := con.Find(bson.M{}).All(&projectsM)
+	var searchQuery bson.M
+
+	err := con.Find(searchQuery).All(&projectsM)
 	if err != nil {
-		return nil, 0, err
+		return nil, nil, err
 	}
 
-	total, err := con.Find(bson.M{}).Count()
+	total, err := con.Find(searchQuery).Count()
 	if err != nil {
-		return nil, 0, err
+		return nil, nil, err
 	}
 
 	projects := make([]entity.Project, 0)
 	for _, m := range projectsM {
 		projects = append(projects, toApiProject(m))
 	}
-	return projects, total, nil
+	return projects, &total, nil
 }

@@ -12,11 +12,10 @@ type ProjectList struct {
 }
 
 type ProjectResponse struct {
-	ID          string `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Image       string `json:"image"`
-	Repository  string `json:"repository"`
+	ID        string   `json:"id"`
+	Title     string   `json:"title"`
+	ImageURL  string   `json:"image_url"`
+	TechStack []string `json:"tech_stack"`
 }
 
 func (pl *ProjectList) Render(w http.ResponseWriter, r *http.Request) error {
@@ -29,10 +28,9 @@ func (pr *ProjectResponse) Render(w http.ResponseWriter, r *http.Request) error 
 
 func ToResponseProject(project *entity.Project) *ProjectResponse {
 	return &ProjectResponse{
-		ID:          project.ID,
-		Title:       project.Title,
-		Description: project.Description,
-		Image:       project.Image,
-		Repository:  project.Repository,
+		ID:        project.ID,
+		Title:     project.Title,
+		ImageURL:  project.ImageURL,
+		TechStack: project.TechStack,
 	}
 }

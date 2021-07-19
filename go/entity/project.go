@@ -1,9 +1,8 @@
 package entity
 
 type Project struct {
-	ID          string
-	Title       string
-	Description string
-	Image       string
-	Repository  string
+	ID        string
+	Title     string
+	ImageURL  string
+	TechStack []string
 }

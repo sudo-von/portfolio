@@ -34,8 +34,9 @@ func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
+
 	res := &presenter.ProjectList{
-		Total:    total,
+		Total:    *total,
 		Projects: make([]presenter.ProjectResponse, 0, len(list)),
 	}
 	for _, project := range list {
@@ -45,5 +46,4 @@ func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
-	return
 }

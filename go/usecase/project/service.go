@@ -1,8 +1,7 @@
 package project
 
 import (
-	"log"
-
+	"fmt"
 	"freelancer/portfolio/go/entity"
 )
 
@@ -16,11 +15,10 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s *Service) GetProjects() ([]entity.Project, int, error) {
+func (s *Service) GetProjects() ([]entity.Project, *int, error) {
 	projects, total, err := s.repository.GetProjects()
 	if err != nil {
-		log.Println(err)
-		return nil, 0, err
+		return nil, nil, fmt.Errorf("GetProjects: %w", err)
 	}
 	return projects, total, nil
 }
