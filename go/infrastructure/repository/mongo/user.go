@@ -9,23 +9,25 @@ import (
 	"gopkg.in/mgo.v2/bson"
 )
 
-type userModel struct {
-	ID             bson.ObjectId `bson:"_id" json:"id"`
-	Username       string        `bson:"username" json:"username"`
-	Name           string        `bson:"name" json:"name"`
-	ProfilePicture string        `bson:"profile_picture" json:"profile_picture"`
-	Email          string        `bson:"email" json:"email"`
-	Description    []string      `bson:"description" json:"description"`
+type tinyUserModel struct {
+	ID                bson.ObjectId `bson:"_id"`
+	Username          string        `bson:"username"`
+	Name              string        `bson:"name"`
+	ProfilePictureURL string        `bson:"profile_picture_url"`
+	Email             string        `bson:"email"`
+	Description       string        `bson:"description"`
+	Achievements      []string      `bson:"achievements"`
 }
 
-func toApiUser(user userModel) entity.User {
-	return entity.User{
-		ID:             user.ID.Hex(),
-		Username:       user.Username,
-		Name:           user.Name,
-		ProfilePicture: user.ProfilePicture,
-		Email:          user.Email,
-		Description:    user.Description,
+func toEntityTinyUser(tinyUser tinyUserModel) entity.TinyUser {
+	return entity.TinyUser{
+		ID:                tinyUser.ID.Hex(),
+		Username:          tinyUser.Username,
+		Name:              tinyUser.Name,
+		Email:             tinyUser.Email,
+		ProfilePictureURL: tinyUser.ProfilePictureURL,
+		Description:       tinyUser.Description,
+		Achievements:      tinyUser.Achievements,
 	}
 }
 
@@ -41,22 +43,22 @@ func NewUserMongo(repository *Repository) *UserMongo {
 	}
 }
 
-func (r *UserMongo) GetUserByID(id string) (*entity.User, error) {
+func (r *UserMongo) GetUserByID(id string) (*entity.TinyUser, error) {
+
+	if !bson.IsObjectIdHex(id) {
+		return nil, errors.New("given id is not a valid hex")
+	}
 
 	session := r.Session.Copy()
 	defer session.Close()
 	com := session.DB(r.DatabaseName).C("users")
 
-	if !bson.IsObjectIdHex(id) {
-		return nil, errors.New("id is not a valid hex")
-	}
-
-	userM := userModel{}
-	err := com.Find(bson.M{"_id": bson.ObjectIdHex(id)}).One(&userM)
+	var tinyUserM tinyUserModel
+	err := com.FindId(bson.ObjectIdHex(id)).One(&tinyUserM)
 	if err != nil {
 		return nil, err
 	}
 
-	userApi := toApiUser(userM)
+	userApi := toEntityTinyUser(tinyUserM)
 	return &userApi, nil
 }

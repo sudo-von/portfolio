@@ -23,12 +23,12 @@ func NewUserController(user user.Service) *UserController {
 // Routes for users.
 func (c *UserController) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/{id}", c.ShowUser)
+	r.Get("/{id}", c.GetUserByID)
 	return r
 }
 
-// ShowUser renders a user by its id.
-func (c *UserController) ShowUser(w http.ResponseWriter, r *http.Request) {
+// GetUserByID render a user given its id.
+func (c *UserController) GetUserByID(w http.ResponseWriter, r *http.Request) {
 
 	requestedUser := chi.URLParam(r, "id")
 	user, err := c.UserService.GetUserByID(requestedUser)
@@ -40,5 +40,4 @@ func (c *UserController) ShowUser(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, presenter.ToResponseUser(user))
-	return
 }

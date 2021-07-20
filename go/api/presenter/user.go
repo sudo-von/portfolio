@@ -6,35 +6,37 @@ import (
 	"freelancer/portfolio/go/entity"
 )
 
-type UserList struct {
-	Total int            `json:"total"`
-	Users []UserResponse `json:"results"`
+type TinyUserList struct {
+	Total     int                `json:"total"`
+	TinyUsers []TinyUserResponse `json:"results"`
 }
 
-type UserResponse struct {
-	ID             string   `json:"id"`
-	Username       string   `json:"username"`
-	Name           string   `json:"name"`
-	ProfilePicture string   `json:"profile_picture"`
-	Email          string   `json:"email"`
-	Description    []string `json:"description"`
+type TinyUserResponse struct {
+	ID                string   `json:"id"`
+	Username          string   `json:"username"`
+	Name              string   `json:"name"`
+	Email             string   `json:"email"`
+	ProfilePictureURL string   `json:"profile_picture_url"`
+	Description       string   `json:"description"`
+	Achievements      []string `json:"achievements"`
 }
 
-func (ul *UserList) Render(w http.ResponseWriter, r *http.Request) error {
+func (ul *TinyUserList) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func (ur *UserResponse) Render(w http.ResponseWriter, r *http.Request) error {
+func (ur *TinyUserResponse) Render(w http.ResponseWriter, r *http.Request) error {
 	return nil
 }
 
-func ToResponseUser(user *entity.User) *UserResponse {
-	return &UserResponse{
-		ID:             user.ID,
-		Username:       user.Username,
-		Name:           user.Name,
-		ProfilePicture: user.ProfilePicture,
-		Email:          user.Email,
-		Description:    user.Description,
+func ToResponseUser(user *entity.TinyUser) *TinyUserResponse {
+	return &TinyUserResponse{
+		ID:                user.ID,
+		Username:          user.Username,
+		Name:              user.Name,
+		Email:             user.Email,
+		ProfilePictureURL: user.ProfilePictureURL,
+		Description:       user.Description,
+		Achievements:      user.Achievements,
 	}
 }

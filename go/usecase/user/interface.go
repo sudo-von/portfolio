@@ -3,7 +3,7 @@ package user
 import "freelancer/portfolio/go/entity"
 
 type Reader interface {
-	GetUserByID(id string) (*entity.User, error)
+	GetUserByID(id string) (*entity.TinyUser, error)
 }
 
 type Repository interface {
@@ -11,5 +11,5 @@ type Repository interface {
 }
 
 type UseCase interface {
-	GetUserByID(id string) (*entity.User, error)
+	GetUserByID(id string) (*entity.TinyUser, error)
 }

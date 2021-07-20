@@ -1,8 +1,7 @@
 package user
 
 import (
-	"log"
-
+	"fmt"
 	"freelancer/portfolio/go/entity"
 )
 
@@ -16,11 +15,10 @@ func NewService(r Repository) *Service {
 	}
 }
 
-func (s *Service) GetUserByID(id string) (*entity.User, error) {
+func (s *Service) GetUserByID(id string) (*entity.TinyUser, error) {
 	user, err := s.repository.GetUserByID(id)
 	if err != nil {
-		log.Println(err)
-		return nil, err
+		return nil, fmt.Errorf("GetUserByID: %w", err)
 	}
 	return user, nil
 }

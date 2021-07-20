@@ -1,10 +1,11 @@
 package entity
 
-type User struct {
-	ID             string
-	Username       string
-	Name           string
-	ProfilePicture string
-	Description    []string
-	Email          string
+type TinyUser struct {
+	ID                string
+	Username          string
+	Name              string
+	Email             string
+	ProfilePictureURL string
+	Description       string
+	Achievements      []string
 }
