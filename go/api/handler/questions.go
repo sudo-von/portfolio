@@ -62,8 +62,9 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		CheckError(err, w, r)
 	}
+
 	newQuestion := entity.QuestionPayload{
-		Username:     data.Username,
+		Username:     chi.URLParam(r, "username"),
 		Initial:      data.Initial,
 		Message:      data.Message,
 		QuestionDate: time.Now().In(loc),

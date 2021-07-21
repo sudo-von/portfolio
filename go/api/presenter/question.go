@@ -36,9 +36,6 @@ func (qr *QuestionResponse) Render(w http.ResponseWriter, r *http.Request) error
 }
 
 func (qp *QuestionPayload) validate() (err error) {
-	if qp.Username == "" {
-		err = mergeErrors(err, errors.New("missing field username"))
-	}
 	if qp.Initial == "" {
 		err = mergeErrors(err, errors.New("missing field initial"))
 	}
