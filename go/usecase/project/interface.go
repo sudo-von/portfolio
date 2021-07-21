@@ -8,7 +8,7 @@ type Reader interface {
 	GetProjects() ([]entity.Project, *int, error)
 }
 
-type Repository interface {
+type ProjectRepository interface {
 	Reader
 }
 

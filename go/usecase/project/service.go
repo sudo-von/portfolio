@@ -6,17 +6,17 @@ import (
 )
 
 type Service struct {
-	repository Repository
+	projectRepository ProjectRepository
 }
 
-func NewService(r Repository) *Service {
+func NewService(r ProjectRepository) *Service {
 	return &Service{
-		repository: r,
+		projectRepository: r,
 	}
 }
 
 func (s *Service) GetProjects() ([]entity.Project, *int, error) {
-	projects, total, err := s.repository.GetProjects()
+	projects, total, err := s.projectRepository.GetProjects()
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetProjects: %w", err)
 	}

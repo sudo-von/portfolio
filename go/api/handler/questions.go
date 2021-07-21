@@ -24,20 +24,22 @@ func NewQuestionController(Question question.Service) *QuestionController {
 
 func (c *QuestionController) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/", c.List)
+	r.Get("/{username}", c.List)
 	r.Post("/", c.Create)
 	return r
 }
 
-// List renders all the questions.
+// List renders all the questions given a username.
 func (c *QuestionController) List(w http.ResponseWriter, r *http.Request) {
 
-	list, total, err := c.QuestionService.GetQuestions()
+	username := chi.URLParam(r, "username")
+	list, total, err := c.QuestionService.GetQuestions(username)
 	if err != nil {
 		CheckError(err, w, r)
 	}
+
 	res := &presenter.QuestionList{
-		Total:     total,
+		Total:     *total,
 		Questions: make([]presenter.QuestionResponse, 0, len(list)),
 	}
 	for _, Question := range list {
@@ -47,11 +49,11 @@ func (c *QuestionController) List(w http.ResponseWriter, r *http.Request) {
 	render.Render(w, r, res)
 }
 
-// Create stores a question.
+// Create stores a new question.
 func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 
-	data := &presenter.QuestionPayload{}
-	if err := render.Bind(r, data); err != nil {
+	var data presenter.QuestionPayload
+	if err := render.Bind(r, &data); err != nil {
 		render.Render(w, r, presenter.ErrInvalidRequest(err))
 		return
 	}
@@ -61,9 +63,10 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 		CheckError(err, w, r)
 	}
 	newQuestion := entity.QuestionPayload{
-		Initial: data.Initial,
-		Title:   data.Title,
-		Date:    time.Now().In(loc),
+		Username:     data.Username,
+		Initial:      data.Initial,
+		Message:      data.Message,
+		QuestionDate: time.Now().In(loc),
 	}
 
 	err = c.QuestionService.CreateQuestion(newQuestion)

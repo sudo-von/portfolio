@@ -1,35 +1,50 @@
 package question
 
 import (
-	"log"
+	"fmt"
 
 	"freelancer/portfolio/go/entity"
+	"freelancer/portfolio/go/usecase/user"
 )
 
 type Service struct {
-	repository Repository
+	questionRepository QuestionRepository
+	userRepository     user.UserRepository
 }
 
-func NewService(r Repository) *Service {
+func NewService(questionRepository QuestionRepository, userRepository user.UserRepository) *Service {
 	return &Service{
-		repository: r,
+		questionRepository: questionRepository,
+		userRepository:     userRepository,
 	}
 }
 
-func (s *Service) GetQuestions() ([]entity.Question, int, error) {
-	queries, total, err := s.repository.GetQuestions()
+func (s *Service) GetQuestions(username string) ([]entity.Question, *int, error) {
+
+	user, err := s.userRepository.GetUserByUsername(username)
 	if err != nil {
-		log.Println(err)
-		return nil, 0, err
+		return nil, nil, fmt.Errorf("GetUserByUsername: %w", err)
 	}
+
+	queries, total, err := s.questionRepository.GetQuestionsByUserID(user.ID)
+	if err != nil {
+		return nil, nil, fmt.Errorf("GetQuestionsByUserID: %w", err)
+	}
+
 	return queries, total, nil
 }
 
 func (s *Service) CreateQuestion(question entity.QuestionPayload) error {
-	err := s.repository.CreateQuestion(question)
+
+	user, err := s.userRepository.GetUserByUsername(question.Username)
 	if err != nil {
-		log.Println(err)
-		return err
+		return fmt.Errorf("GetUserByUsername: %w", err)
+	}
+	question.UserID = user.ID
+
+	err = s.questionRepository.CreateQuestion(question)
+	if err != nil {
+		return fmt.Errorf("CreateQuestion: %w", err)
 	}
 	return nil
 }

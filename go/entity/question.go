@@ -3,16 +3,19 @@ package entity
 import "time"
 
 type Question struct {
-	ID      string
-	Initial string
-	Title   string
-	Date    time.Time
-	Answer  Answer
+	ID           string
+	UserID       string
+	Initial      string
+	Message      string
+	QuestionDate time.Time
+	Answer       *Answer
 }
 
 type QuestionPayload struct {
-	ID      string
-	Initial string
-	Title   string
-	Date    time.Time
+	ID           string
+	UserID       string
+	Username     string
+	Initial      string
+	Message      string
+	QuestionDate time.Time
 }

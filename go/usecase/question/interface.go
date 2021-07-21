@@ -3,14 +3,14 @@ package question
 import "freelancer/portfolio/go/entity"
 
 type Reader interface {
-	GetQuestions() ([]entity.Question, int, error)
+	GetQuestionsByUserID(userID string) ([]entity.Question, *int, error)
 }
 
 type Writer interface {
 	CreateQuestion(entity.QuestionPayload) error
 }
 
-type Repository interface {
+type QuestionRepository interface {
 	Reader
 	Writer
 }

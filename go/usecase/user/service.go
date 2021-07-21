@@ -6,19 +6,27 @@ import (
 )
 
 type Service struct {
-	repository Repository
+	userRepository UserRepository
 }
 
-func NewService(r Repository) *Service {
+func NewService(userRepository UserRepository) *Service {
 	return &Service{
-		repository: r,
+		userRepository: userRepository,
 	}
 }
 
 func (s *Service) GetUserByID(id string) (*entity.TinyUser, error) {
-	user, err := s.repository.GetUserByID(id)
+	user, err := s.userRepository.GetUserByID(id)
 	if err != nil {
 		return nil, fmt.Errorf("GetUserByID: %w", err)
+	}
+	return user, nil
+}
+
+func (s *Service) GetUserByUsername(username string) (*entity.TinyUser, error) {
+	user, err := s.userRepository.GetUserByUsername(username)
+	if err != nil {
+		return nil, fmt.Errorf("GetUserByUsername: %w", err)
 	}
 	return user, nil
 }

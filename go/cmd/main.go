@@ -39,7 +39,7 @@ func main() {
 	projectService := project.NewService(projectMongo)
 	ctfService := ctf.NewService(ctftMongo)
 	userService := user.NewService(userMongo)
-	questionService := question.NewService(questionMongo)
+	questionService := question.NewService(questionMongo, userMongo)
 
 	// Router.
 	r := chi.NewRouter()

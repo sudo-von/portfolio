@@ -1,6 +1,6 @@
 package presenter
 
 type Answer struct {
-	Title string `json:"title"`
-	Date  string `json:"date"`
+	Message    string `json:"message"`
+	AnswerDate string `json:"answer_date"`
 }

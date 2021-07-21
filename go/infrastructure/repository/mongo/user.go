@@ -62,3 +62,19 @@ func (r *UserMongo) GetUserByID(id string) (*entity.TinyUser, error) {
 	userApi := toEntityTinyUser(tinyUserM)
 	return &userApi, nil
 }
+
+func (r *UserMongo) GetUserByUsername(username string) (*entity.TinyUser, error) {
+
+	session := r.Session.Copy()
+	defer session.Close()
+	com := session.DB(r.DatabaseName).C("users")
+
+	var tinyUserM tinyUserModel
+	err := com.Find(bson.M{"username": username}).One(&tinyUserM)
+	if err != nil {
+		return nil, err
+	}
+
+	userApi := toEntityTinyUser(tinyUserM)
+	return &userApi, nil
+}

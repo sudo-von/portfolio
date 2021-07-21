@@ -6,7 +6,7 @@ type Reader interface {
 	GetCTFS() ([]entity.CTF, int, error)
 }
 
-type Repository interface {
+type CTFRepository interface {
 	Reader
 }
 

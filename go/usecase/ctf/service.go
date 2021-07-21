@@ -7,17 +7,17 @@ import (
 )
 
 type Service struct {
-	repository Repository
+	ctfRepository CTFRepository
 }
 
-func NewService(r Repository) *Service {
+func NewService(r CTFRepository) *Service {
 	return &Service{
-		repository: r,
+		ctfRepository: r,
 	}
 }
 
 func (s *Service) GetCTFS() ([]entity.CTF, int, error) {
-	ctfs, total, err := s.repository.GetCTFS()
+	ctfs, total, err := s.ctfRepository.GetCTFS()
 	if err != nil {
 		log.Println(err)
 		return nil, 0, err
