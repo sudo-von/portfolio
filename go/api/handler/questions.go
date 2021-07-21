@@ -25,7 +25,7 @@ func NewQuestionController(Question question.Service) *QuestionController {
 func (c *QuestionController) Routes() chi.Router {
 	r := chi.NewRouter()
 	r.Get("/{username}", c.List)
-	r.Post("/", c.Create)
+	r.Post("/{username}", c.Create)
 	return r
 }
 
