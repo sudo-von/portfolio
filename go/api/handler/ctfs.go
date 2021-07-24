@@ -13,26 +13,28 @@ type CTFHandler struct {
 	CTFService ctf.Service
 }
 
-func NewCTFController(ctf ctf.Service) *CTFHandler {
+func NewCTFController(ctfService ctf.Service) *CTFHandler {
 	return &CTFHandler{
-		CTFService: ctf,
+		CTFService: ctfService,
 	}
 }
 
 func (c *CTFHandler) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/", c.List)
+	r.Get("/{username}", c.List)
 	return r
 }
 
 func (c *CTFHandler) List(w http.ResponseWriter, r *http.Request) {
 
-	list, total, err := c.CTFService.GetCTFS()
+	username := chi.URLParam(r, "username")
+	list, total, err := c.CTFService.GetCTFS(username)
 	if err != nil {
 		CheckError(err, w, r)
 	}
+
 	res := &presenter.CTFList{
-		Total: total,
+		Total: *total,
 		CTFS:  make([]presenter.CTFResponse, 0, len(list)),
 	}
 	for _, ctf := range list {
@@ -41,5 +43,4 @@ func (c *CTFHandler) List(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
 	render.Render(w, r, res)
-	return
 }

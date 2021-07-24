@@ -12,11 +12,13 @@ type CTFList struct {
 }
 
 type CTFResponse struct {
-	ID          string `json:"id"`
-	Title       string `json:"title"`
-	Description string `json:"description"`
-	Image       string `json:"image"`
-	Repository  string `json:"repository"`
+	ID            string `json:"id"`
+	UserID        string `json:"user_id"`
+	Title         string `json:"title"`
+	Description   string `json:"description"`
+	ImageURL      string `json:"image_url"`
+	RepositoryURL string `json:"repository_url"`
+	CreationDate  string `json:"creation_date"`
 }
 
 func (cl *CTFList) Render(w http.ResponseWriter, r *http.Request) error {
@@ -29,10 +31,12 @@ func (cr *CTFResponse) Render(w http.ResponseWriter, r *http.Request) error {
 
 func ToResponseCTF(ctf *entity.CTF) *CTFResponse {
 	return &CTFResponse{
-		ID:          ctf.ID,
-		Title:       ctf.Title,
-		Description: ctf.Description,
-		Image:       ctf.Image,
-		Repository:  ctf.Repository,
+		ID:            ctf.ID,
+		UserID:        ctf.UserID,
+		Title:         ctf.Title,
+		Description:   ctf.Description,
+		ImageURL:      ctf.ImageURL,
+		RepositoryURL: ctf.RepositoryURL,
+		CreationDate:  ctf.CreationDate.Format("2006-01-02 15:04:05"),
 	}
 }

@@ -1,27 +1,33 @@
 package mongo
 
 import (
+	"errors"
 	"freelancer/portfolio/go/entity"
+	"time"
 
 	mgo "gopkg.in/mgo.v2"
 	"gopkg.in/mgo.v2/bson"
 )
 
 type ctfModel struct {
-	ID          bson.ObjectId `bson:"_id" json:"id"`
-	Title       string        `bson:"title" json:"title"`
-	Description string        `bson:"description" json:"description"`
-	Image       string        `bson:"image" json:"image"`
-	Repository  string        `bson:"repository" json:"repository"`
+	ID            bson.ObjectId `bson:"_id"`
+	UserID        bson.ObjectId `bson:"user_id"`
+	Title         string        `bson:"title"`
+	Description   string        `bson:"description"`
+	ImageURL      string        `bson:"image_url"`
+	RepositoryURL string        `bson:"repository_url"`
+	CreationDate  time.Time     `bson:"creation_date"`
 }
 
-func toApiCTF(ctf ctfModel) entity.CTF {
+func toEntityCTF(ctf ctfModel) entity.CTF {
 	return entity.CTF{
-		ID:          ctf.ID.Hex(),
-		Title:       ctf.Title,
-		Description: ctf.Description,
-		Image:       ctf.Image,
-		Repository:  ctf.Repository,
+		ID:            ctf.ID.Hex(),
+		UserID:        ctf.UserID.Hex(),
+		Title:         ctf.Title,
+		Description:   ctf.Description,
+		ImageURL:      ctf.ImageURL,
+		RepositoryURL: ctf.RepositoryURL,
+		CreationDate:  ctf.CreationDate,
 	}
 }
 
@@ -37,26 +43,32 @@ func NewCTFMongo(repository *Repository) *CTFMongo {
 	}
 }
 
-func (r *CTFMongo) GetCTFS() ([]entity.CTF, int, error) {
+func (r *CTFMongo) GetCTFS(userID string) ([]entity.CTF, *int, error) {
+
+	if !bson.IsObjectIdHex(userID) {
+		return nil, nil, errors.New("given user_id is not a valid hex")
+	}
 
 	session := r.Session.Copy()
 	defer session.Close()
 	con := session.DB(r.DatabaseName).C("ctfs")
+	searchQuery := bson.M{"user_id": bson.ObjectIdHex(userID)}
 
 	var ctfsM []ctfModel
-	err := con.Find(bson.M{}).All(&ctfsM)
+	err := con.Find(searchQuery).Sort("-creation_date").All(&ctfsM)
 	if err != nil {
-		return nil, 0, err
+		return nil, nil, err
 	}
 
-	total, err := con.Find(bson.M{}).Count()
+	total, err := con.Find(searchQuery).Count()
 	if err != nil {
-		return nil, 0, err
+		return nil, nil, err
 	}
 
 	ctfs := make([]entity.CTF, 0)
 	for _, m := range ctfsM {
-		ctfs = append(ctfs, toApiCTF(m))
+		ctfs = append(ctfs, toEntityCTF(m))
 	}
-	return ctfs, total, nil
+
+	return ctfs, &total, nil
 }

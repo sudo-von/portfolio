@@ -1,9 +1,13 @@
 package entity
 
+import "time"
+
 type CTF struct {
-	ID          string
-	Title       string
-	Description string
-	Image       string
-	Repository  string
+	ID            string
+	UserID        string
+	Title         string
+	Description   string
+	ImageURL      string
+	RepositoryURL string
+	CreationDate  time.Time
 }

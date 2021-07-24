@@ -3,7 +3,7 @@ package ctf
 import "freelancer/portfolio/go/entity"
 
 type Reader interface {
-	GetCTFS() ([]entity.CTF, int, error)
+	GetCTFS(userID string) ([]entity.CTF, *int, error)
 }
 
 type CTFRepository interface {
@@ -11,5 +11,5 @@ type CTFRepository interface {
 }
 
 type UseCase interface {
-	GetCTFS() ([]entity.CTF, int, error)
+	GetCTFS(username string) ([]entity.CTF, *int, error)
 }
