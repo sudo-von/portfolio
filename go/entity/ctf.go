@@ -6,7 +6,7 @@ type CTF struct {
 	ID            string
 	UserID        string
 	Title         string
-	Description   string
+	Categories    []string
 	ImageURL      string
 	RepositoryURL string
 	CreationDate  time.Time

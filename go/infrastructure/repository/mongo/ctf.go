@@ -13,7 +13,7 @@ type ctfModel struct {
 	ID            bson.ObjectId `bson:"_id"`
 	UserID        bson.ObjectId `bson:"user_id"`
 	Title         string        `bson:"title"`
-	Description   string        `bson:"description"`
+	Categories    []string      `bson:"categories"`
 	ImageURL      string        `bson:"image_url"`
 	RepositoryURL string        `bson:"repository_url"`
 	CreationDate  time.Time     `bson:"creation_date"`
@@ -24,7 +24,7 @@ func toEntityCTF(ctf ctfModel) entity.CTF {
 		ID:            ctf.ID.Hex(),
 		UserID:        ctf.UserID.Hex(),
 		Title:         ctf.Title,
-		Description:   ctf.Description,
+		Categories:    ctf.Categories,
 		ImageURL:      ctf.ImageURL,
 		RepositoryURL: ctf.RepositoryURL,
 		CreationDate:  ctf.CreationDate,
