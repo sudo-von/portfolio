@@ -31,7 +31,7 @@ func main() {
 
 	// Services.
 	projectService := project.NewService(projectMongo)
-	ctfService := ctf.NewService(ctftMongo)
+	ctfService := ctf.NewService(ctftMongo, userMongo)
 	userService := user.NewService(userMongo)
 	questionService := question.NewService(questionMongo, userMongo)
 	services := api.Services{ProjectService: *projectService, CTFService: *ctfService, UserService: *userService, QuestionService: *questionService}
