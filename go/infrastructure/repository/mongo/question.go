@@ -92,7 +92,7 @@ func (r *QuestionMongo) GetQuestionsByUserID(userID string) ([]entity.Question, 
 	con := session.DB(r.DatabaseName).C("questions")
 
 	var questionsM []questionModel
-	err := con.Find(bson.M{"answer": bson.M{"$exists": true}, "user_id": bson.ObjectIdHex(userID)}).Sort("-answer.question_date").All(&questionsM)
+	err := con.Find(bson.M{"answer": bson.M{"$exists": true}, "user_id": bson.ObjectIdHex(userID)}).Sort("-answer.answer_date").All(&questionsM)
 	if err != nil {
 		return nil, nil, err
 	}
