@@ -5,7 +5,7 @@ import (
 )
 
 type Reader interface {
-	GetProjects() ([]entity.Project, *int, error)
+	GetProjects(userID string) ([]entity.Project, *int, error)
 }
 
 type ProjectRepository interface {
@@ -13,5 +13,5 @@ type ProjectRepository interface {
 }
 
 type UseCase interface {
-	GetProjects() ([]entity.Project, *int, error)
+	GetProjects(username string) ([]entity.Project, *int, error)
 }

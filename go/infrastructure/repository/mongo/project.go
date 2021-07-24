@@ -1,6 +1,7 @@
 package mongo
 
 import (
+	"errors"
 	"freelancer/portfolio/go/entity"
 
 	mgo "gopkg.in/mgo.v2"
@@ -21,6 +22,7 @@ func NewProjectMongo(repository *Repository) *ProjectMongo {
 
 type projectModel struct {
 	ID        bson.ObjectId `bson:"_id"`
+	UserID    bson.ObjectId `bson:"user_id"`
 	Title     string        `bson:"title"`
 	ImageURL  string        `bson:"image_url"`
 	TechStack []string      `bson:"tech_stack"`
@@ -29,20 +31,25 @@ type projectModel struct {
 func toApiProject(project projectModel) entity.Project {
 	return entity.Project{
 		ID:        project.ID.Hex(),
+		UserID:    project.UserID.Hex(),
 		Title:     project.Title,
 		ImageURL:  project.ImageURL,
 		TechStack: project.TechStack,
 	}
 }
 
-func (r *ProjectMongo) GetProjects() ([]entity.Project, *int, error) {
+func (r *ProjectMongo) GetProjects(userID string) ([]entity.Project, *int, error) {
+
+	if !bson.IsObjectIdHex(userID) {
+		return nil, nil, errors.New("given user_id is not a valid hex")
+	}
 
 	session := r.Session.Copy()
 	defer session.Close()
 	con := session.DB(r.DatabaseName).C("projects")
 
 	var projectsM []projectModel
-	var searchQuery bson.M
+	searchQuery := bson.M{"user_id": bson.ObjectIdHex(userID)}
 
 	err := con.Find(searchQuery).All(&projectsM)
 	if err != nil {

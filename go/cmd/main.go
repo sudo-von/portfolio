@@ -30,7 +30,7 @@ func main() {
 	questionMongo := mongo.NewQuestionMongo(db)
 
 	// Services.
-	projectService := project.NewService(projectMongo)
+	projectService := project.NewService(projectMongo, userMongo)
 	ctfService := ctf.NewService(ctftMongo, userMongo)
 	userService := user.NewService(userMongo)
 	questionService := question.NewService(questionMongo, userMongo)

@@ -13,6 +13,7 @@ type ProjectList struct {
 
 type ProjectResponse struct {
 	ID        string   `json:"id"`
+	UserID    string   `json:"user_id"`
 	Title     string   `json:"title"`
 	ImageURL  string   `json:"image_url"`
 	TechStack []string `json:"tech_stack"`
@@ -29,6 +30,7 @@ func (pr *ProjectResponse) Render(w http.ResponseWriter, r *http.Request) error 
 func ToResponseProject(project *entity.Project) *ProjectResponse {
 	return &ProjectResponse{
 		ID:        project.ID,
+		UserID:    project.UserID,
 		Title:     project.Title,
 		ImageURL:  project.ImageURL,
 		TechStack: project.TechStack,

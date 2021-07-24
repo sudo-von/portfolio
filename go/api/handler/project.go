@@ -23,14 +23,15 @@ func NewProjectController(project project.Service) *ProjectController {
 // Routes for project.
 func (c *ProjectController) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/", c.List)
+	r.Get("/{username}", c.List)
 	return r
 }
 
 // List renders all the projects.
 func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 
-	list, total, err := c.ProjectService.GetProjects()
+	username := chi.URLParam(r, "username")
+	list, total, err := c.ProjectService.GetProjects(username)
 	if err != nil {
 		CheckError(err, w, r)
 	}
