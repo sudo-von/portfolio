@@ -8,8 +8,10 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "aos": "^3.0.0-beta.6",
     "axios": "^0.21.1",
+    "customize-cra": "^1.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.1",
+    "react-app-rewired": "^2.1.8",
     "react-dom": "^17.0.1",
     "react-graph-vis": "^1.0.7",
     "react-hook-form": "^7.6.5",
@@ -20,7 +22,9 @@
     "styled-components": "^5.2.1",
     "typeface-montserrat": "^1.1.13"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-module-resolver": "^4.1.0"
+  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
