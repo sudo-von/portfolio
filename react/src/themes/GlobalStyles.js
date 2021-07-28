@@ -6,7 +6,7 @@ export const GlobalStyles = createGlobalStyle`
     background: ${({ theme: { body } }) => body.background_color };
     color: ${({ theme: { text } }) => text.color };
     margin: 0;
-    font-family: 'Lato';
+    font-family: 'Roboto';
     transition: all 0.25s linear;
   }
 

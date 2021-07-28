@@ -1,10 +1,10 @@
 export const lightTheme = {
   body: {
-    background_color: '#F2F2F2',
+    background_color: '#F0F4FF',
   },
   text: {
     color: '#37474F',
-    highlighted_color: '#1f4068',
+    highlighted_color: '#0D0536',
   },
   toggler: {
     border_color: '#F2F2F2',
