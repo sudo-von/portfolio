@@ -9,6 +9,11 @@ import { ReactComponent as Github } from 'assets/github.svg';
 
 const icons = [
   { 
+    name: 'Linkedin',
+    href : 'https://www.linkedin.com/in/jes%C3%BAs-%C3%A1ngel-rodr%C3%ADguez-mart%C3%ADnez-84991a1b4/',
+    svg : Linkedin
+  },
+  { 
     name: 'Twitter',
     href : 'https://www.twitter.com/sudo_von',
     svg : Twitter
@@ -17,12 +22,7 @@ const icons = [
     name: 'Github',
     href : 'https://github.com/sudo-von',
     svg : Github
-  },
-  { 
-    name: 'Linkedin',
-    href : 'https://www.linkedin.com/in/jes%C3%BAs-%C3%A1ngel-rodr%C3%ADguez-mart%C3%ADnez-84991a1b4/',
-    svg : Linkedin
-  },
+  }
 ]
 
 const Icons = () =>

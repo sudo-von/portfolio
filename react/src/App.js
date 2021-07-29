@@ -1,28 +1,22 @@
-import { BrowserRouter, Switch, Route } from 'react-router-dom'
-/* Screens. */
-import Portfolio from './pages/Portfolio/'
+
 /* Styles. */
 import { ThemeProvider } from 'styled-components'
-import { GlobalStyles } from './themes/GlobalStyles'
-import { lightTheme, darkTheme } from './themes/Themes'
+import { GlobalStyles } from 'themes/GlobalStyles'
+import { lightTheme, darkTheme } from 'themes/Themes'
+/* Custom components. */
+import Router from './Router'
 /* Custom hooks. */
-import { useDarkMode } from './themes/useDarkMode'
+import { useDarkMode } from 'hooks/useDarkMode'
 
 const App = () => {
-  /* Theme hooks. */
+
   const [ theme, themeToggler ] = useDarkMode()
   const themeMode = theme === 'light' ? lightTheme : darkTheme
 
   return(
     <ThemeProvider theme={themeMode}>      
-        <GlobalStyles/>
-        <BrowserRouter>
-            <Switch>
-                <Route exact path='/'>
-                    <Portfolio theme={theme} themeToggler={themeToggler}/>
-                </Route>
-            </Switch>
-        </BrowserRouter>
+      <GlobalStyles/>
+      <Router theme={theme} themeToggler={themeToggler}/>
     </ThemeProvider>
   )
 }
