@@ -1,5 +1,6 @@
 /* Material ui. */
-import Grid from '@material-ui/core/Grid';
+import Grid from '@material-ui/core/Grid'
+import Hidden from '@material-ui/core/Hidden'
 /* Animations. */
 import Fade from 'react-reveal/Fade'
 /* Custom components. */
@@ -19,7 +20,9 @@ const Profile = () =>
         <Small>“La única forma de hacer un gran trabajo, es amar lo que haces”.</Small>
       </Grid>
       <Grid item md={6}>
-        <Image src='https://wallpapercave.com/wp/UoW5TET.jpg'/>
+        <Hidden only={['xs', 'sm']}>
+          <Image borderRadius={5} src='https://wallpapercave.com/wp/UoW5TET.jpg'/>
+        </Hidden>
       </Grid>
     </Grid>
   </Fade> 
