@@ -1,6 +1,8 @@
 import styled from 'styled-components'
 
-const Wrapper = styled.div` 
+const Wrapper = styled.div`
+  display: flex;
+  alignItems: center;
   svg{
     width: ${props => props.size ? props.size : '24'}px; 
     height: ${props => props.size ? props.size : '24'}px;
@@ -8,9 +10,9 @@ const Wrapper = styled.div`
   }
 `
 
-const Icon = ({ size, children }) =>
+const Icon = ({ size, svg }) =>
   <Wrapper size={size}>
-    {children}
+    {svg}
   </Wrapper>
 
 export default Icon
