@@ -1,43 +1,31 @@
-import React from 'react'
-/* Material-ui components. */
+/* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
-import HighlightedText from '../../../../components/HighlightedText/'
-import Container from './Container'
-import Card from './Card'
-import Hr from '../../../../components/Hr/'
-import Loader from '../../../../components/Loader/'
-/* Custom hooks. */
-import useProject from '../../../../hooks/useProject/'
+import H2 from 'components/H2/'
+import Bold from 'components/Bold/'
 
-const Projects = () => {
+const Projects = () => 
+    <Grid container style={styles.grid.container}>
+        <Grid item>
+            <H2>Proyectos</H2>
+            <p>Durante 3 años he desarrollado proyectos como desarrollador full stack <br/>
+            para diversas empresas con diferente giro de negocio. <br/>
+            Para lograr esto me he adaptado a diferentes tecnlogías para cumplir los <br/>
+            resultados esperados.</p>
+        </Grid>
+    </Grid>
 
-    const { projects, isLoading } = useProject()
-
-    return(
-        <Container>
-            { /* Top. */}
-            <Grid item xs={12}>
-                <HighlightedText>
-                    <h2>Proyectos empresariales</h2>
-                </HighlightedText>
-                <p>Durante el tiempo que he trabajado como desarrollador web<br/>
-                he desarrollado proyectos para diversas empresas con diferente giro de negocio.<br/>
-                Para lograr esto me he adaptado a diferentes tecnlogías para cumplir los resultados esperados.</p>
-                <Hr/>
-            </Grid>
-            { /* Bottom. */}
-            <Grid item xs={12} spacing={2} style={{marginTop: 2}} container>
-                {
-                    isLoading ? 
-                    <Loader>Cargando proyectos...</Loader> :
-                    projects.map((project) => 
-                        <Card data={project} key={project.id}/>
-                    )
-                }
-            </Grid>
-        </Container>
-    )
+const styles = {
+    grid : {
+        container : {
+            marginTop: 250,
+            marginBottom: 250,
+            backgroundColor: '#0D0536',
+            borderRadius: 15,
+            padding: 50,
+            color: 'white'
+        }
+    }
 }
 
 export default Projects
