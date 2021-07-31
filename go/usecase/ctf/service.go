@@ -3,6 +3,7 @@ package ctf
 import (
 	"fmt"
 
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 	"freelancer/portfolio/go/usecase/user"
 )
@@ -19,14 +20,14 @@ func NewService(ctfRepository CTFRepository, userRepository user.UserRepository)
 	}
 }
 
-func (s *Service) GetCTFS(username string) ([]entity.CTF, *int, error) {
+func (s *Service) GetCTFS(username string, filters presenter.CTFFilters) ([]entity.CTF, *int, error) {
 
 	user, err := s.userRepository.GetUserByUsername(username)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetUserByUsername: %w", err)
 	}
 
-	ctfs, total, err := s.ctfRepository.GetCTFS(user.ID)
+	ctfs, total, err := s.ctfRepository.GetCTFS(user.ID, filters)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetCTFS: %w", err)
 	}

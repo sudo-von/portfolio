@@ -28,7 +28,12 @@ func (c *CTFHandler) Routes() chi.Router {
 func (c *CTFHandler) List(w http.ResponseWriter, r *http.Request) {
 
 	username := chi.URLParam(r, "username")
-	list, total, err := c.CTFService.GetCTFS(username)
+	filters := presenter.CTFFilters{
+		Limit:  ParamToInt("limit", r.URL.Query()),
+		Offset: ParamToInt("offset", r.URL.Query()),
+	}
+
+	list, total, err := c.CTFService.GetCTFS(username, filters)
 	if err != nil {
 		CheckError(err, w, r)
 	}

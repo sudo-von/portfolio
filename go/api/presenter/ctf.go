@@ -6,6 +6,11 @@ import (
 	"freelancer/portfolio/go/entity"
 )
 
+type CTFFilters struct {
+	Limit  int
+	Offset int
+}
+
 type CTFList struct {
 	Total int           `json:"total"`
 	CTFS  []CTFResponse `json:"results"`
