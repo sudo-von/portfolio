@@ -25,6 +25,11 @@ export const lightTheme = {
   },
   icon: {
     fill: '#0D0536'
+  },
+  toggler: {
+    background_color: '#0D0536',
+    color: '#FFFFFF',
+    transform: 'translateY(100px)'
   }
 }
 
@@ -55,5 +60,10 @@ export const darkTheme = {
   },
   icon: {
     fill: '#FFFFFF'
+  },
+  toggler: {
+    background_color: '#FFFFFF',
+    color: '#0D0536',
+    transform: 'translateY(-100px)'
   }
 }

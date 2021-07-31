@@ -23,7 +23,7 @@ export default function RecipeReviewCard( { data : { title, image_url, tech_stac
       <CardContent>
         <Typography component="p">Tecnologías</Typography>
         { tech_stack.map((tech) => 
-          <Chip label={tech}/>
+          <Chip style={{margin: 2}} label={tech}/>
         )}
       </CardContent>
     </Card>

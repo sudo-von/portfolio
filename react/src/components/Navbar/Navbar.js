@@ -1,5 +1,6 @@
 /* Custom components. */
 import Menu from 'components/Menu/'
+import Toggler from 'components/Toggler/'
 import Icons from './Icons'
 /* Material ui components. */
 import AppBar from '@material-ui/core/AppBar'
@@ -10,6 +11,7 @@ const Navbar = () =>
     <Box display='flex' justifyContent='space-between' alignItems='center'>
       <Menu/>
       <Icons/>
+      <Toggler/>
     </Box>
   </AppBar>
 
