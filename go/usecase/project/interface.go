@@ -14,5 +14,5 @@ type ProjectRepository interface {
 }
 
 type UseCase interface {
-	GetProjects(username string) ([]entity.Project, *int, error)
+	GetProjects(username string, filters presenter.ProjectFilters) ([]entity.Project, *int, error)
 }
