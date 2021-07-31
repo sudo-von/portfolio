@@ -10,16 +10,16 @@ import (
 	"github.com/go-chi/render"
 )
 
-// Converts string to int.
-func ParamToInt(param string, val url.Values) *int {
-	if s := val.Get(param); s != "" {
-		i, err := strconv.Atoi(s)
+func ParamToInt(param string, url url.Values) int {
+	var value int
+	if s := url.Get(param); s != "" {
+		value, err := strconv.Atoi(s)
 		if err != nil {
-			return nil
+			return value
 		}
-		return &i
+		return value
 	}
-	return nil
+	return value
 }
 
 func CheckError(err error, w http.ResponseWriter, r *http.Request) {

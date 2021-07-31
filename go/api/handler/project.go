@@ -31,7 +31,12 @@ func (c *ProjectController) Routes() chi.Router {
 func (c *ProjectController) List(w http.ResponseWriter, r *http.Request) {
 
 	username := chi.URLParam(r, "username")
-	list, total, err := c.ProjectService.GetProjects(username)
+	filters := presenter.ProjectFilters{
+		Limit:  ParamToInt("limit", r.URL.Query()),
+		Offset: ParamToInt("offset", r.URL.Query()),
+	}
+
+	list, total, err := c.ProjectService.GetProjects(username, filters)
 	if err != nil {
 		CheckError(err, w, r)
 	}

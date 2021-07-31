@@ -2,6 +2,7 @@ package mongo
 
 import (
 	"errors"
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 
 	mgo "gopkg.in/mgo.v2"
@@ -38,7 +39,7 @@ func toApiProject(project projectModel) entity.Project {
 	}
 }
 
-func (r *ProjectMongo) GetProjects(userID string) ([]entity.Project, *int, error) {
+func (r *ProjectMongo) GetProjects(userID string, filters presenter.ProjectFilters) ([]entity.Project, *int, error) {
 
 	if !bson.IsObjectIdHex(userID) {
 		return nil, nil, errors.New("given user_id is not a valid hex")
@@ -51,7 +52,7 @@ func (r *ProjectMongo) GetProjects(userID string) ([]entity.Project, *int, error
 	var projectsM []projectModel
 	searchQuery := bson.M{"user_id": bson.ObjectIdHex(userID)}
 
-	err := con.Find(searchQuery).All(&projectsM)
+	err := con.Find(searchQuery).Limit(filters.Limit).Skip(filters.Offset).All(&projectsM)
 	if err != nil {
 		return nil, nil, err
 	}

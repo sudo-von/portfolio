@@ -6,6 +6,11 @@ import (
 	"freelancer/portfolio/go/entity"
 )
 
+type ProjectFilters struct {
+	Limit  int
+	Offset int
+}
+
 type ProjectList struct {
 	Total    int               `json:"total"`
 	Projects []ProjectResponse `bson:"results" json:"results"`

@@ -2,6 +2,7 @@ package project
 
 import (
 	"fmt"
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 	"freelancer/portfolio/go/usecase/user"
 )
@@ -18,14 +19,14 @@ func NewService(projectRepository ProjectRepository, userRepository user.UserRep
 	}
 }
 
-func (s *Service) GetProjects(username string) ([]entity.Project, *int, error) {
+func (s *Service) GetProjects(username string, filters presenter.ProjectFilters) ([]entity.Project, *int, error) {
 
 	user, err := s.userRepository.GetUserByUsername(username)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetUserByUsername: %w", err)
 	}
 
-	projects, total, err := s.projectRepository.GetProjects(user.ID)
+	projects, total, err := s.projectRepository.GetProjects(user.ID, filters)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetProjects: %w", err)
 	}

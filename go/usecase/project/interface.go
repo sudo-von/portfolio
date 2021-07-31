@@ -1,11 +1,12 @@
 package project
 
 import (
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 )
 
 type Reader interface {
-	GetProjects(userID string) ([]entity.Project, *int, error)
+	GetProjects(userID string, filters presenter.ProjectFilters) ([]entity.Project, *int, error)
 }
 
 type ProjectRepository interface {
