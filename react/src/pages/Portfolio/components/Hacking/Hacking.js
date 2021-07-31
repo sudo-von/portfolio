@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import Container from './Container'
-import Loader from '../../../../components/Loader/'
+import Loader from '../../../../components/Loader'
 import Card from './Card'
 import Description from './Description'  
 /* Custom hooks. */

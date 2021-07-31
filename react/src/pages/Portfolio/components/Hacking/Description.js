@@ -3,7 +3,7 @@ import React from 'react'
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import HighlightedText from '../../../../components/HighlightedText/'
-import Small from '../../../../components/Small/'
+import Small from '../../../../components/Small'
 import Hr from '../../../../components/Hr/'
 
 const Hacking = ( { githubURL }, ...props ) => {

@@ -1,4 +1,4 @@
-import { Fragment, useState } from 'react'
+import { Fragment } from 'react'
 /* Material-ui. */
 import Button from '@material-ui/core/Button'
 /* Custom components. */

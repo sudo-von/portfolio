@@ -2,46 +2,58 @@ export const lightTheme = {
   body: {
     background_color: '#F0F4FF',
   },
-  text: {
-    color: '#37474F',
-    highlighted_color: '#0D0536',
+  h1: {
+    color: '#0D0536',
   },
-  toggler: {
-    border_color: '#F2F2F2',
-    background_color: '#0e142f',
-    color: '#FFF',
+  h2: {
+    color: '#0D0536',
   },
-  navbar: {
-    background_color: '#F2F2F2'
+  h5: {
+    color: '#000000',
   },
-  card: {
-    background_color: 'white'
+  a: {
+    color: '#0D0536',
   },
-  hr: {
-    border_color: '#1f4068'
+  p: {
+    color: '#000000'
+  },
+  small: {
+    color: '#727272'
+  },
+  bold: {
+    color: '#0D0536'
+  },
+  icon: {
+    fill: '#0D0536'
   }
 }
 
 export const darkTheme = {
   body: {
-    background_color: '#0e142f',
+    background_color: '#0E102F',
   },
-  text: {
-    color: '#FFF',
-    highlighted_color: '#3c7bff'
+  h1: {
+    color: '#77A7FF',
   },
-  toggler: {
-    border_color: '#F2F2F2',
-    background_color: '#FFF',
-    color: '#0e142f',
+  h2: {
+    color: '#77A7FF',
   },
-  navbar: {
-    background_color: '#0e142f'
+  h5: {
+    color: '#FFFFFF',
   },
-  card: {
-    background_color: '#102247'
+  a: {
+    color: '#77A7FF'
   },
-  hr: {
-    border_color: '#3c7bff'
+  p: {
+    color: '#FFFFFF'
+  },
+  small: {
+    color: '#AEAEAE',
+  },
+  bold: {
+    color: '#77A7FF'
+  },
+  icon: {
+    fill: '#FFFFFF'
   }
 }

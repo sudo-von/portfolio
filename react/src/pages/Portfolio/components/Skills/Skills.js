@@ -4,7 +4,7 @@ import Container from './Container'
 import Graphs from './Graphs'
 import Hr from '../../../../components/Hr/'
 import HighlightedText from '../../../../components/HighlightedText/'
-import Small from '../../../../components/Small/'
+import Small from '../../../../components/Small'
 
 const Skills = ({ linkedin }, ...props ) => {
     const href = linkedin ? linkedin : 'https://www.linkedin.com/in/jes%C3%BAs-%C3%A1ngel-rodr%C3%ADguez-mart%C3%ADnez-84991a1b4/'

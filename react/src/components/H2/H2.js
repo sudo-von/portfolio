@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const H1 = styled.h1`
-  color: ${({ theme: { text: { color } } }) => color};
+  color: ${({ theme: { h2: { color } } }) => color};
   font-size: ${props => props.fontSize ? props.fontSize  : '48'}px;
   font-weight: ${props => props.bold ? 'bold' : 'normal'};
   padding: 0;

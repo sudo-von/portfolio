@@ -3,8 +3,8 @@ import React from 'react'
 import Container from '@material-ui/core/Container'
 /* Custom components. */
 import Navbar from 'components/Navbar/'
-import Profile from './Components/Profile/'
-import Projects from './Components/Projects/'
+import Profile from './components/Profile'
+import Projects from './components/Projects'
 
 const Portfolio = () => 
   <Container>
