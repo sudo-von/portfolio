@@ -1,6 +1,6 @@
 /* Custom components. */
 import Router from './Router'
-import Theme from './Theme'
+import Theme from './themes/Theme'
 /* Contexts. */
 import { ThemeStore } from 'contexts/ThemeContext'
 
