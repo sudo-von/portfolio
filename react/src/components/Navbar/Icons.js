@@ -36,7 +36,7 @@ const Icons = () =>
 
 const styles = {
   a: {
-    marginLeft: 20
+    marginLeft: 10
   }
 }
 

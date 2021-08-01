@@ -23,7 +23,7 @@ const Button = styled.button`
   position: relative;
   width: 5.5rem;
   height: 2.5rem;
-  margin-left: 20px;
+  margin-left: 10px;
   
     svg {
       height: auto;

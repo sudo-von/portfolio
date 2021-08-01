@@ -12,7 +12,7 @@ import Image from 'components/Image/'
 
 const Profile = () =>
   <Fade left>
-    <Grid container direction="row" alignItems="center">
+    <Grid container direction="row" alignItems="center" style={styles.grid}>
       <Grid item md={6}>
         <H1><Bold>Jesús Rodríguez</Bold></H1>
         <H5><Bold>Desarrollador web</Bold> y de <Bold>aplicaciones móviles</Bold></H5>
@@ -21,10 +21,17 @@ const Profile = () =>
       </Grid>
       <Grid item md={6}>
         <Hidden only={['xs', 'sm']}>
-          <Image borderRadius={5} src='https://wallpapercave.com/wp/UoW5TET.jpg'/>
+          <Image borderRadius={5} src='https://images8.alphacoders.com/101/thumb-1920-1014794.jpg'/>
         </Hidden>
       </Grid>
     </Grid>
   </Fade> 
+
+const styles = {
+  grid: {
+    marginTop: 100,
+    marginBottom: 100
+  }
+}
 
 export default Profile

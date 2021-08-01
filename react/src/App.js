@@ -1,14 +1,23 @@
 /* Custom components. */
-import Router from './Router'
 import Theme from './themes/Theme'
 /* Contexts. */
 import { ThemeStore } from 'contexts/ThemeContext'
+/* React-router-dom. */
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+/* Screens. */
+import Portfolio from './pages/Portfolio/'
 
 const App = () => {
   return(
     <ThemeStore>
       <Theme>
-        <Router/>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path='/'>
+              <Portfolio/>
+            </Route>
+          </Switch>
+        </BrowserRouter>
       </Theme>
     </ThemeStore>
   )
