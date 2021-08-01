@@ -1,4 +1,3 @@
-import React from 'react'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
 /* Custom components. */

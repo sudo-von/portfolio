@@ -7,7 +7,6 @@ export const GlobalStyles = createGlobalStyle`
     color: ${({ theme : { p: { color } } }) => color };
     margin: 0;
     font-family: 'Roboto';
-    transition: all 0.25s linear;
   }
 
   a{

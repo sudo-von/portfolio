@@ -1,4 +1,4 @@
-import { createContext } from 'react';
+import { createContext } from 'react'
 /* Custom hooks. */
 import { useTheme } from 'hooks/useTheme'
 /* Themes. */

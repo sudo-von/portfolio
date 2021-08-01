@@ -26,7 +26,7 @@ const icons = [
 ]
 
 const Icons = () =>
-  <Box display='flex'>
+  <Box display='flex' alignItems='center'>
     { icons.map(icon =>
       <a href={icon.href} target='_blank' style={styles.a}>
         <Icon size={33} svg={<icon.svg/>}/>
@@ -36,7 +36,7 @@ const Icons = () =>
 
 const styles = {
   a: {
-    margin: 15
+    marginLeft: 20
   }
 }
 
