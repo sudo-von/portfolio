@@ -5,7 +5,7 @@ import Button from '@material-ui/core/Button'
 import Icon from 'components/Icon'
 import Drawer from './Drawer'
 /* Assets. */
-import { ReactComponent as MenuSvg } from 'assets/menu.svg'
+import { ReactComponent as MenuSvg } from 'assets/svg/menu.svg'
 /* Hooks. */
 import useToggler from 'hooks/useToggler'
 

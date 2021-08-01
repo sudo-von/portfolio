@@ -3,9 +3,9 @@ import Icon from 'components/Icon/'
 /* Material-ui. */
 import Box from '@material-ui/core/Box'
 /* Assets. */
-import { ReactComponent as Linkedin } from 'assets/linkedin.svg';
-import { ReactComponent as Twitter } from 'assets/twitter.svg';
-import { ReactComponent as Github } from 'assets/github.svg';
+import { ReactComponent as Linkedin } from 'assets/svg/linkedin.svg';
+import { ReactComponent as Twitter } from 'assets/svg/twitter.svg';
+import { ReactComponent as Github } from 'assets/svg/github.svg';
 
 const icons = [
   { 

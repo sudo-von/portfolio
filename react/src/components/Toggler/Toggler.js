@@ -6,8 +6,8 @@ import { ThemeContext } from 'contexts/ThemeContext'
 /* Themes. */
 import { lightTheme, darkTheme } from 'themes/Themes'
 /* Assets. */
-import { ReactComponent as Sun } from 'assets/sun.svg';
-import { ReactComponent as Moon } from 'assets/moon.svg';
+import { ReactComponent as Sun } from 'assets/svg/sun.svg';
+import { ReactComponent as Moon } from 'assets/svg/moon.svg';
 
 const Button = styled.button`
   background-color: ${({ theme: { toggler: { background_color } } }) => background_color };
