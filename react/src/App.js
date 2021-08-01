@@ -1,24 +1,16 @@
-
-/* Styled-components. */
-import { ThemeProvider } from 'styled-components'
-/* Themes. */
-import { GlobalStyles } from 'themes/GlobalStyles'
-import { lightTheme, darkTheme } from 'themes/Themes'
 /* Custom components. */
 import Router from './Router'
-/* Custom hooks. */
-import { useTheme } from 'hooks/useTheme'
+import Theme from './Theme'
+/* Contexts. */
+import { ThemeStore } from 'contexts/ThemeContext'
 
 const App = () => {
-
-  const { theme } = useTheme()
-  const themeMode = theme == 'light' ? darkTheme : lightTheme 
-
   return(
-    <ThemeProvider theme={themeMode}>
-      <GlobalStyles/>
-      <Router/>
-    </ThemeProvider>
+    <ThemeStore>
+      <Theme>
+        <Router/>
+      </Theme>
+    </ThemeStore>
   )
 }
 

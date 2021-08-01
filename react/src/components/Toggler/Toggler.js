@@ -1,11 +1,10 @@
+import { useContext } from 'react'
 /* Styled-components. */
 import styled from 'styled-components'
-/* Custom hoooks. */
-import { useTheme } from 'hooks/useTheme'
+/* Contexts. */
+import { ThemeContext } from 'contexts/ThemeContext'
 /* Themes. */
 import { lightTheme, darkTheme } from 'themes/Themes'
-/* Custom components. */
-import Icon from 'components/Icon/'
 /* Assets. */
 import { ReactComponent as Sun } from 'assets/sun.svg';
 import { ReactComponent as Moon } from 'assets/moon.svg';
@@ -27,7 +26,7 @@ const Button = styled.button`
 
     svg {
       height: auto;
-      transition: all .5s linear;
+      transition: all .3s linear;
       
       // sun icon
       &:first-child {
@@ -45,8 +44,7 @@ const Button = styled.button`
 
 const Toggler = () => {
 
-  const { theme, toggleTheme } = useTheme()
-  const themeMode = theme == 'light' ? darkTheme : lightTheme 
+  const { themeMode, toggleTheme } = useContext(ThemeContext)
 
   return (
     <Button theme={themeMode} onClick={toggleTheme}>
