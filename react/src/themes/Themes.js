@@ -4,14 +4,14 @@ export const lightTheme = {
     secondary: '#0D0536',
     accent: '#727272',
   },
-  background: '#F0F4FF'
+  background: '#EAEDF5'
 }
 
 export const darkTheme = {
   colors: {
     primary: '#FFFFFF',
-    secondary: '#77A7FF',
+    secondary: '#3CC773',
     accent: '#AEAEAE',
   },
-  background: '#0E102F'
+  background: '#182B3C'
 }

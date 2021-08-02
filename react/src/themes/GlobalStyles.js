@@ -10,7 +10,7 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a{
-    color: ${({ theme : { colors: { primary } } }) => primary };
+    color: ${({ theme : { colors: { secondary } } }) => secondary };
   }
   
 `

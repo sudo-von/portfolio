@@ -29,7 +29,7 @@ const styles = {
     grid : {
         container : {
             marginTop: 150,
-            marginBottom: 150,
+            marginBottom: 300,
         }
     }
 }
