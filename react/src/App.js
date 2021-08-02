@@ -6,6 +6,7 @@ import { ThemeStore } from 'contexts/ThemeContext'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 /* Screens. */
 import Portfolio from './pages/Portfolio/'
+import Query from './pages/Query/'
 
 const App = () => {
   return(
@@ -15,6 +16,9 @@ const App = () => {
           <Switch>
             <Route exact path='/'>
               <Portfolio/>
+            </Route>
+            <Route exact path='/query'>
+              <Query/>
             </Route>
           </Switch>
         </BrowserRouter>
