@@ -10,7 +10,7 @@ const Repositories = () => {
     const limit = 4
 
     useEffect(() => {
-        fetch(`http://localhost:3000/ctfs/von?limit=${limit}&offset=${(currentPage*limit)}`)
+        fetch(`http://localhost:3000/projects/von?limit=${limit}&offset=${(currentPage*limit)}`)
             .then(res => res.json())
             .then(res => setCtfs(res))
     }, [currentPage])

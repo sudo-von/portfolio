@@ -3,51 +3,31 @@ import { useState, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import H2 from 'components/H2/'
-import Card from './components/Card'
+import Bold from 'components/Bold/'
+import Repositories from './components/Repositories'
 
-const Experiencie = () => {
-
-    const [ projects, setProjects ] = useState([])
-    useEffect(() => {
-        fetch('http://localhost:3000/projects/von')
-            .then(res => res.json())
-            .then(res => setProjects(res.results))
-    }, [])
-
-    return(
-        <Grid container style={styles.grid.container}>
-            <Grid item>
-                <H2 style={styles.h2}>Proyectos</H2>
-                <p>Durante 3 años he desarrollado proyectos como desarrollador full stack <br/>
-                para diversas empresas con diferente giro de negocio. <br/>
-                Para lograr esto me he adaptado a diferentes tecnlogías para cumplir los <br/>
-                resultados esperados.</p>
-                <Grid container spacing={2}>
-                    { projects.map((project) => 
-                        <Grid item sm={12} xs={6} md={4}>
-                            <Card data={project}/>
-                        </Grid>
-                    )}
-                </Grid>
-            </Grid>
+const Experiencie = () =>
+    <Grid container alignItems='center' style={styles.grid.container}>
+        <Grid item xs={12} sm={12} md={5}>
+            <H2><Bold>Experiencia</Bold></H2>
+            <p>Durante 3 años he desarrollado proyectos<br/>
+            como desarrollador full stack para diversas empresas<br/>
+            con diferente giro de negocio.
+            </p>
+            <p>Para lograr esto me he adaptado a diferentes tecnlogías<br/>
+            para cumplir los resultados esperados.</p>
         </Grid>
-    )
-}
+        <Grid xs={12} sm={12} md={7}>
+            <Repositories/>
+        </Grid>
+    </Grid>
 
 const styles = {
     grid : {
         container : {
-            marginTop: 370,
-            marginBottom: 370,
-            backgroundColor: '#0D0536',
-            borderRadius: 15,
-            padding: 50,
-            color: 'white'
+            marginTop: 350,
+            marginBottom: 350
         }
-    },
-    h2: {
-        color: 'white',
-        fontWeight: 'bold'
     }
 }
 

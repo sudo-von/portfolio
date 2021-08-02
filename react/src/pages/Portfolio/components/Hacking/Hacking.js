@@ -6,7 +6,7 @@ import Bold from 'components/Bold/'
 import Repositories from './components/Repositories'
 
 const Hacking = () =>
-    <Grid container style={styles.grid.container}>
+    <Grid container alignItems='center' style={styles.grid.container}>
         <Grid item xs={12} sm={12} md={5}>
             <H2><Bold>Hacking ético</Bold></H2>
             <p>Durante tres años he participado en múltiples<br/>
