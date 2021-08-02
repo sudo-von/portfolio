@@ -9,12 +9,12 @@ const Hacking = () =>
     <Grid container alignItems='center' style={styles.grid.container}>
         <Grid item xs={12} sm={12} md={5}>
             <H2><Bold>Hacking ético</Bold></H2>
-            <p>Durante tres años he participado en múltiples<br/>
+            <p>Durante 3 años he participado en múltiples<br/>
             eventos de seguridad informática a nivel nacional<br/>
-            obteniendo los primeros lugares representando a mi<br/>
-            estado al vulnerar sistemas en ambientes<br/>
-            controlados teniendo también una participación en<br/>
-            la televisión nacional en <a href='' target='_blank'>Tele Saltillo</a>.</p>
+            obteniendo los primeros lugares representando<br/>
+            a mi estado al vulnerar sistemas en ambientes<br/>
+            controlados teniendo también una participación<br/>
+            en la televisión nacional en <a href='http://facebook.com/TeleSaltillo/videos/destacan-alumnos-de-sistemas-de-la-uadec-en-concurso-nacional-como-hackers-%C3%A9tico/701925957401415/' target='_blank'>Tele Saltillo</a>.</p>
             <p>Semanalmente participo en multiples eventos en<br/>
             línea compitiendo contra cientos de equipos,<br/>
             además, redacto los pasos a seguir para resolver<br/>
