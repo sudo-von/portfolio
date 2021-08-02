@@ -21,8 +21,8 @@ export default function RecipeReviewCard( { data : { title, image_url, repositor
         title={<Bold>{title}</Bold>}
       />
       <CardContent>
-        <Typography component="p">Tecnologías</Typography>
-        { categories && categories.map((tech) => 
+        <Typography component="p">Categorías</Typography>
+        { categories.map((tech) => 
           <Chip style={{margin: 2}} label={tech}/>
         )}
       </CardContent>
