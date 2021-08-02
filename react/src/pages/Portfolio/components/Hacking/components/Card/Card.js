@@ -2,30 +2,45 @@
 import Bold from 'components/Bold/'
 import Image from 'components/Image/'
 /* Material-ui.*/
-import Card from '@material-ui/core/Card';
+import { Card as MaterialCard } from '@material-ui/core';
 import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
-export default function RecipeReviewCard( { data : { title, image_url, repository_url, categories } }) {
-  return (
-    <Card>
+const Card = ( { data : { title, repository_url, image_url, categories } }) =>
+  <a style={styles.a} href={repository_url} target='_blank'>
+    <MaterialCard>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe">
+          <Avatar style={styles.avatar}>
             <Image src={image_url}/>
           </Avatar>
         }
-        title={<Bold>{title}</Bold>}
+        title={
+          <Bold>{title}</Bold>
+        }
       />
       <CardContent>
-        <Typography component="p">Categorías</Typography>
-        { categories.map((tech) => 
-          <Chip style={{margin: 2}} label={tech}/>
+        <Typography gutterBottom>Categorías</Typography>
+        { categories.map(category => 
+          <Chip style={styles.chip} label={category}/>
         )}
       </CardContent>
-    </Card>
-  )
+    </MaterialCard>
+  </a>
+
+const styles = {
+  a : {
+    textDecoration: 'none'
+  },
+  avatar : {
+    backgroundColor: 'white'
+  },
+  chip: {
+    margin: 2
+  }
 }
+
+export default Card

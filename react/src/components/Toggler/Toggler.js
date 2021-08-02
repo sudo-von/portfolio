@@ -11,7 +11,7 @@ const Toggler = () => {
 
   const { themeMode, toggleTheme } = useContext(ThemeContext)
   return (
-    <Button theme={themeMode} onClick={toggleTheme}>
+    <Button theme={themeMode} onClick={toggleTheme} title='Tema'>
       <Sun/>
       <Moon/>
     </Button>
