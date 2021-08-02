@@ -3,15 +3,15 @@ import Container from '@material-ui/core/Container'
 /* Custom components. */
 import Navbar from 'components/Navbar/'
 import Profile from './components/Profile'
-import Projects from './components/Projects'
-import Ctfs from './components/Ctfs'
+import Experiencie from './components/Experiencie'
+import Hacking from './components/Hacking'
 
 const Portfolio = () => 
   <Container>
     <Navbar/>
     <Profile/>
-    <Projects/>
-    <Ctfs/>
+    <Experiencie/>
+    <Hacking/>
   </Container>
 
 export default Portfolio

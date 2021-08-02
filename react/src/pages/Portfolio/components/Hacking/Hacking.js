@@ -2,22 +2,25 @@ import { useState, useEffect } from 'react'
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
+import Carousel  from 'components/Carousel'
 import H2 from 'components/H2/'
 import Bold from 'components/Bold/'
-import Card from './components/Card/'
+import Card from './components/Card'
 
-const Ctfs = () => {
+const Hacking = () => {
 
     const [ ctfs, setCtfs ] = useState([])
+    const [ currentPage, setCurrentPage ] = useState(0)
+
     useEffect(() => {
-        fetch('http://localhost:3000/ctfs/von?limit=4')
+        fetch(`http://localhost:3000/ctfs/von?limit=4&offset=${(currentPage*4)}`)
             .then(res => res.json())
-            .then(res => setCtfs(res.results))
-    }, [])
+            .then(res => setCtfs(res))
+    }, [currentPage])
 
     return(
         <Grid container style={styles.grid.container}>
-            <Grid item sm={12} xs={6} md={5}>
+            <Grid item xs={12} sm={12} md={5}>
                 <H2 style={styles.h2}><Bold>Hacking ético</Bold></H2>
                 <p>Durante tres años he participado en múltiples<br/>
                 eventos de seguridad informática a nivel nacional<br/>
@@ -31,14 +34,16 @@ const Ctfs = () => {
                 además, redacto los pasos a seguir para resolver<br/>
                 este tipo de desafíos y así contribuir a la comunidad.</p>
             </Grid>
-            <Grid item sm={12} xs={6} md={7}>
-                <Grid container spacing={3}>
-                    { ctfs.map((ctf) => 
-                        <Grid item sm={12} xs={6} md={6}>
-                            <Card data={ctf}/>
-                        </Grid>
+            <Grid item xs={12} sm={12} md={7}>
+                <Carousel 
+                    currentPage={currentPage}
+                    onChange={(a) => setCurrentPage(a)}
+                    autoPlay={false}
+                    numberPages={ctfs.total/4}>
+                    { ctfs.results && ctfs.results.map((ctf) => 
+                        <Card data={ctf}/>
                     )}
-                </Grid>
+                </Carousel>
             </Grid>
         </Grid>
     )
@@ -49,11 +54,8 @@ const styles = {
         container : {
             marginTop: 370,
             marginBottom: 370,
-            borderRadius: 15,
-            padding: 50,
-            color: 'black'
         }
     }
 }
 
-export default Ctfs
+export default Hacking

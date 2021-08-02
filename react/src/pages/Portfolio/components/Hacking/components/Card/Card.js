@@ -22,7 +22,7 @@ export default function RecipeReviewCard( { data : { title, image_url, repositor
       />
       <CardContent>
         <Typography component="p">Tecnologías</Typography>
-        { categories.map((tech) => 
+        { categories && categories.map((tech) => 
           <Chip style={{margin: 2}} label={tech}/>
         )}
       </CardContent>

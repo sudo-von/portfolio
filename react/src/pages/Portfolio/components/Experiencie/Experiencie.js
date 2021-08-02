@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react'
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import H2 from 'components/H2/'
-import Card from './components/Card/'
+import Card from './components/Card'
 
-const Projects = () => {
+const Experiencie = () => {
 
     const [ projects, setProjects ] = useState([])
     useEffect(() => {
@@ -51,4 +51,4 @@ const styles = {
     }
 }
 
-export default Projects
+export default Experiencie
