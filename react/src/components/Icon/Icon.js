@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   svg{
     width: ${props => props.size ? props.size : '24'}px; 
     height: ${props => props.size ? props.size : '24'}px;
-    fill: ${({ theme: { icon: { fill } } }) => fill };
+    fill: ${({ theme : { colors : { secondary } } }) => secondary };
   }
 `
 

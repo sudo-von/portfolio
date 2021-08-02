@@ -12,8 +12,8 @@ const Theme = ({ children }) => {
 
     return (
         <ThemeProvider theme={themeMode}>
-        <GlobalStyles/>
-        {children}
+          <GlobalStyles/>
+          {children}
         </ThemeProvider>
   )
 }

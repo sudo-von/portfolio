@@ -10,7 +10,7 @@ import { ReactComponent as Sun } from 'assets/svg/sun.svg';
 import { ReactComponent as Moon } from 'assets/svg/moon.svg';
 
 const Button = styled.button`
-  background-color: ${({ theme: { toggler: { background_color } } }) => background_color };
+  background-color: ${({ theme : { background } }) => background };
   border: 0;
   border-radius: 30px;
   cursor: pointer;
@@ -32,13 +32,13 @@ const Button = styled.button`
       // sun icon
       &:first-child {
         transform: ${({ theme }) => theme == lightTheme ? 'translateY(2px)' : 'translateY(100px)'};
-        fill: ${({ theme: { toggler: { color } } }) => color };
+        fill: ${({ theme: { colors: { secondary } } }) => secondary };
       }
       
       // moon icon
       &:nth-child(2) {
         transform: ${({ theme }) => theme == lightTheme ? 'translateY(-100px)' : 'translateY(2px)'};
-        fill: ${({ theme: { toggler: { color } } }) => color };
+        fill: ${({ theme: { colors: { secondary } } }) => secondary };
       }
   }
 `

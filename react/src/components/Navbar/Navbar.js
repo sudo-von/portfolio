@@ -15,7 +15,7 @@ const Navbar = () => {
 
   const styles = {
     appBar : {
-      backgroundColor : theme.body.background_color,
+      backgroundColor : theme.background,
       boxShadow : 'none',
       paddingTop : 15,
       paddingBottom: 15

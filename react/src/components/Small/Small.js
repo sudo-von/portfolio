@@ -1,7 +1,7 @@
 import styled from 'styled-components'
 
 const Small = styled.small`
-  color: ${({ theme: { small: { color } }}) => color };
+  color: ${({ theme : { colors : { accent } }}) => accent };
 `
 
 export default Small
