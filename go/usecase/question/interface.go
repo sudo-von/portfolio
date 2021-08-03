@@ -6,11 +6,13 @@ import (
 )
 
 type Reader interface {
+	GetQuestionByID(questionID string) (*entity.Question, error)
 	GetQuestionsByUserID(userID string, filters presenter.QuestionFilters) ([]entity.Question, *int, error)
 }
 
 type Writer interface {
 	CreateQuestion(entity.QuestionPayload) error
+	UpdateQuestion(entity.Question) error
 }
 
 type QuestionRepository interface {

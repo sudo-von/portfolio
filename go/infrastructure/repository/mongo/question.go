@@ -28,6 +28,44 @@ type questionPayloadModel struct {
 	Reaction     reactionPayloadModel `bson:"reactions"`
 }
 
+func toQuestionModel(question entity.Question) questionModel {
+
+	var questionID bson.ObjectId
+	if question.ID != "" {
+		questionID = bson.ObjectIdHex(question.ID)
+	} else {
+		questionID = bson.NewObjectId()
+	}
+
+	var userID bson.ObjectId
+	if question.UserID != "" {
+		userID = bson.ObjectIdHex(question.UserID)
+	} else {
+		userID = bson.NewObjectId()
+	}
+
+	answer := answerModel{
+		Answer:       question.Answer.Answer,
+		CreationDate: question.Answer.CreationDate,
+	}
+
+	reaction := reactionModel{
+		Happy: question.Reaction.Happy,
+		Cool:  question.Reaction.Cool,
+		Sad:   question.Reaction.Sad,
+		Mad:   question.Reaction.Mad,
+	}
+
+	return questionModel{
+		ID:           questionID,
+		UserID:       userID,
+		Question:     question.Question,
+		CreationDate: question.CreationDate,
+		Answer:       answer,
+		Reaction:     reaction,
+	}
+}
+
 func toQuestionPayloadModel(question entity.QuestionPayload) questionPayloadModel {
 
 	var questionID bson.ObjectId
@@ -93,6 +131,32 @@ func NewQuestionMongo(repository *Repository) *QuestionMongo {
 	}
 }
 
+func (r *QuestionMongo) GetQuestionByID(questionID string) (*entity.Question, error) {
+
+	if !bson.IsObjectIdHex(questionID) {
+		return nil, errors.New("given question_id is not a valid hex")
+	}
+
+	session := r.Session.Copy()
+	defer session.Close()
+	con := session.DB(r.DatabaseName).C("questions")
+
+	var questionM questionModel
+	searchQuery := bson.M{
+		"answer": bson.M{"$exists": true},
+		"_id":    bson.ObjectIdHex(questionID),
+	}
+
+	err := con.Find(searchQuery).One(&questionM)
+	if err != nil {
+		return nil, err
+	}
+	question := toEntityQuestion(questionM)
+
+	return &question, nil
+
+}
+
 func (r *QuestionMongo) GetQuestionsByUserID(userID string, filters presenter.QuestionFilters) ([]entity.Question, *int, error) {
 
 	if !bson.IsObjectIdHex(userID) {
@@ -135,6 +199,25 @@ func (r *QuestionMongo) CreateQuestion(question entity.QuestionPayload) error {
 
 	questionM := toQuestionPayloadModel(question)
 	err := con.Insert(&questionM)
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (r *QuestionMongo) UpdateQuestion(question entity.Question) error {
+
+	session := r.Session.Copy()
+	defer session.Close()
+	con := session.DB(r.DatabaseName).C("questions")
+
+	questionM := toQuestionModel(question)
+	searchQuery := bson.M{
+		"_id": questionM.ID,
+	}
+
+	err := con.Update(searchQuery, &questionM)
 	if err != nil {
 		return err
 	}

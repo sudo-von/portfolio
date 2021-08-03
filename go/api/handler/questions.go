@@ -24,8 +24,9 @@ func NewQuestionController(Question question.Service) *QuestionController {
 
 func (c *QuestionController) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/{username}", c.List)
-	r.Post("/{username}", c.Create)
+	r.Get("/username/{username}", c.List)
+	r.Post("/username/{username}", c.Create)
+	r.Patch("/{id}/reaction/{reaction-id}", c.UpdateReaction)
 	return r
 }
 
@@ -75,6 +76,21 @@ func (c *QuestionController) Create(w http.ResponseWriter, r *http.Request) {
 	}
 
 	err = c.QuestionService.CreateQuestion(newQuestion)
+	if err != nil {
+		CheckError(err, w, r)
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	render.Status(r, http.StatusOK)
+}
+
+// UpdateReaction updates a reaction given the question id.
+func (c *QuestionController) UpdateReaction(w http.ResponseWriter, r *http.Request) {
+
+	questionID := chi.URLParam(r, "id")
+	reactionID := chi.URLParam(r, "reaction-id")
+
+	err := c.QuestionService.UpdateReaction(questionID, reactionID)
 	if err != nil {
 		CheckError(err, w, r)
 	}

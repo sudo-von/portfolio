@@ -1,6 +1,7 @@
 package question
 
 import (
+	"errors"
 	"fmt"
 
 	"freelancer/portfolio/go/api/presenter"
@@ -48,4 +49,41 @@ func (s *Service) CreateQuestion(question entity.QuestionPayload) error {
 		return fmt.Errorf("CreateQuestion: %w", err)
 	}
 	return nil
+}
+
+func (s *Service) UpdateReaction(questionID, reactionID string) error {
+
+	validReaction := false
+	for _, r := range presenter.Reactions {
+		if r == reactionID {
+			validReaction = true
+		}
+	}
+	if !validReaction {
+		return errors.New("not a valid reaction")
+	}
+
+	question, err := s.questionRepository.GetQuestionByID(questionID)
+	if err != nil {
+		return fmt.Errorf("GetQuestionByID: %w", err)
+	}
+
+	switch reactionID {
+	case "happy":
+		question.Reaction.Happy += 1
+	case "cool":
+		question.Reaction.Cool += 1
+	case "sad":
+		question.Reaction.Sad += 1
+	case "mad":
+		question.Reaction.Mad += 1
+	}
+
+	err = s.questionRepository.UpdateQuestion(*question)
+	if err != nil {
+		return fmt.Errorf("UpdateQuestion: %w", err)
+	}
+
+	return nil
+
 }
