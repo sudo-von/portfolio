@@ -1,6 +1,6 @@
 package entity
 
-type Reactions struct {
+type Reaction struct {
 	Happy int
 	Cool  int
 	Sad   int

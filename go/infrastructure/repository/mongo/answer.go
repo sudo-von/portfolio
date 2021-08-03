@@ -3,6 +3,6 @@ package mongo
 import "time"
 
 type answerModel struct {
-	Message    string    `bson:"message"`
-	AnswerDate time.Time `bson:"answer_date"`
+	Answer       string    `bson:"answer"`
+	CreationDate time.Time `bson:"creation_date"`
 }

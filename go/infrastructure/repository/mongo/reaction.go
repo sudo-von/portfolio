@@ -1,13 +1,13 @@
 package mongo
 
-type reactionsModel struct {
+type reactionModel struct {
 	Happy int `bson:"happy"`
 	Cool  int `bson:"cool"`
 	Sad   int `bson:"sad"`
 	Mad   int `bson:"mad"`
 }
 
-type reactionsPayloadModel struct {
+type reactionPayloadModel struct {
 	Happy int `bson:"happy"`
 	Cool  int `bson:"cool"`
 	Sad   int `bson:"sad"`
