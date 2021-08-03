@@ -35,7 +35,7 @@ const styles = {
     grid : {
         container : {
             marginTop: 50,
-            marginBottom: 200
+            marginBottom: 100
         }
     }
 }
