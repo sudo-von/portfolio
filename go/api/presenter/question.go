@@ -13,16 +13,16 @@ type QuestionList struct {
 }
 
 type QuestionResponse struct {
-	ID           string  `json:"id"`
-	UserID       string  `json:"user_id"`
-	Message      string  `json:"message"`
-	QuestionDate string  `json:"question_date"`
-	Answer       *Answer `json:"answer"`
+	ID           string    `json:"id"`
+	UserID       string    `json:"user_id"`
+	Message      string    `json:"message"`
+	QuestionDate string    `json:"question_date"`
+	Answer       *Answer   `json:"answer"`
+	Reactions    Reactions `json:"reactions"`
 }
 
 type QuestionPayload struct {
-	Username string `json:"username"`
-	Message  string `json:"message"`
+	Message string `json:"message"`
 }
 
 func (ql *QuestionList) Render(w http.ResponseWriter, r *http.Request) error {

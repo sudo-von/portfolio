@@ -11,26 +11,23 @@ import (
 )
 
 type questionModel struct {
-	ID           bson.ObjectId `bson:"_id"`
-	UserID       bson.ObjectId `bson:"user_id"`
-	Message      string        `bson:"message"`
-	QuestionDate time.Time     `bson:"question_date"`
-	Answer       answerModel   `bson:"answer"`
+	ID           bson.ObjectId  `bson:"_id"`
+	UserID       bson.ObjectId  `bson:"user_id"`
+	Message      string         `bson:"message"`
+	QuestionDate time.Time      `bson:"question_date"`
+	Answer       answerModel    `bson:"answer"`
+	Reactions    reactionsModel `bson:"reactions"`
 }
 
-type answerModel struct {
-	Message    string    `bson:"message"`
-	AnswerDate time.Time `bson:"answer_date"`
+type questionPayloadModel struct {
+	ID           bson.ObjectId         `bson:"_id"`
+	UserID       bson.ObjectId         `bson:"user_id"`
+	Message      string                `bson:"message"`
+	QuestionDate time.Time             `bson:"question_date"`
+	Reactions    reactionsPayloadModel `bson:"reactions"`
 }
 
-type questioPayloadModel struct {
-	ID           bson.ObjectId `bson:"_id" json:"id"`
-	UserID       bson.ObjectId `bson:"user_id" json:"user_id"`
-	Message      string        `bson:"message" json:"message"`
-	QuestionDate time.Time     `bson:"question_date" json:"question_date"`
-}
-
-func toQuestionPayloadModel(question entity.QuestionPayload) questioPayloadModel {
+func toQuestionPayloadModel(question entity.QuestionPayload) questionPayloadModel {
 
 	var questionID bson.ObjectId
 	if question.ID != "" {
@@ -46,22 +43,40 @@ func toQuestionPayloadModel(question entity.QuestionPayload) questioPayloadModel
 		userID = bson.NewObjectId()
 	}
 
-	return questioPayloadModel{
+	reactions := reactionsPayloadModel{
+		Happy: question.Reactions.Happy,
+		Cool:  question.Reactions.Cool,
+		Sad:   question.Reactions.Sad,
+		Mad:   question.Reactions.Mad,
+	}
+
+	return questionPayloadModel{
 		ID:           questionID,
 		UserID:       userID,
 		Message:      question.Message,
 		QuestionDate: question.QuestionDate,
+		Reactions:    reactions,
 	}
 }
 
 func toEntityQuestion(question questionModel) entity.Question {
-	answer := entity.Answer{Message: question.Answer.Message, AnswerDate: question.Answer.AnswerDate}
+	answer := entity.Answer{
+		Message:    question.Answer.Message,
+		AnswerDate: question.Answer.AnswerDate,
+	}
+	reactions := entity.Reactions{
+		Happy: question.Reactions.Happy,
+		Cool:  question.Reactions.Cool,
+		Sad:   question.Reactions.Sad,
+		Mad:   question.Reactions.Mad,
+	}
 	return entity.Question{
 		ID:           question.ID.Hex(),
 		UserID:       question.UserID.Hex(),
 		Message:      question.Message,
 		QuestionDate: question.QuestionDate,
 		Answer:       &answer,
+		Reactions:    reactions,
 	}
 }
 

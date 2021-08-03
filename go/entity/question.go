@@ -6,8 +6,9 @@ type Question struct {
 	ID           string
 	UserID       string
 	Message      string
-	QuestionDate time.Time
 	Answer       *Answer
+	Reactions    Reactions
+	QuestionDate time.Time
 }
 
 type QuestionPayload struct {
@@ -15,5 +16,6 @@ type QuestionPayload struct {
 	UserID       string
 	Username     string
 	Message      string
+	Reactions    Reactions
 	QuestionDate time.Time
 }
