@@ -33,7 +33,12 @@ func (c *QuestionController) Routes() chi.Router {
 func (c *QuestionController) List(w http.ResponseWriter, r *http.Request) {
 
 	username := chi.URLParam(r, "username")
-	list, total, err := c.QuestionService.GetQuestions(username)
+	filters := presenter.QuestionFilters{
+		Limit:  ParamToInt("limit", r.URL.Query()),
+		Offset: ParamToInt("offset", r.URL.Query()),
+	}
+
+	list, total, err := c.QuestionService.GetQuestions(username, filters)
 	if err != nil {
 		CheckError(err, w, r)
 	}

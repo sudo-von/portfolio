@@ -1,9 +1,12 @@
 package question
 
-import "freelancer/portfolio/go/entity"
+import (
+	"freelancer/portfolio/go/api/presenter"
+	"freelancer/portfolio/go/entity"
+)
 
 type Reader interface {
-	GetQuestionsByUserID(userID string) ([]entity.Question, *int, error)
+	GetQuestionsByUserID(userID string, filters presenter.QuestionFilters) ([]entity.Question, *int, error)
 }
 
 type Writer interface {
@@ -16,6 +19,6 @@ type QuestionRepository interface {
 }
 
 type UseCase interface {
-	GetQuestions() ([]entity.Question, int, error)
+	GetQuestions(username string, filters presenter.QuestionFilters) ([]entity.Question, int, error)
 	CreateQuestion(question entity.QuestionPayload) error
 }

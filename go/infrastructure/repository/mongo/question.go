@@ -4,6 +4,7 @@ import (
 	"errors"
 	"time"
 
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 
 	mgo "gopkg.in/mgo.v2"
@@ -92,7 +93,7 @@ func NewQuestionMongo(repository *Repository) *QuestionMongo {
 	}
 }
 
-func (r *QuestionMongo) GetQuestionsByUserID(userID string) ([]entity.Question, *int, error) {
+func (r *QuestionMongo) GetQuestionsByUserID(userID string, filters presenter.QuestionFilters) ([]entity.Question, *int, error) {
 
 	if !bson.IsObjectIdHex(userID) {
 		return nil, nil, errors.New("given user_id is not a valid hex")
@@ -103,7 +104,12 @@ func (r *QuestionMongo) GetQuestionsByUserID(userID string) ([]entity.Question, 
 	con := session.DB(r.DatabaseName).C("questions")
 
 	var questionsM []questionModel
-	err := con.Find(bson.M{"answer": bson.M{"$exists": true}, "user_id": bson.ObjectIdHex(userID)}).Sort("-answer.answer_date").All(&questionsM)
+	searchQuery := bson.M{
+		"answer":  bson.M{"$exists": true},
+		"user_id": bson.ObjectIdHex(userID),
+	}
+
+	err := con.Find(searchQuery).Limit(filters.Limit).Skip(filters.Offset).Sort("-answer.answer_date").All(&questionsM)
 	if err != nil {
 		return nil, nil, err
 	}

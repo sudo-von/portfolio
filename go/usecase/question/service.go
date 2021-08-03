@@ -3,6 +3,7 @@ package question
 import (
 	"fmt"
 
+	"freelancer/portfolio/go/api/presenter"
 	"freelancer/portfolio/go/entity"
 	"freelancer/portfolio/go/usecase/user"
 )
@@ -19,14 +20,14 @@ func NewService(questionRepository QuestionRepository, userRepository user.UserR
 	}
 }
 
-func (s *Service) GetQuestions(username string) ([]entity.Question, *int, error) {
+func (s *Service) GetQuestions(username string, filters presenter.QuestionFilters) ([]entity.Question, *int, error) {
 
 	user, err := s.userRepository.GetUserByUsername(username)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetUserByUsername: %w", err)
 	}
 
-	queries, total, err := s.questionRepository.GetQuestionsByUserID(user.ID)
+	queries, total, err := s.questionRepository.GetQuestionsByUserID(user.ID, filters)
 	if err != nil {
 		return nil, nil, fmt.Errorf("GetQuestionsByUserID: %w", err)
 	}
