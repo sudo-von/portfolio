@@ -24,7 +24,7 @@ const Card = ( { data : { title, image_url, tech_stack } }) =>
     <CardContent>
       <Typography gutterBottom>Tecnologías</Typography>
       { tech_stack.map(stack => 
-        <Chip style={styles.chip} label={stack}/>
+        <Chip key={stack} style={styles.chip} label={stack}/>
       )}
     </CardContent>
   </MaterialCard>

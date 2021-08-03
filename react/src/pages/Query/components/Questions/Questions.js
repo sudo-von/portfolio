@@ -9,7 +9,7 @@ import { useFetch } from 'hooks/useFetch'
 
 const Questions = () => {
 
-    const { data } = useFetch('GET', 'http://localhost:3000/questions/von', {})
+    const { data } = useFetch('GET', 'http://192.168.0.3:3000/questions/von', {})
     const { total, results } = data
     console.log(total, results)
 
@@ -17,7 +17,7 @@ const Questions = () => {
         <Fade left>
             <Grid container display='flex' alignItems='center' justify='center' spacing={2} style={styles.grid.container}>
                 { results && results.map(answer => 
-                    <Grid item xs={6} sm={4} md={4}>
+                    <Grid key={answer.id} item xs={12} sm={4} md={4}>
                         <Card data={answer}/>
                     </Grid>
                 )}

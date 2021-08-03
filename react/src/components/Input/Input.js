@@ -48,19 +48,23 @@ const CustomInput = ({ config, register, getValues, control }) => {
                     ...rules
                 })
             }
-            render={({ field }) => 
+            render={({ onChange, onBlur, value, name, ref }) => {
+                return(
                 <Wrapper>
                     <TextField 
-                        variant="outlined"
-                        color='default'
+                        variant='outlined'
                         error={errors.message ? true : false}
                         label={errors.message ? errors.message : message}
                         helperText={`${getValues(name).length}/${rules.maxLength.value}`}
                         fullWidth={true} 
+                        onBlur={onBlur}
+                        onChange={onChange}
+                        checked={value}
+                        inputRef={ref}
                         {...rest}
-                        {...field}
                     />
                 </Wrapper>
+                )}
             }
         />
     )

@@ -8,17 +8,17 @@ import { ReactComponent as Twitter } from 'assets/svg/twitter.svg';
 import { ReactComponent as Github } from 'assets/svg/github.svg';
 
 const icons = [
-  { 
+  {
     name: 'Linkedin',
     href : 'https://www.linkedin.com/in/jes%C3%BAs-%C3%A1ngel-rodr%C3%ADguez-mart%C3%ADnez-84991a1b4/',
     svg : Linkedin
   },
-  { 
+  {
     name: 'Twitter',
     href : 'https://www.twitter.com/sudo_von',
     svg : Twitter
   },
-  { 
+  {
     name: 'Github',
     href : 'https://github.com/sudo-von',
     svg : Github
@@ -28,7 +28,7 @@ const icons = [
 const Icons = () =>
   <Box display='flex' alignItems='center'>
     { icons.map(icon =>
-      <a href={icon.href} target='_blank' style={styles.a} title={icon.name}>
+      <a href={icon.href} target='_blank' style={styles.a} title={icon.name} key={icon.name}>
         <Icon size={33} svg={<icon.svg/>}/>
       </a>
     )}

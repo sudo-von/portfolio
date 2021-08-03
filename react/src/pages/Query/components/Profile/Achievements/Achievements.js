@@ -3,7 +3,7 @@ import React from 'react'
 const Achievements = ({ achievements = [] }) =>
     <ul style={styles.ul}>
         {achievements.map(achievment =>
-            <li>{achievment}.</li>
+            <li key={achievment}>{achievment}.</li>
         )}
     </ul>
 

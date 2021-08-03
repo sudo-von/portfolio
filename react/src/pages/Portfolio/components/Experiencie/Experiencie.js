@@ -17,7 +17,7 @@ const Experiencie = () =>
             <p>Para lograr esto me he adaptado a diferentes tecnlogías<br/>
             para cumplir los resultados esperados.</p>
         </Grid>
-        <Grid xs={12} sm={12} md={7}>
+        <Grid item xs={12} sm={12} md={7}>
             <Repositories/>
         </Grid>
     </Grid>

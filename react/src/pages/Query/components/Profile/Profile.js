@@ -12,7 +12,7 @@ import { useFetch } from 'hooks/useFetch'
 
 const Profile = () => {
 
-    const { data } = useFetch('GET', 'http://localhost:3000/users/von', {})
+    const { data } = useFetch('GET', 'http://192.168.0.3:3000/users/von', {})
     const { profile_picture_url, username, name, achievements } = data
     
     return (

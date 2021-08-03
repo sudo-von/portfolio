@@ -22,7 +22,7 @@ const Repositories = () => {
             autoPlay={false}
             numberPages={ctfs.total/limit}>
             { ctfs.results && ctfs.results.map((ctf) => 
-                <Card data={ctf}/>
+                <Card key={ctf.id} data={ctf}/>
             )}
         </Carousel>
     )

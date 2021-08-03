@@ -9,7 +9,7 @@ const CustomCarousel = ( { currentPage, numberPages, children, ...rest } ) => {
     const containers = []
     for (let index = 0; index < numberPages; index++) {
         if (index === currentPage){
-            containers.push(<Container>{children}</Container>)
+            containers.push(<Container key={index}>{children}</Container>)
             continue
         }
         containers.push(null)

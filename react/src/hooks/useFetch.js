@@ -18,7 +18,6 @@ export const useFetch = (method, url, body) => {
                 data: body
             })            
             const response = await res?.data
-            console.log(response)
             setData(response)
           } catch (error) {
             setError(error)

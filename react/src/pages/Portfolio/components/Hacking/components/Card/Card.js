@@ -25,7 +25,7 @@ const Card = ( { data : { title, repository_url, image_url, categories } }) =>
       <CardContent>
         <Typography gutterBottom>Categorías</Typography>
         { categories.map(category => 
-          <Chip style={styles.chip} label={category}/>
+          <Chip key={category} style={styles.chip} label={category}/>
         )}
       </CardContent>
     </MaterialCard>
