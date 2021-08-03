@@ -9,7 +9,9 @@ import Box from '@material-ui/core/Box'
 const Form = () => {
 
     const { register, getValues, formState: { errors }, control, handleSubmit } = useForm()
-    const onSubmit = data => console.log(data)
+    const onSubmit = data => {
+        
+    }
     
     const question = {
         name : 'question', 

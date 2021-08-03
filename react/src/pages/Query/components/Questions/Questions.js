@@ -11,7 +11,6 @@ const Questions = () => {
 
     const { data } = useFetch('GET', 'http://192.168.0.3:3000/questions/von', {})
     const { total, results } = data
-    console.log(total, results)
 
     return (
         <Fade left>
