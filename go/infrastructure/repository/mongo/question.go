@@ -13,7 +13,6 @@ import (
 type questionModel struct {
 	ID           bson.ObjectId `bson:"_id"`
 	UserID       bson.ObjectId `bson:"user_id"`
-	Initial      string        `bson:"initial"`
 	Message      string        `bson:"message"`
 	QuestionDate time.Time     `bson:"question_date"`
 	Answer       answerModel   `bson:"answer"`
@@ -27,7 +26,6 @@ type answerModel struct {
 type questioPayloadModel struct {
 	ID           bson.ObjectId `bson:"_id" json:"id"`
 	UserID       bson.ObjectId `bson:"user_id" json:"user_id"`
-	Initial      string        `bson:"initial" json:"initial"`
 	Message      string        `bson:"message" json:"message"`
 	QuestionDate time.Time     `bson:"question_date" json:"question_date"`
 }
@@ -51,7 +49,6 @@ func toQuestionPayloadModel(question entity.QuestionPayload) questioPayloadModel
 	return questioPayloadModel{
 		ID:           questionID,
 		UserID:       userID,
-		Initial:      question.Initial,
 		Message:      question.Message,
 		QuestionDate: question.QuestionDate,
 	}
@@ -62,7 +59,6 @@ func toEntityQuestion(question questionModel) entity.Question {
 	return entity.Question{
 		ID:           question.ID.Hex(),
 		UserID:       question.UserID.Hex(),
-		Initial:      question.Initial,
 		Message:      question.Message,
 		QuestionDate: question.QuestionDate,
 		Answer:       &answer,
