@@ -24,6 +24,7 @@ func NewUserController(user user.Service) *UserController {
 func (c *UserController) Routes() chi.Router {
 	r := chi.NewRouter()
 	r.Get("/{id}", c.GetUserByID)
+	r.Get("/{username}", c.GetUserByUsername)
 	return r
 }
 
@@ -32,6 +33,21 @@ func (c *UserController) GetUserByID(w http.ResponseWriter, r *http.Request) {
 
 	requestedUser := chi.URLParam(r, "id")
 	user, err := c.UserService.GetUserByID(requestedUser)
+	if err != nil {
+		CheckError(err, w, r)
+		return
+	}
+
+	w.Header().Set("Content-Type", "application/json")
+	render.Status(r, http.StatusOK)
+	render.Render(w, r, presenter.ToResponseUser(user))
+}
+
+// GetUserByUsername render a user given its username.
+func (c *UserController) GetUserByUsername(w http.ResponseWriter, r *http.Request) {
+
+	requestedUser := chi.URLParam(r, "username")
+	user, err := c.UserService.GetUserByUsername(requestedUser)
 	if err != nil {
 		CheckError(err, w, r)
 		return
