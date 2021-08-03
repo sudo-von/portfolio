@@ -1,11 +1,10 @@
-# React dependencies.
+# Frontend.
 react/node_modules
-
-# React build.
 react/build
 
-# Docker volumes.
+# Storage.
 mongo/data/*
 
 # Environment variables.
-.env*
+.env.dev
+.env.prod
