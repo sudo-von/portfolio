@@ -24,7 +24,7 @@ func NewUserController(user user.Service) *UserController {
 func (c *UserController) Routes() chi.Router {
 	r := chi.NewRouter()
 	r.Get("/{id}", c.GetUserByID)
-	r.Get("/{username}", c.GetUserByUsername)
+	r.Get("/username/{username}", c.GetUserByUsername)
 	return r
 }
 

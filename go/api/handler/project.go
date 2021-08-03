@@ -23,7 +23,7 @@ func NewProjectController(project project.Service) *ProjectController {
 // Routes for project.
 func (c *ProjectController) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/{username}", c.List)
+	r.Get("/username/{username}", c.List)
 	return r
 }
 

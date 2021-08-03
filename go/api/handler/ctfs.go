@@ -21,7 +21,7 @@ func NewCTFController(ctfService ctf.Service) *CTFHandler {
 
 func (c *CTFHandler) Routes() chi.Router {
 	r := chi.NewRouter()
-	r.Get("/{username}", c.List)
+	r.Get("/username/{username}", c.List)
 	return r
 }
 
