@@ -25,7 +25,7 @@ const Navbar = () => {
   return(
     <AppBar position='sticky' style={styles.appBar}>
       <Box display='flex' justifyContent='space-between' alignItems='center'>
-        <Menu style={{color: 'red'}}/>
+        <Menu/>
         <Box display='flex' alignItems='center'>
           <Icons/>
           <Toggler/>

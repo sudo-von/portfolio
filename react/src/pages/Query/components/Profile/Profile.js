@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Animations. */
@@ -7,13 +8,13 @@ import ProfilePicture from './ProfilePicture/'
 import Username from './Username/'
 import Achievements from './Achievements/'
 import Form from './Form/'
-/* Custom hooks. */
-import { useFetch } from 'hooks/useFetch'
+/* High order components. */
+import IsLoadingHOC from 'hocs/IsLoadingHOC'
 
-const Profile = () => {
-
-    const { data } = useFetch('GET', 'http://192.168.0.3:3000/users/von', {})
-    const { profile_picture_url, username, name, achievements } = data
+const Profile = (props) => {
+    
+    const { user } = props
+    const { profile_picture_url, username, name, achievements } = user
     
     return (
         <Fade left>
@@ -40,4 +41,4 @@ const styles = {
     }
 }
 
-export default Profile
+export default IsLoadingHOC(Profile, 'Cargando perfil...')

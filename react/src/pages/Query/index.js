@@ -4,12 +4,20 @@ import Container from '@material-ui/core/Container'
 import Navbar from 'components/Navbar/'
 import Profile from './components/Profile/'
 import Questions from './components/Questions/'
+/* Custom hooks. */
+import { useFetch } from 'hooks/useFetch'
 
-const Portfolio = () => 
-  <Container>
-    <Navbar/>
-    <Profile/>
-    <Questions/>
-  </Container>
+const Portfolio = () => {
+
+  const { data, loading } = useFetch('GET', 'http://localhost:3000/users/username/von', {})
+  
+  return(
+    <Container>
+      <Navbar/>
+      <Profile isLoading={loading} user={data}/>
+      <Questions/>
+    </Container>
+  )
+}
 
 export default Portfolio
