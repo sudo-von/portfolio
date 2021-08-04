@@ -2,30 +2,18 @@ import { useEffect, useState } from 'react'
 /* Custom components. */
 import Carousel  from 'components/Carousel'
 import Card from '../Card'
+/* High order components. */
+import withLoading from 'hocs/withLoading'
 
-const Repositories = () => {
+const Repositories = ({ data, currentPage, setCurrentPage }) => 
+    <Carousel 
+        currentPage={currentPage}
+        onChange={(currentIndicator) => setCurrentPage(currentIndicator)}
+        autoPlay={false}
+        numberPages={data.total/4}>
+        { data.results && data.results.map((data) => 
+            <Card key={data.id} data={data}/>
+        )}
+    </Carousel>
 
-    const [ ctfs, setCtfs ] = useState([])
-    const [ currentPage, setCurrentPage ] = useState(0)
-    const limit = 4
-
-    useEffect(() => {
-        fetch(`http://localhost:3000/ctfs/von?limit=${limit}&offset=${(currentPage*limit)}`)
-            .then(res => res.json())
-            .then(res => setCtfs(res))
-    }, [currentPage])
-
-    return(
-        <Carousel 
-            currentPage={currentPage}
-            onChange={(currentIndicator) => setCurrentPage(currentIndicator)}
-            autoPlay={false}
-            numberPages={ctfs.total/limit}>
-            { ctfs.results && ctfs.results.map((ctf) => 
-                <Card key={ctf.id} data={ctf}/>
-            )}
-        </Carousel>
-    )
-}
-
-export default Repositories
+export default withLoading(Repositories, 'Cargando eventos...')

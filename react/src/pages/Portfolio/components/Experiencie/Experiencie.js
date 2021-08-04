@@ -25,7 +25,12 @@ const Experiencie = () => {
                 para cumplir los resultados esperados.</p>
             </Grid>
             <Grid item xs={12} sm={12} md={7}>
-                <Repositories isLoading={loading} data={data} currentPage={currentPage} setCurrentPage={setCurrentPage}/>
+                <Repositories 
+                    isLoading={loading} 
+                    data={data} 
+                    currentPage={currentPage} 
+                    setCurrentPage={setCurrentPage}
+                />
             </Grid>
         </Grid>
     )
