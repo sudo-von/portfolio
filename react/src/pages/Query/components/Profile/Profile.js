@@ -9,7 +9,7 @@ import Username from './Username/'
 import Achievements from './Achievements/'
 import Form from './Form/'
 /* High order components. */
-import IsLoadingHOC from 'hocs/IsLoadingHOC'
+import withLoading from 'hocs/withLoading'
 
 const Profile = (props) => {
     
@@ -41,4 +41,4 @@ const styles = {
     }
 }
 
-export default IsLoadingHOC(Profile, 'Cargando perfil...')
+export default withLoading(Profile, 'Cargando perfil...')

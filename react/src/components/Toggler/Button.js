@@ -1,7 +1,7 @@
 /* Styled-components. */
 import styled from 'styled-components'
 /* Themes. */
-import { lightTheme } from 'themes/Themes'
+import { lightTheme } from 'config/Themes'
 
 export const Button = styled.button`
   background-color: ${({ theme : { colors: { secondary } } }) => secondary };

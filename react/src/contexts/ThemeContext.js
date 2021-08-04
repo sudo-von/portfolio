@@ -2,7 +2,7 @@ import { createContext } from 'react'
 /* Custom hooks. */
 import { useTheme } from 'hooks/useTheme'
 /* Themes. */
-import { lightTheme, darkTheme } from 'themes/Themes'
+import { lightTheme, darkTheme } from 'config/Themes'
 
 export const ThemeContext = createContext()
 

@@ -1,5 +1,5 @@
 /* Custom components. */
-import Theme from './themes/Theme'
+import Theme from './contexts/Theme'
 /* Contexts. */
 import { ThemeStore } from 'contexts/ThemeContext'
 /* React-router-dom. */

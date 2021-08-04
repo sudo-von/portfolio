@@ -2,7 +2,7 @@ import { useContext } from 'react'
 /* Styled-components. */
 import { ThemeProvider } from 'styled-components'
 /* Themes. */
-import { GlobalStyles } from 'themes/GlobalStyles'
+import { GlobalStyles } from 'config/GlobalStyles'
 /* Contexts. */
 import { ThemeContext } from 'contexts/ThemeContext'
 
