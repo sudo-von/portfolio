@@ -1,5 +1,3 @@
-import React from 'react'
-
 const Achievements = ({ achievements=[] }) =>
     <ul style={styles.ul}>
         {achievements.map(achievment =>

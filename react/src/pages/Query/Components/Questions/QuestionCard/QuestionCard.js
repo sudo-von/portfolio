@@ -1,13 +1,14 @@
 /* Custom components. */
 import Bold from 'components/Bold/'
+import Icon from 'components/Icon/'
+import Reactions from '../Reactions'
 /* Material-ui.*/
-import { Card as MaterialCard, CardHeader } from '@material-ui/core'
+import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
-
 import Typography from '@material-ui/core/Typography'
 
-const Card = ( { data : { question, creation_date, answer } }) =>
-  <MaterialCard>
+const QuestionCard = ( { data : { id, question, creation_date, answer, reactions }, handleReaction }) =>
+  <Card>
     <CardContent>
       <Typography component="h6" variant="h6">
         <Bold>“{question}”</Bold><br/>
@@ -17,7 +18,8 @@ const Card = ( { data : { question, creation_date, answer } }) =>
       </Typography>
       <br/>
       <Typography variant="body2" color="textSecondary">{answer.answer}</Typography>
+      <Reactions id={id} reactions={reactions} handleReaction={handleReaction}/>
     </CardContent>
-  </MaterialCard>
+  </Card>
 
-export default Card
+export default QuestionCard

@@ -16,9 +16,17 @@ export class Request {
     }
   }
 
-  post = async ({ data = {} }) => {
+  post = async (data={}) => {
     try{
       return await axios.post(this.api, data)
+    }catch(error){
+      throw new Error(error)
+    }
+  }
+
+  patch = async ({ data = {} }) => {
+    try{
+      return await axios.patch(this.api, data)
     }catch(error){
       throw new Error(error)
     }

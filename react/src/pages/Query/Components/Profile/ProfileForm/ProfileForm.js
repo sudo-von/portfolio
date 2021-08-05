@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 /* Custom components. */
 import Fab from 'components/Fab'
 import Input from 'components/Input'
@@ -10,34 +10,43 @@ import Box from '@material-ui/core/Box'
 /* Axios. */
 import { Request } from 'services/Request'
 
-const Form = () => {
+const ProfileForm = () => {
 
     const { register, formState: { errors }, control, handleSubmit, reset } = useForm({ mode: 'onChange' })
-    const [ loading, setLoading ] = useState(false)
-    const [ error, setError ] = useState(null)
-    const [ success, setSuccess ] = useState(null)
+    const [ form, setForm ] = useState({
+        loading: false,
+        error: null,
+        success: null
+    })
 
     const onSubmit = async (data, e) => {
-        setLoading(true)
+        console.log(data, e)
+        setForm(form => ({
+            loading: false,
+            error: null,
+            success: null
+        }))
         try{
             const request = new Request('questions/username/von')
-            request.post(data)
-            setSuccess(false)
-            reset({ question: ''})
+            const response = await request.post(data)
+            setForm(form => ({...form, success: true}))
+            reset({question: ''})
         }catch(error){
-            setError(error)
+            setForm(a => ({...a, error: 'Hubo un error al enviar tu pregunta, intenta de nuevo más tarde...'}))
         }finally{
-            setLoading(false)
+            setForm(form => ({...form, loading: false}))
         }
     }
 
     return(
         <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
-            { !error ? 
-                <Alert  elevation={6} variant="filled" severity="success">
-                    This is an error alert — check it out!
-                </Alert> :
+            { form.error &&
                 <Alert  elevation={6} variant="filled" severity="error">
+                    This is an error alert — check it out!
+                </Alert>
+            }
+            { form.success &&
+                <Alert elevation={6} variant="filled" severity="success">
                     This is an error alert — check it out!
                 </Alert>
             }
@@ -63,4 +72,4 @@ const Form = () => {
     )
 }
 
-export default Form
+export default ProfileForm

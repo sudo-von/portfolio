@@ -1,20 +1,21 @@
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
+import Box from '@material-ui/core/Box'
 /* Custom components. */
 import Pagination from '@material-ui/lab/Pagination'
-import Card from './components/Card'
-import { Box } from '@material-ui/core'
+import QuestionCard from './QuestionCard'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
+import withError from 'hocs/withError'
 
-const Questions = ({ questions : { results, total }, page, handlePage }) =>
+const Questions = ({ questions : { results, total }, page, handlePage, handleReaction }) =>
     <Grid container spacing={2} style={styles.grid.container}>
         { results && results.map(answer => 
             <Grid item key={answer.id} xs={12} sm={4} md={4}>
-                <Card data={answer}/>
+                <QuestionCard data={answer} handleReaction={handleReaction}/>
             </Grid>
         )}
-        <Box display='flex'flexGrow={1}flexDirection='row'justifyContent='center'alignItems='center'>
+        <Box display='flex' flexGrow={1} flexDirection='row' justifyContent='center' alignItems='center'>
             <Pagination 
                 count={total/6} 
                 page={page} 
@@ -27,9 +28,9 @@ const Questions = ({ questions : { results, total }, page, handlePage }) =>
 const styles = {
     grid : {
         container : {
-            marginBottom: 150
+            marginBottom: 200
         }
     }
 }
 
-export default withLoading(Questions, 'Cargando preguntas...')
+export default withError(withLoading(Questions, 'Cargando preguntas...'),'Algo salió mal al cargar las preguntas...')

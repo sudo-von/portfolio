@@ -4,12 +4,12 @@ import Grid from '@material-ui/core/Grid'
 import ProfilePicture from './ProfilePicture'
 import Username from './Username'
 import Achievements from './Achievements'
-import Form from './Form'
+import ProfileForm from './ProfileForm'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
 import withError from 'hocs/withError'
 
-const Profile = ({ user, error }) => {
+const Profile = ({ user }) => {
     
     const { profile_picture_url, username, name, achievements } = user
 
@@ -21,7 +21,7 @@ const Profile = ({ user, error }) => {
             <Grid item xs={12} sm={12} md={4}>
                 <Username name={name} username={username}/>
                 <Achievements achievements={achievements}/>
-                <Form/>
+                <ProfileForm/>
             </Grid>
         </Grid>
     )
