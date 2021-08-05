@@ -8,11 +8,10 @@ import { useForm } from 'react-hook-form'
 import Box from '@material-ui/core/Box'
 /* Axios. */
 import Axios from 'api/index'
-import { ErrorSharp } from '@material-ui/icons'
 
 const Form = () => {
 
-    const { register, getValues, formState: { errors }, control, handleSubmit, reset } = useForm({ mode: 'onChange' })
+    const { register, formState: { errors }, control, handleSubmit, reset } = useForm({ mode: 'onChange' })
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(null)
 

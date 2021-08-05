@@ -12,7 +12,7 @@ import withLoading from 'hocs/withLoading'
 
 const Profile = ({ user }) => {
     
-    const { profile_picture_url, username, name, achievements  } = user
+    const { profile_picture_url, username, name, achievements } = user
 
     return (
         <Fade left>

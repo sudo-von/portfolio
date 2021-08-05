@@ -6,31 +6,23 @@ import TextField from '@material-ui/core/TextField'
 import { Controller } from 'react-hook-form'
 
 const Wrapper = styled.div`
-    label, p{
-        color : ${({ theme : { colors : { accent } } }) => accent };
-    }
-    textarea, input{
-        color : ${({ theme : { colors : { primary } } }) => primary };
-    }
-    fieldset{
-        border-color: ${({ theme : { colors : { accent } } }) => accent };
-        color : ${({ theme : { colors : { accent } } }) => accent };
-    }
+
     & label.Mui-focused{
         color: ${({ theme : { colors : { secondary } } }) => secondary };
     }
+
     & .MuiInput-underline:after{
-        border-color: ${({ theme : { colors : { secondary } } }) => secondary };
+        border-bottom-color: white;
     }
+
     & .MuiOutlinedInput-root{
-    fieldset: {
-        border-color: ${({ theme : { colors : { secondary } } }) => secondary };
-    }
-    &:hover fieldset{
-        border-color: ${({ theme : { colors : { accent } } }) => accent };
-    }
-    &.Mui-focused fieldset{
-        border-color: ${({ theme : { colors : { secondary } } }) => secondary };
+        &:hover fieldset{
+            border-color: ${({ theme : { colors : { secondary } } }) => secondary };
+        }
+
+        &.Mui-focused fieldset{
+            border-color: ${({ theme : { colors : { secondary } } }) => secondary };
+        }
     }
 `
 
