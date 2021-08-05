@@ -206,7 +206,7 @@ func (r *QuestionMongo) CreateQuestion(question entity.QuestionPayload) error {
 	return nil
 }
 
-func (r *QuestionMongo) UpdateQuestion(question entity.Question) error {
+func (r *QuestionMongo) UpdateQuestion(question entity.Question) (*entity.Question, error) {
 
 	session := r.Session.Copy()
 	defer session.Close()
@@ -219,8 +219,9 @@ func (r *QuestionMongo) UpdateQuestion(question entity.Question) error {
 
 	err := con.Update(searchQuery, &questionM)
 	if err != nil {
-		return err
+		return nil, err
 	}
 
-	return nil
+	updatedQuestion := toEntityQuestion(questionM)
+	return &updatedQuestion, nil
 }

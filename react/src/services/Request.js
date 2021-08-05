@@ -24,7 +24,7 @@ export class Request {
     }
   }
 
-  patch = async ({ data = {} }) => {
+  patch = async (data={}) => {
     try{
       return await axios.patch(this.api, data)
     }catch(error){

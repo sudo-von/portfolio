@@ -90,11 +90,13 @@ func (c *QuestionController) UpdateReaction(w http.ResponseWriter, r *http.Reque
 	questionID := chi.URLParam(r, "id")
 	reactionID := chi.URLParam(r, "reaction-id")
 
-	err := c.QuestionService.UpdateReaction(questionID, reactionID)
+	updatedQuestion, err := c.QuestionService.UpdateReaction(questionID, reactionID)
 	if err != nil {
 		CheckError(err, w, r)
 	}
 
+	res := presenter.ToResponseQuestion(updatedQuestion)
 	w.Header().Set("Content-Type", "application/json")
 	render.Status(r, http.StatusOK)
+	render.Render(w, r, res)
 }

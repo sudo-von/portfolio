@@ -12,7 +12,7 @@ type Reader interface {
 
 type Writer interface {
 	CreateQuestion(entity.QuestionPayload) error
-	UpdateQuestion(entity.Question) error
+	UpdateQuestion(entity.Question) (*entity.Question, error)
 }
 
 type QuestionRepository interface {

@@ -51,7 +51,7 @@ func (s *Service) CreateQuestion(question entity.QuestionPayload) error {
 	return nil
 }
 
-func (s *Service) UpdateReaction(questionID, reactionID string) error {
+func (s *Service) UpdateReaction(questionID, reactionID string) (*entity.Question, error) {
 
 	validReaction := false
 	for _, r := range presenter.Reactions {
@@ -60,12 +60,12 @@ func (s *Service) UpdateReaction(questionID, reactionID string) error {
 		}
 	}
 	if !validReaction {
-		return errors.New("not a valid reaction")
+		return nil, errors.New("not a valid reaction")
 	}
 
 	question, err := s.questionRepository.GetQuestionByID(questionID)
 	if err != nil {
-		return fmt.Errorf("GetQuestionByID: %w", err)
+		return nil, fmt.Errorf("GetQuestionByID: %w", err)
 	}
 
 	switch reactionID {
@@ -79,11 +79,11 @@ func (s *Service) UpdateReaction(questionID, reactionID string) error {
 		question.Reaction.Mad += 1
 	}
 
-	err = s.questionRepository.UpdateQuestion(*question)
+	updatedQuestion, err := s.questionRepository.UpdateQuestion(*question)
 	if err != nil {
-		return fmt.Errorf("UpdateQuestion: %w", err)
+		return nil, fmt.Errorf("UpdateQuestion: %w", err)
 	}
 
-	return nil
+	return updatedQuestion, nil
 
 }
