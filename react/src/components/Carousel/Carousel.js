@@ -16,9 +16,7 @@ const CustomCarousel = ( { currentPage, numberPages, children, ...rest } ) => {
     }
 
     return(
-        <Carousel
-            {...rest}
-        >
+        <Carousel {...rest}>
             {containers}
         </Carousel>
     )
