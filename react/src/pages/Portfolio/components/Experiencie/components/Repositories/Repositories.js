@@ -4,11 +4,9 @@ import Card from '../Card'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
 
-const Repositories = ({ data, currentPage, setCurrentPage }) => 
+const Repositories = ({ data, fetchData}) => 
     <Carousel 
-        currentPage={currentPage}
-        onChange={(currentIndicator) => setCurrentPage(currentIndicator)}
-        autoPlay={false}
+        fetchData={fetchData}
         numberPages={data.total/4}>
         { data.results && data.results.map((data) => 
             <Card key={data.id} data={data}/>

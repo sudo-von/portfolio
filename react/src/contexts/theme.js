@@ -16,7 +16,7 @@ export const ThemeStore = ({ children }) => {
     const themeMode = theme == 'light' ? darkTheme : lightTheme 
 
     return (
-      <ThemeContext.Provider value={{theme, themeMode, toggleTheme }}>
+      <ThemeContext.Provider value={{theme, toggleTheme }}>
         <StyledComponentsProvider theme={themeMode}>
           <GlobalStyles/>
           {children}

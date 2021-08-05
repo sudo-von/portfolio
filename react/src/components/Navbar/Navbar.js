@@ -12,7 +12,6 @@ import { ThemeContext } from 'styled-components'
 const Navbar = () => {
 
   const theme = useContext(ThemeContext)
-
   const styles = {
     appBar : {
       backgroundColor : theme.background,

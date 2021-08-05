@@ -4,11 +4,11 @@ import Carousel  from 'react-material-ui-carousel'
 /* Custom components. */
 import { Container } from './Container'
 
-const CustomCarousel = ( { currentPage, numberPages, children, ...rest } ) => {
+const CustomCarousel = ( { fetchData, numberPages, children, ...rest } ) => {
     
     const containers = []
     for (let index = 0; index < numberPages; index++) {
-        if (index === currentPage){
+        if (index === 0){
             containers.push(<Container key={index}>{children}</Container>)
             continue
         }
@@ -16,7 +16,11 @@ const CustomCarousel = ( { currentPage, numberPages, children, ...rest } ) => {
     }
 
     return(
-        <Carousel {...rest}>
+        <Carousel
+            next={ (next, active) => fetchData(next)}
+            prev={ (prev, active) => fetchData(prev)}
+            {...rest}
+        >
             {containers}
         </Carousel>
     )

@@ -11,7 +11,7 @@ const Portfolio = () =>
     <Navbar/>
     <Profile/>
     <Experiencie/>
-    <Hacking/>
+    {/*<Hacking/>*/}
   </Container>
 
 export default Portfolio

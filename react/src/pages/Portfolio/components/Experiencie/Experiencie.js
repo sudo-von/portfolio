@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
@@ -10,8 +10,19 @@ import { useFetch } from 'hooks/useFetch'
 
 const Experiencie = () => {
 
-    const [ currentPage, setCurrentPage ] = useState(0)
-    const { data, loading } = useFetch('GET',`http://localhost:3000/projects/username/von?limit=4&offset=${(currentPage*4)}`,{})
+    const [ data, setData ] = useState({total:0, results:[]})
+    const [ loading, setLoading ] = useState(false)
+
+    const fetchData = (pageNumber=0) =>{
+        fetch(`http://localhost:3000/projects/username/von?limit=4&offset=${(pageNumber*4)}`)
+        .then((res) => res.json())
+        .then((res) => setData(res))
+    }
+
+    useEffect(() => {
+        fetchData()
+    }, [])
+
 
     return(
         <Grid container alignItems='center' style={styles.grid.container}>
@@ -28,8 +39,7 @@ const Experiencie = () => {
                 <Repositories 
                     isLoading={loading} 
                     data={data} 
-                    currentPage={currentPage} 
-                    setCurrentPage={setCurrentPage}
+                    fetchData={fetchData} 
                 />
             </Grid>
         </Grid>
