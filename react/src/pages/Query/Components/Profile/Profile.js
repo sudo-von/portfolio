@@ -7,8 +7,9 @@ import Achievements from './Achievements'
 import Form from './Form'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
+import withError from 'hocs/withError'
 
-const Profile = ({ user }) => {
+const Profile = ({ user, error }) => {
     
     const { profile_picture_url, username, name, achievements } = user
 
@@ -35,4 +36,4 @@ const styles = {
     }
 }
 
-export default withLoading(Profile, 'Cargando perfil...')
+export default withError(withLoading(Profile, 'Cargando perfil...'), 'Algo salió mal al cargar el perfil...')

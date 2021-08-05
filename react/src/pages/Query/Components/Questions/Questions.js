@@ -15,7 +15,12 @@ const Questions = ({ questions : { results, total }, page, handlePage }) =>
             </Grid>
         )}
         <Box display='flex'flexGrow={1}flexDirection='row'justifyContent='center'alignItems='center'>
-            <Pagination count={total/6} page={page} onChange={handlePage} variant='outlined'/>
+            <Pagination 
+                count={total/6} 
+                page={page} 
+                onChange={handlePage} 
+                variant='outlined'
+            />
         </Box>
     </Grid>
 
