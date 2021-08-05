@@ -11,7 +11,18 @@ const GlobalStyles = createGlobalStyle`
 
   a{
     color: ${({ theme : { colors: { secondary } } }) => secondary };
-  } 
+  }
+
+  .primary{
+    color: ${({ theme : { colors: { primary } } }) => primary };
+  }
+  .secondary{
+    color: ${({ theme : { colors: { secondary } } }) => secondary };
+  }
+  .accent{
+    color: ${({ theme : { colors: { accent } } }) => accent };
+  }
+
 `
 
 export default GlobalStyles

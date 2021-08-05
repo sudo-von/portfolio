@@ -7,7 +7,6 @@ import Fade from 'react-reveal/Fade'
 import H1 from 'components/H1'
 import H5 from 'components/H5'
 import Bold from 'components/Bold/'
-import Small from 'components/Small/'
 import Image from 'components/Image/'
 
 const Profile = () =>
@@ -17,7 +16,7 @@ const Profile = () =>
         <H1><Bold>Jesús Rodríguez</Bold></H1>
         <H5><Bold>Desarrollador web</Bold> y de <Bold>aplicaciones móviles</Bold></H5>
         <H5>Apasionado del <Bold>hacking ético</Bold></H5>
-        <Small>“La única forma de hacer un gran trabajo, es amar lo que haces”.</Small>
+        <small className='accent'>“La única forma de hacer un gran trabajo, es amar lo que haces”.</small>
       </Grid>
       <Grid item md={6}>
         <Hidden only={['xs', 'sm']}>
