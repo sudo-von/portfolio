@@ -8,22 +8,24 @@ import QuestionCard from './QuestionCard'
 import withLoading from 'hocs/withLoading'
 import withError from 'hocs/withError'
 
-const Questions = ({ questions : { results, total }, page, handlePage, handleReaction }) =>
-    <Grid container spacing={2} style={styles.grid.container}>
-        { results && results.map(answer => 
-            <Grid item key={answer.id} xs={12} sm={4} md={4}>
-                <QuestionCard data={answer} handleReaction={handleReaction}/>
-            </Grid>
-        )}
-        <Box display='flex' flexGrow={1} flexDirection='row' justifyContent='center' alignItems='center'>
-            <Pagination 
-                count={total/6} 
-                page={page} 
-                onChange={handlePage} 
-                variant='outlined'
-            />
-        </Box>
-    </Grid>
+const Questions = (props) => {
+    
+    const { questions, page, handlePage } = props
+    const { results, total } = questions
+
+    return(
+        <Grid container spacing={2} style={styles.grid.container}>
+            { results && results.map(question => 
+                <Grid item key={question.id} xs={12} sm={4} md={4}>
+                    <QuestionCard data={question}/>
+                </Grid>
+            )}
+            <Box display='flex' flexGrow={1} flexDirection='row' justifyContent='center' alignItems='center'>
+                <Pagination count={total/6} page={page} onChange={handlePage} variant='outlined'/>
+            </Box>
+        </Grid>
+    )
+}
 
 const styles = {
     grid : {

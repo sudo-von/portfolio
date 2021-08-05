@@ -7,27 +7,15 @@ import Profile from './Components/Profile/'
 import Questions from './Components/Questions/'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
-/* Services. */
-import { Request } from 'services/Request'
 
 const Portfolio = () => {
 
   /* Pagination hook. */
   const [ page, setPage ] = useState(1)
   const handlePage = (event, value) => setPage(value)
-  const [ reaction, setReaction ] = useState()
   /* Data. */
   const profile = useFetch('users/username/von')
   const questions = useFetch(`questions/username/von?limit=6&offset=${6*(page-1)}`)
-  const handleReaction = async (questionID, reactionID) => {
-    try{
-      const request = await new Request(`questions/${questionID}/reaction/${reactionID}`)
-      const response = await request.patch({})
-      setReaction(true)
-    }catch(error){
-      alert(error)
-    }
-  }
 
   return(
     <Container>
@@ -41,8 +29,7 @@ const Portfolio = () => {
         isLoading={questions.loading} 
         questions={questions.data} 
         page={page} 
-        handlePage={handlePage}
-        handleReaction={handleReaction}/>
+        handlePage={handlePage}/>
     </Container>
   )
 }

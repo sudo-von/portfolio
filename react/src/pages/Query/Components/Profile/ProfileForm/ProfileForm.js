@@ -20,19 +20,18 @@ const ProfileForm = () => {
     })
 
     const onSubmit = async (data, e) => {
-        console.log(data, e)
-        setForm(form => ({
+        setForm({
             loading: false,
             error: null,
             success: null
-        }))
+        })
         try{
             const request = new Request('questions/username/von')
-            const response = await request.post(data)
-            setForm(form => ({...form, success: true}))
+            await request.post(data)
+            setForm({...form, success: true})
             reset({question: ''})
         }catch(error){
-            setForm(a => ({...a, error: 'Hubo un error al enviar tu pregunta, intenta de nuevo más tarde...'}))
+            setForm(form => ({...form, error: 'Hubo un error al enviar tu pregunta, intenta de nuevo más tarde...'}))
         }finally{
             setForm(form => ({...form, loading: false}))
         }
@@ -41,14 +40,10 @@ const ProfileForm = () => {
     return(
         <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
             { form.error &&
-                <Alert  elevation={6} variant="filled" severity="error">
-                    This is an error alert — check it out!
-                </Alert>
+                <Alert severity="error">{form.error}</Alert>
             }
             { form.success &&
-                <Alert elevation={6} variant="filled" severity="success">
-                    This is an error alert — check it out!
-                </Alert>
+                <Alert severity="success">¡Tu pregunta ha sido enviada con éxito!</Alert>
             }
             <Input
                 name='question'
