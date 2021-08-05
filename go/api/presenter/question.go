@@ -27,7 +27,7 @@ type QuestionResponse struct {
 }
 
 type QuestionPayload struct {
-	Question string `json:"message"`
+	Question string `json:"question"`
 }
 
 func (ql *QuestionList) Render(w http.ResponseWriter, r *http.Request) error {

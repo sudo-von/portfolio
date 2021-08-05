@@ -2,20 +2,21 @@
 import Container from '@material-ui/core/Container'
 /* Custom components. */
 import Navbar from 'components/Navbar/'
-import Profile from './components/Profile/'
-import Questions from './components/Questions/'
+import Profile from './Components/Profile/'
+import Questions from './Components/Questions/'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
 
 const Portfolio = () => {
 
-  const { data, loading } = useFetch('GET', 'http://localhost:3000/users/username/von', {})
+  const profile = useFetch('http://localhost:3000/users/username/von')
+  const questions = useFetch('http://localhost:3000/questions/username/von')
   
   return(
     <Container>
       <Navbar/>
-      <Profile isLoading={loading} user={data}/>
-      <Questions/>
+      <Profile isLoading={profile.loading} user={profile.data}/>
+      <Questions isLoading={questions.loading} questions={questions.data}/>
     </Container>
   )
 }

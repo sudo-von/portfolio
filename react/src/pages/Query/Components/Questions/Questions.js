@@ -3,15 +3,16 @@ import Grid from '@material-ui/core/Grid'
 /* Animations. */
 import Fade from 'react-reveal/Fade'
 /* Custom components. */
-import Card from './components/Card/'
+import Card from './components/Card'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
+/* High order components. */
+import withLoading from 'hocs/withLoading'
 
-const Questions = () => {
+const Questions = ({questions}) => {
 
-    const { data } = useFetch('GET', 'http://192.168.0.3:3000/questions/von', {})
-    const { total, results } = data
-
+    const { results, total } = questions
+    
     return (
         <Fade left>
             <Grid container display='flex' alignItems='center' justify='center' spacing={2} style={styles.grid.container}>
@@ -33,4 +34,4 @@ const styles = {
     }
 }
 
-export default Questions
+export default withLoading(Questions, 'Cargando preguntas...')

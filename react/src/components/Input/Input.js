@@ -19,7 +19,6 @@ const Wrapper = styled.div`
     & label.Mui-focused{
         color: ${({ theme : { colors : { secondary } } }) => secondary };
     }
-
     & .MuiInput-underline:after{
         border-color: ${({ theme : { colors : { secondary } } }) => secondary };
     }
@@ -35,39 +34,46 @@ const Wrapper = styled.div`
     }
 `
 
-const CustomInput = ({ config, register, getValues, control }) => {
+const Input = (props) => {
 
-    const { name, defaultValue, rules, message, errors, ...rest } = config
+    const { 
+        name, 
+        defaultValue, 
+        message, 
+        rules, 
+        errors, 
+        ...rest
+    } = props
+    
+    const {
+        control,
+        register
+    } = props
 
     return (
         <Controller
             name={name}
             control={control}
-            defaultValue={defaultValue}
+            defaultValue={defaultValue ? defaultValue : ''}
             {...register(name, { 
                     ...rules
                 })
             }
-            render={({ onChange, onBlur, value, name, ref }) => {
-                return(
+            render={({field}) => 
                 <Wrapper>
                     <TextField 
                         variant='outlined'
                         error={errors.message ? true : false}
                         label={errors.message ? errors.message : message}
-                        helperText={`${getValues(name).length}/${rules.maxLength.value}`}
+                        helperText={`${field.value.length}/${rules.maxLength.value}`}
                         fullWidth={true} 
-                        onBlur={onBlur}
-                        onChange={onChange}
-                        checked={value}
-                        inputRef={ref}
+                        {...field}
                         {...rest}
                     />
                 </Wrapper>
-                )}
             }
         />
     )
 }
 
-export default CustomInput
+export default Input
