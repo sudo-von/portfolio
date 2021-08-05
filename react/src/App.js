@@ -1,7 +1,5 @@
-/* Custom components. */
-import Theme from './contexts/Theme'
 /* Contexts. */
-import { ThemeStore } from 'contexts/ThemeContext'
+import { ThemeStore } from './contexts/theme'
 /* React-router-dom. */
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 /* Screens. */
@@ -11,18 +9,16 @@ import Query from './pages/Query/'
 const App = () => {
   return(
     <ThemeStore>
-      <Theme>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path='/'>
-              <Portfolio/>
-            </Route>
-            <Route exact path='/query'>
-              <Query/>
-            </Route>
-          </Switch>
-        </BrowserRouter>
-      </Theme>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path='/'>
+            <Portfolio/>
+          </Route>
+          <Route exact path='/query'>
+            <Query/>
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </ThemeStore>
   )
 }

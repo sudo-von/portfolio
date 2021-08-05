@@ -1,7 +1,7 @@
 /* Custom components. */
 import Carousel  from 'components/Carousel'
 import Card from '../Card'
-/* Custom hooks. */
+/* High order components. */
 import withLoading from 'hocs/withLoading'
 
 const Repositories = ({ data, currentPage, setCurrentPage }) => 

@@ -1,7 +1,7 @@
+/* Styled-components. */
 import { createGlobalStyle } from 'styled-components'
 
-export const GlobalStyles = createGlobalStyle`
-
+const GlobalStyles = createGlobalStyle`
   body {
     background: ${({ theme : { background } }) => background };
     color: ${({ theme : { colors: { primary } } }) => primary };
@@ -11,6 +11,7 @@ export const GlobalStyles = createGlobalStyle`
 
   a{
     color: ${({ theme : { colors: { secondary } } }) => secondary };
-  }
-  
+  } 
 `
+
+export default GlobalStyles

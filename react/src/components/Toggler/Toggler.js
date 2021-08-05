@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 /* Contexts. */
-import { ThemeContext } from 'contexts/ThemeContext'
+import { ThemeContext } from 'contexts/theme'
 /* Assets. */
 import { ReactComponent as Sun } from 'assets/svg/sun.svg'
 import { ReactComponent as Moon } from 'assets/svg/moon.svg'
@@ -9,9 +9,10 @@ import { Button } from './Button'
 
 const Toggler = () => {
 
-  const { themeMode, toggleTheme } = useContext(ThemeContext)
+  const { toggleTheme } = useContext(ThemeContext)
+
   return (
-    <Button theme={themeMode} onClick={toggleTheme} title='Tema'>
+    <Button onClick={toggleTheme} title='Tema'>
       <Sun/>
       <Moon/>
     </Button>
