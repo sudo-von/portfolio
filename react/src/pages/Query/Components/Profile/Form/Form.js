@@ -2,24 +2,27 @@ import { useState } from 'react'
 /* Custom components. */
 import Fab from 'components/Fab'
 import Input from 'components/Input'
+import Alert from 'components/Alert'
 /* React-hook-form. */
 import { useForm } from 'react-hook-form'
 /* Material-ui components. */
 import Box from '@material-ui/core/Box'
 /* Axios. */
-import Axios from 'api/index'
+import { Request } from 'services/Request'
 
 const Form = () => {
 
     const { register, formState: { errors }, control, handleSubmit, reset } = useForm({ mode: 'onChange' })
     const [ loading, setLoading ] = useState(false)
     const [ error, setError ] = useState(null)
+    const [ success, setSuccess ] = useState(null)
 
     const onSubmit = async (data, e) => {
         setLoading(true)
         try{
-            const request = await Axios.post('questions/username/von', data)
-            setError(null)
+            const request = new Request('questions/username/von')
+            request.post(data)
+            setSuccess(false)
             reset({ question: ''})
         }catch(error){
             setError(error)
@@ -30,6 +33,14 @@ const Form = () => {
 
     return(
         <form autoComplete='off' onSubmit={handleSubmit(onSubmit)}>
+            { !error ? 
+                <Alert  elevation={6} variant="filled" severity="success">
+                    This is an error alert — check it out!
+                </Alert> :
+                <Alert  elevation={6} variant="filled" severity="error">
+                    This is an error alert — check it out!
+                </Alert>
+            }
             <Input
                 name='question'
                 message='Escribe tu pregunta'

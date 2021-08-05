@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 /* Axios. */
-import axios from 'axios'
+import { Request } from 'services/Request'
 
 export const useFetch = (url) => {
 
@@ -13,10 +13,12 @@ export const useFetch = (url) => {
         setLoading(true)
         const fetchData = async () => {
           try {
-            const res = await axios.get(url)           
-            const response = await res?.data
+            const request = new Request(url)
+            const response = await request.get('')
             setData(response)
           } catch (error) {
+            console.log(error.message,1)
+            alert(error)
             setError(error)
           } finally {
             setLoading(false)

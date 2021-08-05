@@ -1,3 +1,4 @@
+import { useState } from 'react'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
 /* Custom components. */
@@ -9,14 +10,18 @@ import { useFetch } from 'hooks/useFetch'
 
 const Portfolio = () => {
 
-  const profile = useFetch('http://localhost:3000/users/username/von')
-  const questions = useFetch('http://localhost:3000/questions/username/von')
+  const [ page, setPage ] = useState(1)
+  const handlePage = (event, value) => {
+    setPage(value)
+  }
+  const profile = useFetch('users/username/von')
+  const questions = useFetch(`questions/username/von?limit=6&offset=${6*(page-1)}`)
   
   return(
     <Container>
       <Navbar/>
       <Profile isLoading={profile.loading} user={profile.data}/>
-      <Questions isLoading={questions.loading} questions={questions.data}/>
+      <Questions questions={questions.data} handlePage={handlePage}/>
     </Container>
   )
 }

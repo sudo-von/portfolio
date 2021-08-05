@@ -1,29 +1,36 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 /* Material-ui. */
-import Carousel  from 'react-material-ui-carousel'
+import { Box, Grid } from '@material-ui/core'
 /* Custom components. */
-import { Container } from './Container'
+import { CarouselButton }  from './CarouselButton'
 
-const CustomCarousel = ( { fetchData, numberPages, children, ...rest } ) => {
-    
-    const containers = []
-    for (let index = 0; index < numberPages; index++) {
-        if (index === 0){
-            containers.push(<Container key={index}>{children}</Container>)
+const Carousel = ( { setPagination, pages, children } ) => {
+
+    const [ page, setPage ] = useState(0)
+    const changePage = (page) => {
+        setPage(page)
+        setPagination(page)
+    }
+
+    const buttons = []
+    for (let i=0; i < pages; i++) {
+        if(i === page){
+            buttons.push(<CarouselButton active={true} onClick={() => changePage(i)}></CarouselButton>)
             continue
         }
-        containers.push(null)
+        buttons.push(<CarouselButton onClick={() => changePage(i)}></CarouselButton>)
     }
 
     return(
-        <Carousel
-            next={ (next, active) => fetchData(next)}
-            prev={ (prev, active) => fetchData(prev)}
-            {...rest}
-        >
-            {containers}
-        </Carousel>
+        <Grid container spacing={2}>
+            {children}
+            <Grid item xs={12}>
+                <Box display='flex' justifyContent='center' alignItems='center'>
+                    {buttons}
+                </Box>
+            </Grid>
+        </Grid>
     )
 }
 
-export default CustomCarousel
+export default Carousel

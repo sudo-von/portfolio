@@ -9,11 +9,14 @@ import Typography from '@material-ui/core/Typography'
 const Card = ( { data : { question, creation_date, answer } }) =>
   <MaterialCard>
     <CardContent>
-      <CardHeader
-        title={<Bold>“{question}”</Bold>}
-        subheader={<small>{creation_date}</small>}
-      />
-      <Typography gutterBottom>{answer.answer}</Typography>
+      <Typography component="h6" variant="h6">
+        <Bold>“{question}”</Bold><br/>
+      </Typography>
+      <Typography variant="subtitle2" color="textSecondary">
+        <small>{creation_date}</small>
+      </Typography>
+      <br/>
+      <Typography variant="body2" color="textSecondary">{answer.answer}</Typography>
     </CardContent>
   </MaterialCard>
 

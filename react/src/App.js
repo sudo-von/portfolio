@@ -12,7 +12,7 @@ const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/'>
-            <Portfolio/>
+            {/*<Portfolio/>*/}
           </Route>
           <Route exact path='/query'>
             <Query/>
