@@ -26,32 +26,17 @@ const Wrapper = styled.div`
     }
 `
 
-const Input = (props) => {
-
-    const { 
-        name, 
-        defaultValue, 
-        message, 
-        rules, 
-        errors, 
-        ...rest
-    } = props
-    
-    const {
-        control,
-        register
-    } = props
-
+const Input = ({ name, defaultValue, message, rules, errors, control, register, ...rest}) => {
     return (
         <Controller
             name={name}
             control={control}
             defaultValue={defaultValue ? defaultValue : ''}
-            {...register(name, { 
+            refs={{...register(name, { 
                     ...rules
                 })
-            }
-            render={({field}) => 
+            }}
+            render={({ field }) =>
                 <Wrapper>
                     <TextField 
                         variant='outlined'
