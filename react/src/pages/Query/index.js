@@ -1,21 +1,23 @@
-import { useState } from 'react'
 /* Material-ui. */
 import Container from '@material-ui/core/Container'
+import Grid from '@material-ui/core/Grid'
 /* Custom components. */
 import Navbar from 'components/Navbar/'
 import Profile from './Components/Profile/'
-import Questions from './Components/Questions/'
+import QuestionCard from './Components/QuestionCard'
+import Paginator from 'components/Paginator/'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
 
 const Portfolio = () => {
 
-  /* Pagination hook. */
-  const [ page, setPage ] = useState(1)
-  const handlePage = (event, value) => setPage(value)
-  /* Data. */
-  const profile = useFetch('users/username/von')
-  const questions = useFetch(`questions/username/von?limit=6&offset=${6*(page-1)}`)
+  const profile = useFetch({url: 'users/username/von'})
+  const questions = useFetch({ 
+    url: 'questions/username/von',
+    requiredPaginate: true,
+    currentPage: 1,
+    currentLimit: 6
+  })
 
   return(
     <Container>
@@ -24,12 +26,17 @@ const Portfolio = () => {
         error={profile.error} 
         isLoading={profile.loading} 
         user={profile.data}/>
-      <Questions 
+      <Paginator 
         error={questions.error} 
-        isLoading={questions.loading} 
-        questions={questions.data} 
-        page={page} 
-        handlePage={handlePage}/>
+        page={questions.page}
+        data={questions.data}
+        handlePage={questions.handlePage}>
+          { questions.data.results && questions.data.results.map(question => 
+            <Grid item key={question.id} xs={12} sm={4} md={4}>
+              <QuestionCard data={question}/>
+            </Grid>
+          )}
+      </Paginator>
     </Container>
   )
 }

@@ -2,19 +2,21 @@ import { useState } from 'react'
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
-import H2 from 'components/H2/'
-import Bold from 'components/Bold/'
-import Repositories from './components/Repositories'
+import Paginator from 'components/Paginator'
+import H2 from 'components/H2'
+import Bold from 'components/Bold'
+import Card from './components/Card'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
 
 const Hacking = () => {
 
-    /* Pagination hook. */
-    const [ page, setPage ] = useState(1)
-    const handlePage = (event, value) => setPage(value)
-    /* Data. */
-    const { data, loading, error } = useFetch(`ctfs/username/von?limit=4&offset=${4*(page-1)}`)
+    const { data, error, page, limit, handlePage } = useFetch({ 
+        url: 'ctfs/username/von',
+        requiredPaginate: true,
+        currentPage: 1,
+        currentLimit: 4
+    })
 
     return(
         <Grid container alignItems='center' style={styles.grid.container}>
@@ -30,15 +32,21 @@ const Hacking = () => {
                 línea compitiendo contra cientos de equipos,<br/>
                 además, redacto los pasos a seguir para resolver<br/>
                 este tipo de desafíos y así contribuir a la comunidad.</p>
+                <video src='https://www.youtube.com/watch?v=2Qftkzf8VKI'/>
             </Grid>
             <Grid item xs={12} sm={12} md={7}>
-                <Repositories
+                <Paginator 
                     error={error}
-                    data={data}
-                    isLoading={loading}
-                    page={page}
-                    handlePage={handlePage}
-                />
+                    data={data} 
+                    page={page} 
+                    limit={limit}
+                    handlePage={handlePage}>
+                        { data.results && data.results.map(ctf => 
+                            <Grid item key={ctf.id} xs={12} sm={6} md={6}>
+                                <Card data={ctf}/>
+                            </Grid>
+                        )}
+                </Paginator>
             </Grid>
         </Grid>
     )

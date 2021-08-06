@@ -15,7 +15,7 @@ const QuestionCard = ( { data : { id, question, creation_date, answer, reactions
       <Typography variant="subtitle2" color="textSecondary">
         <small>{creation_date}</small>
       </Typography>
-      <Typography variant="body2" color="textSecondary">{answer.answer}</Typography>
+      <Typography variant="body2" color="textSecondary" style={{marginBottom: 15}}>{answer.answer}</Typography>
       <Reactions questionID={id} data={reactions}/>
     </CardContent>
   </Card>
