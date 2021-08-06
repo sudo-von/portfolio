@@ -2,9 +2,9 @@
 import Container from '@material-ui/core/Container'
 /* Custom components. */
 import Navbar from 'components/Navbar/'
-import Profile from './components/Profile'
-import Experiencie from './components/Experiencie'
-import Hacking from './components/Hacking'
+import Profile from './Components/Profile'
+import Experiencie from './Components/Experiencie'
+import Hacking from './Components/Hacking'
 
 const Portfolio = () => 
   <Container>

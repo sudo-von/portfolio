@@ -9,7 +9,7 @@ import Image from 'components/Image/'
 
 const Profile = () =>
   <Grid container direction="row" alignItems="center" style={styles.grid}>
-    <Grid item md={6}>
+    <Grid item xs={12} md={6}>
       <H1><Bold>Jesús Rodríguez</Bold></H1>
       <H5><Bold>Desarrollador web</Bold> y de <Bold>aplicaciones móviles</Bold></H5>
       <H5>Apasionado del <Bold>hacking ético</Bold></H5>

@@ -10,8 +10,11 @@ import { useFetch } from 'hooks/useFetch'
 
 const Hacking = () => {
 
-    const [ currentPage, setCurrentPage ] = useState(0)
-    const { data, loading } = useFetch(`http://localhost:3000/ctfs/username/von?limit=4&offset=${(currentPage*4)}`)
+    /* Pagination hook. */
+    const [ page, setPage ] = useState(1)
+    const handlePage = (event, value) => setPage(value)
+    /* Data. */
+    const { data, loading, error } = useFetch(`ctfs/username/von?limit=4&offset=${4*(page-1)}`)
 
     return(
         <Grid container alignItems='center' style={styles.grid.container}>
@@ -30,10 +33,11 @@ const Hacking = () => {
             </Grid>
             <Grid item xs={12} sm={12} md={7}>
                 <Repositories
+                    error={error}
                     data={data}
                     isLoading={loading}
-                    currentPage={currentPage}
-                    setCurrentPage={setCurrentPage}
+                    page={page}
+                    handlePage={handlePage}
                 />
             </Grid>
         </Grid>
