@@ -9,6 +9,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+      - name: Create env file
+        run: |
+          touch .env.prod
+          echo MONGO_URL=${{ secrets.MONGO_URL }} >> .env.prod
+          echo MONGO_INITDB_DATABASE=${{ secrets.MONGO_INITDB_DATABASE }} >> .env.prod
+          echo MONGO_INITDB_ROOT_USERNAME=${{ secrets.MONGO_INITDB_ROOT_USERNAME }} >> .env.prod
+          echo MONGO_INITDB_ROOT_PASSWORD=${{ secrets.MONGO_INITDB_ROOT_PASSWORD }} >> .env.prod
+          echo ENVIRONMENT=${{ secrets.ENVIRONMENT }} >> .env.prod
+          echo REACT_APP_HOST_IP_ADDRESS=${{ secrets.REACT_APP_HOST_IP_ADDRESS }} >> .env.prod
       - name: docker build
         run: |
           docker-compose -f docker-compose.prod.yml --env-file .env.prod up --build
