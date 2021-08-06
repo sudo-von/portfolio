@@ -46,6 +46,8 @@ services:
     build:
       context: react/.
       dockerfile: dev.Dockerfile
+      args:
+        REACT_APP_HOST_IP_ADDRESS: ${REACT_APP_HOST_IP_ADDRESS}
     volumes:
       - './react/:/app'
     ports:

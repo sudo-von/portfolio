@@ -2,7 +2,7 @@ import axios from 'axios'
 
 export class Request {
   constructor(endpoint){
-    this.api = `http://localhost:3000/${endpoint}`;
+    this.api = `http://${process.env.REACT_APP_HOST_IP_ADDRESS}:3000/${endpoint}`;
   }
 
   get = async ({ params = '' }) => {

@@ -2,6 +2,8 @@
 FROM node:10-alpine as builder
 
 # Production environment
+ARG REACT_APP_HOST_IP_ADDRESS
+ENV REACT_APP_HOST_IP_ADDRESS $REACT_APP_HOST_IP_ADDRESS
 COPY package.json package-lock.json ./
 RUN npm install && mkdir /react-frontend && mv ./node_modules ./react-frontend
 WORKDIR /react-frontend
