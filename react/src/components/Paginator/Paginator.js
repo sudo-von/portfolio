@@ -5,6 +5,8 @@ import Pagination from '@material-ui/lab/Pagination'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
 
+// TODO: Handle when there are no elements.
+// TODO: Fix pagination count.
 const Paginator = ({ data : { total }, page, limit, handlePage, children}) =>
     <Grid container spacing={2}>
         {children}

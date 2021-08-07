@@ -1,5 +1,6 @@
 import axios from 'axios'
 
+// TODO: Improve Request class.
 export class Request {
   constructor(endpoint){
     this.api = `http://${process.env.REACT_APP_HOST_IP_ADDRESS}:3000/${endpoint}`;

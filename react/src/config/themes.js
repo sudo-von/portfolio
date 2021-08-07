@@ -7,6 +7,7 @@ export const lightTheme = {
   background: '#EAEDF5'
 }
 
+// TODO: Try different color palettes for the darkTheme.
 export const darkTheme = {
   colors: {
     primary: '#FFFFFF',

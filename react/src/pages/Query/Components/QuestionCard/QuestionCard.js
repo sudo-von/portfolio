@@ -6,6 +6,7 @@ import Card from '@material-ui/core/Card'
 import CardContent from '@material-ui/core/CardContent'
 import Typography from '@material-ui/core/Typography'
 
+// TODO: Find a better way to handle the card size to make it responsive.
 const QuestionCard = ( { data : { id, question, creation_date, answer, reactions } }) =>
   <Card>
     <CardContent>

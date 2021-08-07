@@ -9,6 +9,7 @@ import Chip from '@material-ui/core/Chip';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 
+// TODO: Check if there is an array before to map.
 const Card = ( { data : { title, repository_url, image_url, categories } }) =>
   <a style={styles.a} href={repository_url} target='_blank'>
     <MaterialCard>
