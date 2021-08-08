@@ -1,9 +1,8 @@
 /* Material-ui. */
 import Grid from '@material-ui/core/Grid'
 /* Custom components. */
-import H2 from 'components/H2/'
-import Bold from 'components/Bold/'
 import Paginator from 'components/Paginator'
+import Description from 'components/Description'
 import ExperiencieCard from './Components/ExperiencieCard'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
@@ -20,12 +19,13 @@ const Experiencie = () => {
     return(
         <Grid container alignItems='center' style={styles.grid.container}>
             <Grid item xs={12} sm={12} md={5}>
-                <H2><Bold>Experiencia</Bold></H2>
-                <p>Durante 3 años he desarrollado proyectos<br/>
-                como desarrollador full stack para diversas empresas<br/>
-                con diferente giro de negocio.</p>
-                <p>Para lograr esto me he adaptado a diferentes tecnlogías<br/>
-                para cumplir los resultados esperados.</p>
+                <Description title='Experiencia' bold={true}>
+                    <p>Durante 3 años he desarrollado proyectos<br/>
+                    como desarrollador full stack para diversas empresas<br/>
+                    con diferente giro de negocio.</p>
+                    <p>Para lograr esto me he adaptado a diferentes tecnlogías<br/>
+                    para cumplir los resultados esperados.</p>
+                </Description>
             </Grid>
             <Grid item xs={12} sm={12} md={7}>
                 <Paginator 
