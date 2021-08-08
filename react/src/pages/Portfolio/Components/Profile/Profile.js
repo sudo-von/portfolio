@@ -2,7 +2,7 @@
 import Grid from '@material-ui/core/Grid'
 import Hidden from '@material-ui/core/Hidden'
 /* Custom components. */
-import H1 from 'components/H1'
+import ProfileName from './Components/ProfileName'
 import H5 from 'components/H5'
 import Bold from 'components/Bold/'
 import Image from 'components/Image/'
@@ -10,7 +10,7 @@ import Image from 'components/Image/'
 const Profile = () =>
   <Grid container direction="row" alignItems="center" style={styles.grid}>
     <Grid item xs={12} md={6}>
-      <H1><Bold>Jesús Rodríguez</Bold></H1>
+      <ProfileName name='Jesús Rodríguez'/>
       <H5><Bold>Desarrollador web</Bold> y de <Bold>aplicaciones móviles</Bold></H5>
       <H5>Apasionado del <Bold>hacking ético</Bold></H5>
       <small className='accent'>“La única forma de hacer un gran trabajo, es amar lo que haces”.</small>
