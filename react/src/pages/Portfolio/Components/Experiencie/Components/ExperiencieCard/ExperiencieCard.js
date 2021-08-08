@@ -1,41 +1,32 @@
 import PropTypes from 'prop-types'
 /* Custom components. */
-import Bold from 'components/Bold/'
-import Image from 'components/Image/'
+import ExperiencieAvatar from './Components/ExperiencieAvatar'
+import ExperiencieTitle from './Components/ExperiencieTitle'
+import ExperiencieTechStack from './Components/ExperiencieTechStack'
 /* Material-ui.*/
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
 import CardContent from '@material-ui/core/CardContent';
-import Chip from '@material-ui/core/Chip';
-import Avatar from '@material-ui/core/Avatar';
-import Typography from '@material-ui/core/Typography';
+import Box from '@material-ui/core/Box';
 
 const ExperiencieCard = ( { data : { title, image_url, tech_stack } }) =>
   <Card>
-    <CardHeader
-      avatar={
-        <Avatar style={styles.avatar}>
-          <Image src={image_url}/>
-        </Avatar>
-      }
-      title={
-        <Bold>{title}</Bold>
-      }
-    />
     <CardContent>
-      <Typography gutterBottom>Tecnologías</Typography>
-      { tech_stack && tech_stack.map(stack => 
-        <Chip key={stack} style={styles.chip} label={stack}/>
-      )}
+      <Box display='flex' flexDirection='row' alignItems='center' style={styles.box}>
+        <ExperiencieAvatar src={image_url}/>
+        <ExperiencieTitle title={title}/>
+      </Box>
+      <ExperiencieTechStack tech_stack={tech_stack}/>
     </CardContent>
   </Card>
 
+
 const styles = {
-  avatar : {
-    backgroundColor: 'white'
+  box: {
+    marginBottom: 20
   },
   chip: {
-    margin: 2
+    marginTop: 15,
+    marginRight: 2
   }
 }
 
