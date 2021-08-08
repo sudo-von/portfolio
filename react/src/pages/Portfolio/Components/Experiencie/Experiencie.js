@@ -4,7 +4,7 @@ import Grid from '@material-ui/core/Grid'
 import H2 from 'components/H2/'
 import Bold from 'components/Bold/'
 import Paginator from 'components/Paginator'
-import Card from './Components/Card'
+import ExperiencieCard from './Components/ExperiencieCard'
 /* Custom hooks. */
 import { useFetch } from 'hooks/useFetch'
 
@@ -36,7 +36,7 @@ const Experiencie = () => {
                     handlePage={handlePage}>
                         { data.results && data.results.map(project => 
                             <Grid item key={project.id} xs={12} sm={6} md={6}>
-                                <Card data={project}/>
+                                <ExperiencieCard data={project}/>
                             </Grid>
                         )}
                 </Paginator>
