@@ -1,4 +1,4 @@
-import PropTypes from 'react'
+import PropTypes from 'prop-types'
 /* Custom components. */
 import H5 from 'components/H5'
 import Bold from 'components/Bold'

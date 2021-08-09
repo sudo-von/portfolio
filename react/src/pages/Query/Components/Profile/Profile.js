@@ -1,29 +1,27 @@
-/* Material-ui. */
-import Grid from '@material-ui/core/Grid'
+import { Fragment } from 'react'
 /* Custom components. */
 import ProfilePicture from './ProfilePicture'
-import Username from './Username'
-import Achievements from './Achievements'
+import ProfileUsername from './ProfileUsername'
+import ProfileAchievements from './ProfileAchievements'
 import ProfileForm from './ProfileForm'
 /* High order components. */
 import withLoading from 'hocs/withLoading'
 import withError from 'hocs/withError'
+import { Card, CardContent } from '@material-ui/core'
 
 const Profile = ({ user }) => {
     
-    const { profile_picture_url, username, name, achievements } = user
+    const { id, profile_picture_url, username, name, achievements } = user
 
     return (
-        <Grid container display='flex' alignItems='center' justifyContent='center' spacing={2} style={styles.grid.container}>
-            <Grid item xs={6} sm={4} md={3}>
+        <Card>
+            <CardContent>
                 <ProfilePicture src={profile_picture_url}/>
-            </Grid>
-            <Grid item xs={12} sm={12} md={4}>
-                <Username name={name} username={username}/>
-                <Achievements achievements={achievements}/>
+                <ProfileUsername name={name} username={username}/>
+                <ProfileAchievements id={id} achievements={achievements}/>
                 <ProfileForm/>
-            </Grid>
-        </Grid>
+            </CardContent>
+        </Card>
     )
 }
 

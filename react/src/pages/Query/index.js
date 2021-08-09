@@ -16,27 +16,34 @@ const Portfolio = () => {
     url: 'questions/username/von',
     requiredPaginate: true,
     currentPage: 1,
-    currentLimit: 6
+    currentLimit: 3
   })
 
   return(
     <Container>
       <Navbar/>
-      <Profile
-        error={profile.error} 
-        isLoading={profile.loading} 
-        user={profile.data}/>
-      <Paginator 
-        error={questions.error} 
-        page={questions.page}
-        data={questions.data}
-        handlePage={questions.handlePage}>
-          { questions.data.results && questions.data.results.map(question => 
-            <Grid item key={question.id} xs={12} sm={4} md={4}>
-              <QuestionCard data={question}/>
-            </Grid>
-          )}
-      </Paginator>
+      <Grid container display='flex' justifyContent='center' spacing={3}>
+        <Grid item xs={12} md={4}>
+          <Profile
+            error={profile.error} 
+            isLoading={profile.loading} 
+            user={profile.data}/>
+        </Grid>
+        <Grid item xs={12} md={8}>
+          <Paginator
+            error={questions.error} 
+            page={questions.page}
+            data={questions.data}
+            limit={questions.limit}
+            handlePage={questions.handlePage}>
+              { questions.data.results && questions.data.results.map(question => 
+                <Grid item key={question.id} xs={12}>
+                  <QuestionCard data={question}/>
+                </Grid>
+              )}
+          </Paginator>
+        </Grid>
+      </Grid>
     </Container>
   )
 }
