@@ -23,6 +23,16 @@ const GlobalStyles = createGlobalStyle`
     color: ${({ theme : { colors: { accent } } }) => accent };
   }
 
+  .bg-primary{
+    background-color: ${({ theme : { colors: { primary } } }) => primary };
+  }
+  .bg-secondary{
+    background-color: ${({ theme : { colors: { secondary } } }) => secondary };
+  }
+  .bg-accent{
+    background-color: ${({ theme : { colors: { accent } } }) => accent };
+  }
+
   p{
     font-size: 14px;
   }

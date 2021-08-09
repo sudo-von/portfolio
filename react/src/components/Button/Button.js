@@ -5,7 +5,7 @@ import { Button as MaterialButton } from '@material-ui/core'
 
 const Wrapper = styled.div`
     span{
-        color: ${({ theme: { colors : { secondary } } }) => secondary };
+        color: ${({ theme: { colors : { accent } } }) => accent };
     }
 `
 

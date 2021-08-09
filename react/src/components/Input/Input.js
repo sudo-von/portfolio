@@ -7,12 +7,16 @@ import { Controller } from 'react-hook-form'
 
 const Wrapper = styled.div`
 
-    & label.Mui-focused{
-        color: ${({ theme : { colors : { secondary } } }) => secondary };
+    & .MuiInputBase-root{
+        color: ${({ theme : { colors : { primary } } }) => primary };
     }
 
-    & .MuiInput-underline:after{
-        border-bottom-color: white;
+    & label, & p{
+        color: ${({ theme : { colors : { accent } } }) => accent };
+    }
+
+    & label.Mui-focused{
+        color: ${({ theme : { colors : { secondary } } }) => secondary };
     }
 
     & .MuiOutlinedInput-root{

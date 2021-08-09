@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types'
+/* Custom components. */
+import Small from 'components/Small'
 
 const ProfileAchievements = ({ id, achievements }) =>
     <ul style={styles.ul}>
         {achievements && achievements.map(achievment =>
-            <li key={`${id}-${achievment}`}>{achievment}.</li>
+            <li key={`${id}-${achievment}`}><Small>{achievment}.</Small></li>
         )}
     </ul>
 

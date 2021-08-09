@@ -14,14 +14,12 @@ const Profile = ({ user }) => {
     const { id, profile_picture_url, username, name, achievements } = user
 
     return (
-        <Card>
-            <CardContent>
-                <ProfilePicture src={profile_picture_url}/>
-                <ProfileUsername name={name} username={username}/>
-                <ProfileAchievements id={id} achievements={achievements}/>
-                <ProfileForm/>
-            </CardContent>
-        </Card>
+        <div>
+            <ProfilePicture src={profile_picture_url}/>
+            <ProfileUsername name={name} username={username}/>
+            <ProfileAchievements id={id} achievements={achievements}/>
+            <ProfileForm/>
+        </div>
     )
 }
 

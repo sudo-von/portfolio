@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 
 const ExperiencieTechStack = ({ id, tech_stack }) =>
     <Fragment>
-        <Typography variant='caption' display='block' color='textSecondary'>Tecnologías</Typography>
+        <Typography variant='caption' display='block' color='textPrimary'>Tecnologías</Typography>
         { tech_stack && tech_stack.map(stack => 
             <Chip 
                 key={`${id}-${stack}`} 

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 /* Material-ui.*/
-import Button from 'components/Button'
+import Button from '@material-ui/core/Button'
 import ButtonGroup from '@material-ui/core/ButtonGroup'
 /* Assets. */
 import { ReactComponent as Happy } from 'assets/svg/reactions/happy.svg'
