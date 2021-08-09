@@ -8,8 +8,7 @@ const Description = ({ title, bold, children}) =>
     <Fragment>
         <H2>{ bold ? <Bold>{title}</Bold> : title }</H2>
         <div>
-
-        {children}
+            {children}
         </div>
     </Fragment>
 
