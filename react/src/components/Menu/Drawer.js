@@ -29,7 +29,7 @@ const Drawer = ( { open, toggleDrawer } ) => {
       <div onClick={toggleDrawer(false)} onKeyDown={toggleDrawer(false)} style={{width: 250}}>
       <List>
         {pages.map(({name, path, icon}) => (
-          <Link to={path} key={name}>
+          <Link to={path} key={name} style={{textDecoration: 'none'}}>
             <ListItem button key={name}>
               <ListItemIcon>{icon}</ListItemIcon>
               <ListItemText primary={name}/>
