@@ -39,7 +39,7 @@ func (qr *QuestionResponse) Render(w http.ResponseWriter, r *http.Request) error
 }
 
 func (qp *QuestionPayload) validate() (err error) {
-	if qp.Question == "" {
+	if len(qp.Question) == 0 {
 		err = mergeErrors(err, errors.New("missing field question"))
 	}
 	if len(qp.Question) > 300 {
