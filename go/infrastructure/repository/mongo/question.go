@@ -173,7 +173,7 @@ func (r *QuestionMongo) GetQuestionsByUserID(userID string, filters presenter.Qu
 		"user_id": bson.ObjectIdHex(userID),
 	}
 
-	err := con.Find(searchQuery).Limit(filters.Limit).Skip(filters.Offset).Sort("-answer.answer_date").All(&questionsM)
+	err := con.Find(searchQuery).Limit(filters.Limit).Skip(filters.Offset).Sort("-answer.creation_date").All(&questionsM)
 	if err != nil {
 		return nil, nil, err
 	}
