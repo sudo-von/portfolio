@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography'
 
 const HackingCategories = ({ id, categories }) =>
     <Fragment>
-        <Typography variant='caption' display='block' color='textSecondary'>Tecnologías</Typography>
+        <Typography variant='caption' display='block' color='textSecondary'>Categorías</Typography>
         { categories && categories.map(category => 
             <Chip 
                 key={`${id}-${category}`} 

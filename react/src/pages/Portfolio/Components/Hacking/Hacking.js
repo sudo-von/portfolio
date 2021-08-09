@@ -21,12 +21,10 @@ const Hacking = () => {
         <Grid container alignItems='center' style={styles.upper.grid.container} spacing={2}>
             <Grid item xs={12} sm={12} md={5}>
                 <Description title='Hacking ético' bold={true}>
-                    <p>Durante 3 años he participado en múltiples
-                    eventos de seguridad informática a nivel nacional
-                    obteniendo los primeros lugares representando
-                    a mi estado al vulnerar sistemas en ambientes
+                    <p>Durante 3 años he participado en eventosde seguridad informática a nivel nacional
+                    obteniendo los primeros lugares al vulnerar sistemas en ambientes
                     controlados teniendo también una participación
-                    en la televisión nacional en <a href='http://facebook.com/TeleSaltillo/videos/destacan-alumnos-de-sistemas-de-la-uadec-en-concurso-nacional-como-hackers-%C3%A9tico/701925957401415/' target='_blank'>Tele Saltillo</a>.</p>
+                    en la televisión.</p>
                     <p>Semanalmente participo en multiples eventos en
                     línea compitiendo contra cientos de equipos,
                     además, redacto los pasos a seguir para resolver

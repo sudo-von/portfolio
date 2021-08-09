@@ -23,6 +23,10 @@ const GlobalStyles = createGlobalStyle`
     color: ${({ theme : { colors: { accent } } }) => accent };
   }
 
+  p{
+    font-size: 14px;
+  }
+
 `
 
 export default GlobalStyles
