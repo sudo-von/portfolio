@@ -18,7 +18,7 @@ const Paginator = ({ data : { total }, page, limit, handlePage, children}) => {
             {children}
             <Grid item xs={12}>
                 <Box display='flex' justifyContent='center' alignItems='center'>
-                    <Pagination count={Math.round(total/limit)} page={page} onChange={handlePage} variant='outlined'/>
+                    {children && <Pagination count={Math.ceil(total/limit)} page={page} onChange={handlePage} variant='outlined'/>}
                 </Box>
             </Grid>
         </Grid>
